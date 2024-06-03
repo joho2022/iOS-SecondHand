@@ -8,13 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643854D2C0DA868004F5856 /* secondhandApp.swift */; };
-		D64385502C0DA868004F5856 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643854F2C0DA868004F5856 /* ContentView.swift */; };
 		D64385522C0DA86A004F5856 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64385512C0DA86A004F5856 /* Assets.xcassets */; };
 		D64385552C0DA86A004F5856 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D64385542C0DA86A004F5856 /* Preview Assets.xcassets */; };
 		D643855F2C0DA86A004F5856 /* secondhandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643855E2C0DA86A004F5856 /* secondhandTests.swift */; };
 		D64385692C0DA86A004F5856 /* secondhandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385682C0DA86A004F5856 /* secondhandUITests.swift */; };
 		D643856B2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */; };
 		D643857B2C0DAE1B004F5856 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D643857A2C0DAE1B004F5856 /* .swiftlint.yml */; };
+		D64385802C0DB82C004F5856 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D643857F2C0DB82C004F5856 /* Color.xcassets */; };
+		D64385882C0DCB04004F5856 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385872C0DCB04004F5856 /* Font+Extensions.swift */; };
+		D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643858B2C0DD45B004F5856 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +39,6 @@
 /* Begin PBXFileReference section */
 		D643854A2C0DA868004F5856 /* secondhand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = secondhand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D643854D2C0DA868004F5856 /* secondhandApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandApp.swift; sourceTree = "<group>"; };
-		D643854F2C0DA868004F5856 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D64385512C0DA86A004F5856 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D64385542C0DA86A004F5856 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D643855A2C0DA86A004F5856 /* secondhandTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = secondhandTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -46,6 +47,9 @@
 		D64385682C0DA86A004F5856 /* secondhandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandUITests.swift; sourceTree = "<group>"; };
 		D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D643857A2C0DAE1B004F5856 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
+		D643857F2C0DB82C004F5856 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		D64385872C0DCB04004F5856 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
+		D643858B2C0DD45B004F5856 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,8 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				D643854D2C0DA868004F5856 /* secondhandApp.swift */,
-				D643854F2C0DA868004F5856 /* ContentView.swift */,
+				D643858B2C0DD45B004F5856 /* ContentView.swift */,
+				D64385832C0DBDC5004F5856 /* Extensions */,
 				D64385512C0DA86A004F5856 /* Assets.xcassets */,
+				D643857F2C0DB82C004F5856 /* Color.xcassets */,
 				D64385532C0DA86A004F5856 /* Preview Content */,
 			);
 			path = secondhand;
@@ -128,6 +134,14 @@
 				D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */,
 			);
 			path = secondhandUITests;
+			sourceTree = "<group>";
+		};
+		D64385832C0DBDC5004F5856 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D64385872C0DCB04004F5856 /* Font+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D643857B2C0DAE1B004F5856 /* .swiftlint.yml in Resources */,
+				D64385802C0DB82C004F5856 /* Color.xcassets in Resources */,
 				D64385552C0DA86A004F5856 /* Preview Assets.xcassets in Resources */,
 				D64385522C0DA86A004F5856 /* Assets.xcassets in Resources */,
 			);
@@ -284,7 +299,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D64385502C0DA868004F5856 /* ContentView.swift in Sources */,
+				D64385882C0DCB04004F5856 /* Font+Extensions.swift in Sources */,
+				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
 				D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
