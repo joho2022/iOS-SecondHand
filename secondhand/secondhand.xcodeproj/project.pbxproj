@@ -14,6 +14,7 @@
 		D643855F2C0DA86A004F5856 /* secondhandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643855E2C0DA86A004F5856 /* secondhandTests.swift */; };
 		D64385692C0DA86A004F5856 /* secondhandUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385682C0DA86A004F5856 /* secondhandUITests.swift */; };
 		D643856B2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */; };
+		D643857B2C0DAE1B004F5856 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D643857A2C0DAE1B004F5856 /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		D64385642C0DA86A004F5856 /* secondhandUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = secondhandUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D64385682C0DA86A004F5856 /* secondhandUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandUITests.swift; sourceTree = "<group>"; };
 		D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D643857A2C0DAE1B004F5856 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		D64385412C0DA868004F5856 = {
 			isa = PBXGroup;
 			children = (
+				D643857A2C0DAE1B004F5856 /* .swiftlint.yml */,
 				D643854C2C0DA868004F5856 /* secondhand */,
 				D643855D2C0DA86A004F5856 /* secondhandTests */,
 				D64385672C0DA86A004F5856 /* secondhandUITests */,
@@ -137,6 +140,7 @@
 				D64385462C0DA868004F5856 /* Sources */,
 				D64385472C0DA868004F5856 /* Frameworks */,
 				D64385482C0DA868004F5856 /* Resources */,
+				D64385772C0DABD0004F5856 /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -231,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D643857B2C0DAE1B004F5856 /* .swiftlint.yml in Resources */,
 				D64385552C0DA86A004F5856 /* Preview Assets.xcassets in Resources */,
 				D64385522C0DA86A004F5856 /* Assets.xcassets in Resources */,
 			);
@@ -251,6 +256,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D64385772C0DABD0004F5856 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if test -d \"/opt/homebrew/bin/\"; then\n  PATH=\"/opt/homebrew/bin/:${PATH}\"\nfi\n\nexport PATH\n\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D64385462C0DA868004F5856 /* Sources */ = {
@@ -347,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -404,7 +431,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -424,6 +451,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"secondhand/Preview Content\"";
 				DEVELOPMENT_TEAM = 9H57LB393L;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -453,6 +481,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"secondhand/Preview Content\"";
 				DEVELOPMENT_TEAM = 9H57LB393L;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
