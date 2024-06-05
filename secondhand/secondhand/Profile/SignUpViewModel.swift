@@ -16,20 +16,15 @@ class SignUpViewModel: ObservableObject {
     @Published var showErrorAlert: Bool = false
     @Published var showImagePicker: Bool = false
     @Published var showLocationSearch: Bool = false
+    @Published var showUserNameTakenAlert: Bool = false
     
     func signUp() {
-        let user = User()
-        user.username = username
-        
-        if let profileImage = profileImage {
-            user.profileImageData = profileImage.pngData()
+        guard !UserManager.shared.isUserNameTaken(username) else {
+            showUserNameTakenAlert = true
+            return
         }
         
-        let location = Location()
-        location.name = locationName
-        location.isDefault = true
-        
-        user.locations.append(location)
+        let user = createUserObject()
         
         do {
             let realm = try Realm()
@@ -45,5 +40,18 @@ class SignUpViewModel: ObservableObject {
     func loadImage(inputImage: UIImage?) {
         guard let inputImage = inputImage else { return }
         self.profileImage = inputImage
+    }
+    
+    func createUserObject() -> User {
+        let user = User()
+        user.username = self.username
+        if let profileImage = self.profileImage {
+            user.profileImageData = profileImage.pngData()
+        }
+        let location = Location()
+        location.name = self.locationName
+        location.isDefault = true
+        user.locations.append(location)
+        return user
     }
 }

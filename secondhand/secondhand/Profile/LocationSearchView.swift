@@ -58,8 +58,12 @@ struct LocationSearchView: View {
                 }
             }// ZStack
             .navigationBarTitle("주소 검색", displayMode: .inline)
-            .navigationBarItems(leading: Button("닫기") {
+            .navigationBarItems(leading:
+                                    Button {
                 presentationMode.wrappedValue.dismiss()
+            } label: {
+                Text("닫기")
+                    .foregroundColor(.customBlack)
             })
         } // NavigationView
     } // View

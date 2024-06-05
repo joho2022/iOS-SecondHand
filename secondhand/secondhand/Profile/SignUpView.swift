@@ -72,22 +72,20 @@ struct SignUpView: View {
                                     .font(.system(.regular, size: 15))
                             } else {
                                 Text(viewModel.locationName)
-                                    .foregroundColor(.customWhite)
                                     .font(.system(.regular, size: 15))
                                 Spacer()
                                 Image(systemName: "xmark")
-                                    .foregroundColor(.customWhite)
                             }
                         }
-                        .foregroundColor(.black)
+                        .foregroundColor(viewModel.locationName.isEmpty ? .black : .customWhite)
                         .padding()
                         .frame(maxWidth: .infinity)
+                        .background(viewModel.locationName.isEmpty ? Color.clear : .customOrange)
                         .cornerRadius(8)
                         .overlay(
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(.customGray500, lineWidth: 1.5)
                         )
-                        .background(viewModel.locationName.isEmpty ? Color.clear : .customOrange)
                     }
                     .padding(.top, 40)
                     .padding()
@@ -105,7 +103,7 @@ struct SignUpView: View {
             .navigationBarItems(
                 leading:
                     Button {
-                        print("닫기")
+                        presentationMode.wrappedValue.dismiss()
                     } label: {
                         Text("닫기")
                             .foregroundColor(.customBlack)
@@ -124,6 +122,9 @@ struct SignUpView: View {
                     .disabled(viewModel.username.isEmpty || viewModel.locationName.isEmpty)
                     .alert(isPresented: $viewModel.showErrorAlert, content: {
                         Alert(title: Text("오류"), message: Text("서버저장에 실패하였습니다."), dismissButton: .default(Text("확인")))
+                    })
+                    .alert(isPresented: $viewModel.showUserNameTakenAlert, content: {
+                        Alert(title: Text("오류"), message: Text("아이디가 이미 존재합니다."), dismissButton: .default(Text("확인")))
                     })
             )
         } // NavigationView
