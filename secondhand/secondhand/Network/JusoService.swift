@@ -19,8 +19,13 @@ enum NetworkError: Error {
 }
 
 class JusoService {
-    let baseURL = "https://business.juso.go.kr/addrlink/addrLinkApi.do"
-    let confmKey = "devU01TX0FVVEgyMDI0MDYwNDIzMzM1NzExNDgyMzA="
+    private let baseURL = "https://business.juso.go.kr/addrlink/addrLinkApi.do"
+    private var confmKey: String {
+            guard let confmKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
+                fatalError("API_KEY not found in Info.plist")
+            }
+        return confmKey
+    }
     
     func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
         guard var urlComponents = URLComponents(string: baseURL) else {

@@ -67,6 +67,8 @@
 		D64385AC2C0FFE4E004F5856 /* Juso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juso.swift; sourceTree = "<group>"; };
 		D64385AE2C10087C004F5856 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		D64385B02C100BB8004F5856 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
+		D64385B92C1072D7004F5856 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		D64385BA2C10734A004F5856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		D64385412C0DA868004F5856 = {
 			isa = PBXGroup;
 			children = (
+				D64385B92C1072D7004F5856 /* Config.xcconfig */,
 				D643857A2C0DAE1B004F5856 /* .swiftlint.yml */,
 				D643854C2C0DA868004F5856 /* secondhand */,
 				D643855D2C0DA86A004F5856 /* secondhandTests */,
@@ -127,6 +130,7 @@
 				D64385A72C0FF867004F5856 /* Network */,
 				D64385512C0DA86A004F5856 /* Assets.xcassets */,
 				D643857F2C0DB82C004F5856 /* Color.xcassets */,
+				D64385BA2C10734A004F5856 /* Info.plist */,
 				D64385532C0DA86A004F5856 /* Preview Content */,
 			);
 			path = secondhand;
@@ -404,6 +408,7 @@
 /* Begin XCBuildConfiguration section */
 		D643856C2C0DA86A004F5856 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D64385B92C1072D7004F5856 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -467,6 +472,7 @@
 		};
 		D643856D2C0DA86A004F5856 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D64385B92C1072D7004F5856 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -533,6 +539,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = secondhand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -563,6 +570,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = secondhand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
