@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct secondhandApp: App {
+    @StateObject private var userManager = UserManager.shared
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(userManager)
         }
     }
 }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import RealmSwift
+import os
 
 class SignUpViewModel: ObservableObject {
     @Published var username: String = ""
@@ -25,6 +26,7 @@ class SignUpViewModel: ObservableObject {
         }
         
         let user = createUserObject()
+        os_log("[ 회원가입 ]: \(user)")
         
         do {
             let realm = try Realm()
@@ -42,7 +44,7 @@ class SignUpViewModel: ObservableObject {
         self.profileImage = inputImage
     }
     
-    func createUserObject() -> User {
+    private func createUserObject() -> User {
         let user = User()
         user.username = self.username
         if let profileImage = self.profileImage {

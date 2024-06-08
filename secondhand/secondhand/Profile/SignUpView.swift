@@ -23,7 +23,7 @@ struct SignUpView: View {
                     } label: {
                         ZStack {
                             Circle()
-                                .stroke(.customGray500, lineWidth: 3)
+                                .stroke(.customGray500, lineWidth: 1)
                                 .frame(width: 80, height: 80)
                             if let image = viewModel.profileImage {
                                 Image(uiImage: image)

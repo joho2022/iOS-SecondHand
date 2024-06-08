@@ -2,65 +2,95 @@
 //  ProfileView.swift
 //  secondhand
 //
-//  Created by 조호근 on 6/4/24.
+//  Created by 조호근 on 6/8/24.
 //
 
 import SwiftUI
-import os
 
 struct ProfileView: View {
-    @State private var showSignUpView = false
-    @State private var username: String = ""
+    @EnvironmentObject var userManager: UserManager
+    @State private var showImagePicker = false
+    @State private var inputImage: UIImage?
     
     var body: some View {
         NavigationView {
             VStack {
                 Divider()
                 
-                HStack(spacing: 30) {
-                    Text("아이디")
-                    TextField("아이디를 입력하세요", text: $username)
-                        .multilineTextAlignment(.leading)
-                }
-                .padding(.horizontal)
+                Button {
+                    self.showImagePicker = true
+                } label: {
+                    ZStack {
+                        if let profileImage = userManager.user?.profileImageData,
+                           let uiImage = UIImage(data: profileImage) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(.customGray500, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                        } else {
+                            Image(systemName: "person.circle.fill")
+                                .resizable()
+                                .frame(width: 80, height: 80)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(.customGray500, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
+                                .foregroundColor(.customOrange)
+                        }
+                        
+                        Text("편집")
+                            .font(.system(.regular, size: 11))
+                            .frame(width: 100)
+                            .padding(2)
+                            .padding(.bottom, 10)
+                            .background(.customGray500)
+                            .foregroundColor(.customWhite)
+                            .clipShape(Capsule())
+                            .offset(y: 30)
+                        
+                    }
+                    .frame(width: 80, height: 80)
+                    .clipShape(Circle())
+                } // Button
                 .padding(.top, 90)
+                .sheet(isPresented: $showImagePicker, onDismiss: loadImage, content: {
+                    ImagePicker(image: $inputImage)
+                })
                 
-                Divider()
+                Text(userManager.user?.username ?? "사용자 이름")
+                    .font(.system(.semibold, size: 17))
+                    .padding(.horizontal)
+                    .padding(.top, 30)
                 
                 Spacer()
                 
                 Button {
-                    if UserManager.shared.login(username: username) {
-                        os_log("\(UserManager.shared.user)")
-                    }
+                    userManager.logout()
                 } label: {
-                    Text("로그인")
-                        .frame(maxWidth: .infinity)
+                    
+                    Text("로그아웃")
                         .padding()
+                        .frame(maxWidth: .infinity)
+                        .font(.system(.regular, size: 15))
                         .foregroundColor(.customWhite)
                         .background(.customOrange)
                         .cornerRadius(8)
-                        .font(.system(.regular, size: 15))
                 }
                 .padding()
-                
-                Button {
-                    showSignUpView = true
-                } label: {
-                    Text("회원가입")
-                        .font(.system(.regular, size: 15))
-                        .foregroundColor(.customGray900)
-                }
-                .padding(.bottom, 90)
-                .sheet(isPresented: $showSignUpView, content: {
-                    SignUpView()
-                })
-            }
+                .padding(.bottom, 121)
+
+            } // VStack
             .navigationBarTitle("내 계정", displayMode: .inline)
+        } // NavigationView
+    }
+    
+    private func loadImage() {
+        guard let inputImage = inputImage else { return }
+        if let imageData = inputImage.pngData(), let username = userManager.user?.username {
+            userManager.updateProfileImage(for: username, with: imageData)
         }
     }
 }
 
 #Preview {
-    ProfileView()
+    ProfileView().environmentObject(UserManager.shared)
 }

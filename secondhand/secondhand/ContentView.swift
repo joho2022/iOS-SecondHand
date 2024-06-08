@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var userManager: UserManager
     
     var body: some View {
         TabView {
@@ -32,11 +33,19 @@ struct ContentView: View {
                     Image(systemName: "message")
                     Text("채팅")
                 }
-            ProfileView()
-                .tabItem {
-                    Image(systemName: "person")
-                    Text("내 계정")
-                }
+            if userManager.user == nil {
+                LoginView()
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("내 계정")
+                    }
+            } else {
+                ProfileView()
+                    .tabItem {
+                        Image(systemName: "person")
+                        Text("내 계정")
+                    }
+            }
         }
         .tint(.orange)
     }
@@ -67,5 +76,5 @@ struct ChatView: View {
 }
 
 #Preview {
-    ProfileView()
+    ContentView().environmentObject(UserManager.shared)
 }

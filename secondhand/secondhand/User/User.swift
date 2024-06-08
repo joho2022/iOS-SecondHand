@@ -12,7 +12,7 @@ class User: Object {
     @Persisted var id: String = UUID().uuidString
     @Persisted var username: String = ""
     @Persisted var profileImageData: Data?
-    let locations = List<Location>()
+    @Persisted var locations = List<Location>()
 }
 
 class Location: Object {
