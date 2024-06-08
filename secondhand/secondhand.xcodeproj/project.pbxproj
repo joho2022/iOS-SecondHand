@@ -28,6 +28,7 @@
 		D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385B02C100BB8004F5856 /* LocationSearchView.swift */; };
 		D64385BC2C107D29004F5856 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BB2C107D29004F5856 /* UserManager.swift */; };
 		D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BD2C142EFE004F5856 /* ProfileView.swift */; };
+		D64385C02C149134004F5856 /* JusoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BF2C149134004F5856 /* JusoServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		D64385BA2C10734A004F5856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D64385BB2C107D29004F5856 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D64385BD2C142EFE004F5856 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		D64385BF2C149134004F5856 /* JusoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusoServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				D643855E2C0DA86A004F5856 /* secondhandTests.swift */,
+				D64385BF2C149134004F5856 /* JusoServiceTests.swift */,
 			);
 			path = secondhandTests;
 			sourceTree = "<group>";
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D64385C02C149134004F5856 /* JusoServiceTests.swift in Sources */,
 				D643855F2C0DA86A004F5856 /* secondhandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
