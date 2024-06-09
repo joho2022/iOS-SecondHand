@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct SignUpView: View {
+    @EnvironmentObject var userManager: UserManager
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var viewModel = SignUpViewModel()
+    @StateObject private var viewModel: SignUpViewModel
     @State private var inputImage: UIImage?
+    
+    init(userManager: UserManagerProtocol) {
+        _viewModel = StateObject(wrappedValue: SignUpViewModel(userManager: userManager))
+    }
     
     var body: some View {
         NavigationView {
@@ -193,5 +198,5 @@ private struct SignUpSuccessView: View {
 }
 
 #Preview {
-    SignUpView()
+    SignUpView(userManager: UserManager.shared)
 }

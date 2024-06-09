@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import RealmSwift
 import os
 
 class SignUpViewModel: ObservableObject {
@@ -19,6 +18,12 @@ class SignUpViewModel: ObservableObject {
     @Published var showLocationSearch: Bool = false
     @Published var showUserNameTakenAlert: Bool = false
     
+    private let userManager: UserManagerProtocol
+    
+    init(userManager: UserManagerProtocol) {
+        self.userManager = userManager
+    }
+    
     func signUp() {
         guard !UserManager.shared.isUserNameTaken(username) else {
             showUserNameTakenAlert = true
@@ -29,10 +34,7 @@ class SignUpViewModel: ObservableObject {
         os_log("[ 회원가입 ]: \(user)")
         
         do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(user)
-            }
+            try userManager.saveUser(user)
             showSuccessView = true
         } catch {
             showErrorAlert = true

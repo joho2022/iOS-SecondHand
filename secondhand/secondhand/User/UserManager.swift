@@ -10,7 +10,7 @@ import RealmSwift
 import os
 import Foundation
 
-class UserManager: ObservableObject {
+class UserManager: ObservableObject, UserManagerProtocol {
     static let shared = UserManager()
     
     @Published var user: User?
@@ -48,6 +48,13 @@ class UserManager: ObservableObject {
             os_log("[ 사진 업데이트 실패 ]: 유저정보 없음")
             alertMessage = "사진 업데이트 실패: 유저정보가 없습니다."
             showAlert = true
+        }
+    }
+    
+    func saveUser(_ user: User) throws {
+        let realm = try! Realm()
+        try realm.write {
+            realm.add(user)
         }
     }
     

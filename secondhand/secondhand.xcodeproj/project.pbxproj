@@ -30,6 +30,7 @@
 		D64385C02C149134004F5856 /* AddressServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BF2C149134004F5856 /* AddressServiceTests.swift */; };
 		D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */; };
 		D64385C52C15BA8D004F5856 /* LocationSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */; };
+		D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +78,7 @@
 		D64385BF2C149134004F5856 /* AddressServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceTests.swift; sourceTree = "<group>"; };
 		D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceProtocol.swift; sourceTree = "<group>"; };
 		D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModelTests.swift; sourceTree = "<group>"; };
+		D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */,
+				D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -375,6 +378,7 @@
 				D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */,
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
+				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
 				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
