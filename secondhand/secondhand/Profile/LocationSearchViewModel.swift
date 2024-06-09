@@ -18,7 +18,7 @@ class LocationSearchViewModel: ObservableObject {
     private var canLoadMorePages = true
     private var cancellables = Set<AnyCancellable>()
     
-    private var jusoService = JusoService()
+    private var jusoService = AddressService()
     
     init() {
         $searchQuery

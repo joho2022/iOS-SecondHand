@@ -21,8 +21,8 @@
 		D643859B2C0F1D5B004F5856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643859A2C0F1D5B004F5856 /* User.swift */; };
 		D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643859D2C0F2568004F5856 /* SignUpViewModel.swift */; };
 		D64385A42C0F34C1004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385A32C0F34C1004F5856 /* RealmSwift */; };
-		D64385AB2C0FFE2E004F5856 /* JusoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AA2C0FFE2E004F5856 /* JusoService.swift */; };
-		D64385AD2C0FFE4E004F5856 /* Juso.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AC2C0FFE4E004F5856 /* Juso.swift */; };
+		D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AA2C0FFE2E004F5856 /* AddressService.swift */; };
+		D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AC2C0FFE4E004F5856 /* AddressResponse.swift */; };
 		D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AE2C10087C004F5856 /* LocationSearchViewModel.swift */; };
 		D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385B02C100BB8004F5856 /* LocationSearchView.swift */; };
 		D64385BC2C107D29004F5856 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BB2C107D29004F5856 /* UserManager.swift */; };
@@ -64,8 +64,8 @@
 		D64385902C0E2C6C004F5856 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D643859A2C0F1D5B004F5856 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D643859D2C0F2568004F5856 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
-		D64385AA2C0FFE2E004F5856 /* JusoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusoService.swift; sourceTree = "<group>"; };
-		D64385AC2C0FFE4E004F5856 /* Juso.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juso.swift; sourceTree = "<group>"; };
+		D64385AA2C0FFE2E004F5856 /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
+		D64385AC2C0FFE4E004F5856 /* AddressResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressResponse.swift; sourceTree = "<group>"; };
 		D64385AE2C10087C004F5856 /* LocationSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModel.swift; sourceTree = "<group>"; };
 		D64385B02C100BB8004F5856 /* LocationSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchView.swift; sourceTree = "<group>"; };
 		D64385B92C1072D7004F5856 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -190,8 +190,8 @@
 		D64385A72C0FF867004F5856 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D64385AC2C0FFE4E004F5856 /* Juso.swift */,
-				D64385AA2C0FFE2E004F5856 /* JusoService.swift */,
+				D64385AC2C0FFE4E004F5856 /* AddressResponse.swift */,
+				D64385AA2C0FFE2E004F5856 /* AddressService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -364,11 +364,11 @@
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
-				D64385AB2C0FFE2E004F5856 /* JusoService.swift in Sources */,
+				D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */,
 				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
 				D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */,
 				D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */,
-				D64385AD2C0FFE4E004F5856 /* Juso.swift in Sources */,
+				D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

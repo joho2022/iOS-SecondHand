@@ -18,16 +18,18 @@ enum NetworkError: Error {
     case serverError(String)
 }
 
-class JusoService {
+class AddressService {
     private let baseURL = "https://business.juso.go.kr/addrlink/addrLinkApi.do"
-    private var confmKey: String {
-            guard let confmKey = Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String else {
-                fatalError("API_KEY not found in Info.plist")
-            }
-        return confmKey
+    private var confmKey: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String
     }
     
     func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
+        guard let confmKey = confmKey else {
+            completion(.failure(.unauthorized))
+            return
+        }
+        
         guard var urlComponents = URLComponents(string: baseURL) else {
             completion(.failure(.invalidURL))
             return
@@ -63,13 +65,13 @@ class JusoService {
             }
             
             do {
-                let jusoResponse = try JSONDecoder().decode(JusoResponse.self, from: data)
+                let jusoResponse = try JSONDecoder().decode(AddressResponse.self, from: data)
                 print(jusoResponse)
                 let common = jusoResponse.results.common
                 if common.errorCode != "0" {
                     completion(.failure(.serverError("\(common.errorCode): \(common.errorMessage)")))
                 } else {
-                    let readAddresses = jusoResponse.results.juso.map { $0.roadAddr }
+                    let readAddresses = jusoResponse.results.addresses.map { $0.roadAddr }
                     completion(.success(readAddresses))
                 }
             } catch {
