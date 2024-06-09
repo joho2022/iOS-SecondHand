@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LocationSearchView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var viewModel = LocationSearchViewModel()
+    @StateObject private var viewModel = LocationSearchViewModel(addressService: AddressService())
     @Binding var selectedLocation: String
     
     var body: some View {

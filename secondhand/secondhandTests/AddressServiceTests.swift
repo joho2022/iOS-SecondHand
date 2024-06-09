@@ -1,5 +1,5 @@
 //
-//  JusoServiceTests.swift
+//  AddressServiceTests.swift
 //  secondhandTests
 //
 //  Created by 조호근 on 6/8/24.
@@ -8,23 +8,23 @@
 import XCTest
 @testable import secondhand
 
-final class JusoServiceTests: XCTestCase {
-    var jusoService: JusoService!
+final class AddressServiceTests: XCTestCase {
+    var addressService: AddressService!
     
     override func setUp() {
         super.setUp()
-        jusoService = JusoService()
+        addressService = AddressService()
     }
     
     override func tearDown() {
-        jusoService = nil
+        addressService = nil
         super.tearDown()
     }
     
     func test_FetchRoadAddresses() {
         let expectation = self.expectation(description: "Fetching addresses")
         
-        jusoService.fetchRoadAddresses(keyword: "호매실", page: 1) { result in
+        addressService.fetchRoadAddresses(keyword: "호매실", page: 1) { result in
             switch result {
             case .success(let addresses):
                 XCTAssertFalse(addresses.isEmpty)

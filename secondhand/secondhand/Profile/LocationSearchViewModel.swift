@@ -18,9 +18,11 @@ class LocationSearchViewModel: ObservableObject {
     private var canLoadMorePages = true
     private var cancellables = Set<AnyCancellable>()
     
-    private var jusoService = AddressService()
+    private let addressService: AddressServiceProtocol
     
-    init() {
+    init(addressService: AddressServiceProtocol) {
+        self.addressService = addressService
+        
         $searchQuery
             .dropFirst()
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
@@ -36,7 +38,7 @@ class LocationSearchViewModel: ObservableObject {
     private func fetchResults() {
         guard !searchQuery.isEmpty && canLoadMorePages else { return }
         isLoading = true
-        jusoService.fetchRoadAddresses(keyword: searchQuery, page: currentPage) { [weak self] result in
+        addressService.fetchRoadAddresses(keyword: searchQuery, page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {

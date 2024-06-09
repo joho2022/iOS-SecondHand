@@ -18,7 +18,7 @@ enum NetworkError: Error {
     case serverError(String)
 }
 
-class AddressService {
+class AddressService: AddressServiceProtocol {
     private let baseURL = "https://business.juso.go.kr/addrlink/addrLinkApi.do"
     private var confmKey: String? {
         return Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String

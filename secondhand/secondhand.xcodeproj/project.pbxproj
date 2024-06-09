@@ -27,7 +27,9 @@
 		D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385B02C100BB8004F5856 /* LocationSearchView.swift */; };
 		D64385BC2C107D29004F5856 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BB2C107D29004F5856 /* UserManager.swift */; };
 		D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BD2C142EFE004F5856 /* ProfileView.swift */; };
-		D64385C02C149134004F5856 /* JusoServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BF2C149134004F5856 /* JusoServiceTests.swift */; };
+		D64385C02C149134004F5856 /* AddressServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BF2C149134004F5856 /* AddressServiceTests.swift */; };
+		D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */; };
+		D64385C52C15BA8D004F5856 /* LocationSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +74,9 @@
 		D64385BA2C10734A004F5856 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		D64385BB2C107D29004F5856 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		D64385BD2C142EFE004F5856 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		D64385BF2C149134004F5856 /* JusoServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JusoServiceTests.swift; sourceTree = "<group>"; };
+		D64385BF2C149134004F5856 /* AddressServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceTests.swift; sourceTree = "<group>"; };
+		D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceProtocol.swift; sourceTree = "<group>"; };
+		D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 				D643858F2C0E2C14004F5856 /* Profile */,
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385A72C0FF867004F5856 /* Network */,
+				D64385C32C15AC6A004F5856 /* Protocol */,
 				D64385512C0DA86A004F5856 /* Assets.xcassets */,
 				D643857F2C0DB82C004F5856 /* Color.xcassets */,
 				D64385BA2C10734A004F5856 /* Info.plist */,
@@ -151,7 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				D643855E2C0DA86A004F5856 /* secondhandTests.swift */,
-				D64385BF2C149134004F5856 /* JusoServiceTests.swift */,
+				D64385BF2C149134004F5856 /* AddressServiceTests.swift */,
+				D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */,
 			);
 			path = secondhandTests;
 			sourceTree = "<group>";
@@ -194,6 +200,14 @@
 				D64385AA2C0FFE2E004F5856 /* AddressService.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		D64385C32C15AC6A004F5856 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +377,7 @@
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
+				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
 				D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */,
 				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
@@ -376,7 +391,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D64385C02C149134004F5856 /* JusoServiceTests.swift in Sources */,
+				D64385C52C15BA8D004F5856 /* LocationSearchViewModelTests.swift in Sources */,
+				D64385C02C149134004F5856 /* AddressServiceTests.swift in Sources */,
 				D643855F2C0DA86A004F5856 /* secondhandTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
