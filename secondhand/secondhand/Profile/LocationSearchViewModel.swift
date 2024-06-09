@@ -47,7 +47,7 @@ class LocationSearchViewModel: ObservableObject {
                     self?.currentPage += 1
                     self?.canLoadMorePages = !newResult.isEmpty
                 case .failure(let error):
-                    os_log("[ jusoService ]: \(error)")
+                    os_log("[ AddressService ]: \(error)")
                 }
             }
         }
