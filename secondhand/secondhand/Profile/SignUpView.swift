@@ -16,88 +16,10 @@ struct SignUpView: View {
         NavigationView {
             VStack {
                 if !viewModel.showSuccessView {
-                    Divider()
-                    
-                    Button {
-                        viewModel.showImagePicker = true
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .stroke(.customGray500, lineWidth: 1)
-                                .frame(width: 80, height: 80)
-                            if let image = viewModel.profileImage {
-                                Image(uiImage: image)
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                    .clipShape(Circle())
-                                Image(systemName: "camera")
-                                    .resizable()
-                                    .frame(width: 35, height: 29)
-                                    .foregroundColor(.customWhite)
-                            } else {
-                                Image(systemName: "camera")
-                                    .resizable()
-                                    .frame(width: 35, height: 29)
-                                    .foregroundColor(.black)
-                            }
-                        }
-                    }
-                    .frame(width: 80, height: 80)
-                    .clipShape(Circle())
-                    .padding(.top, 90)
-                    .sheet(isPresented: $viewModel.showImagePicker, content: {
-                        ImagePicker(image: $inputImage)
-                    })
-                    .onChange(of: inputImage) { _ in
-                        viewModel.loadImage(inputImage: inputImage)
-                    }
-                    
-                    HStack(spacing: 30) {
-                        Text("아이디")
-                        TextField("아이디를 입력하세요", text: $viewModel.username)
-                            .multilineTextAlignment(.leading)
-                    }
-                    .padding(.horizontal)
-                    .padding(.top, 30)
-                    
-                    Divider()
-                    
-                    Button {
-                        viewModel.showLocationSearch = true
-                    } label: {
-                        HStack {
-                            if viewModel.locationName.isEmpty {
-                                Image(systemName: "plus")
-                                Text("위치 추가")
-                                    .font(.system(size: 15, weight: .regular))
-                            } else {
-                                Text(viewModel.locationName)
-                                    .font(.system(size: 15, weight: .regular))
-                                Spacer()
-                                Image(systemName: "xmark")
-                            }
-                        }
-                        .foregroundColor(viewModel.locationName.isEmpty ? .black : .customWhite)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(viewModel.locationName.isEmpty ? Color.clear : .customOrange)
-                        .cornerRadius(8)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(.customGray500, lineWidth: 1.5)
-                        )
-                    }
-                    .padding(.top, 40)
-                    .padding()
-                    .sheet(isPresented: $viewModel.showLocationSearch, content: {
-                        LocationSearchView(selectedLocation: $viewModel.locationName)
-                    })
-                    
-                    Spacer()
+                    SignUpFormView(viewModel: viewModel, inputImage: $inputImage)
                 } else {
                     SignUpSuccessView()
                 }
-                
             } // VStack
             .navigationBarTitle("회원가입", displayMode: .inline)
             .navigationBarItems(
@@ -159,6 +81,95 @@ struct ImagePicker: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
+    }
+}
+
+// MARK: - 회원가입 폼 뷰
+struct SignUpFormView: View {
+    @ObservedObject var viewModel: SignUpViewModel
+    @Binding var inputImage: UIImage?
+    
+    var body: some View {
+        VStack {
+            Divider()
+            
+            Button {
+                viewModel.showImagePicker = true
+            } label: {
+                ZStack {
+                    Circle()
+                        .stroke(.customGray500, lineWidth: 1)
+                        .frame(width: 80, height: 80)
+                    if let image = viewModel.profileImage {
+                        Image(uiImage: image)
+                            .resizable()
+                            .frame(width: 80, height: 80)
+                            .clipShape(Circle())
+                        Image(systemName: "camera")
+                            .resizable()
+                            .frame(width: 35, height: 29)
+                            .foregroundColor(.customWhite)
+                    } else {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .frame(width: 35, height: 29)
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+            .frame(width: 80, height: 80)
+            .clipShape(Circle())
+            .padding(.top, 90)
+            .sheet(isPresented: $viewModel.showImagePicker, content: {
+                ImagePicker(image: $inputImage)
+            })
+            .onChange(of: inputImage) { _ in
+                viewModel.loadImage(inputImage: inputImage)
+            }
+            
+            HStack(spacing: 30) {
+                Text("아이디")
+                TextField("아이디를 입력하세요", text: $viewModel.username)
+                    .multilineTextAlignment(.leading)
+            }
+            .padding(.horizontal)
+            .padding(.top, 30)
+            
+            Divider()
+            
+            Button {
+                viewModel.showLocationSearch = true
+            } label: {
+                HStack {
+                    if viewModel.locationName.isEmpty {
+                        Image(systemName: "plus")
+                        Text("위치 추가")
+                            .font(.system(size: 15, weight: .regular))
+                    } else {
+                        Text(viewModel.locationName)
+                            .font(.system(size: 15, weight: .regular))
+                        Spacer()
+                        Image(systemName: "xmark")
+                    }
+                }
+                .foregroundColor(viewModel.locationName.isEmpty ? .black : .customWhite)
+                .padding()
+                .frame(maxWidth: .infinity)
+                .background(viewModel.locationName.isEmpty ? Color.clear : .customOrange)
+                .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(.customGray500, lineWidth: 1.5)
+                )
+            }
+            .padding(.top, 40)
+            .padding()
+            .sheet(isPresented: $viewModel.showLocationSearch, content: {
+                LocationSearchView(selectedLocation: $viewModel.locationName)
+            })
+            
+            Spacer()
+        }
     }
 }
 
