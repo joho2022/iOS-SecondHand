@@ -16,7 +16,7 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈화면")
-                        .font(.system(.regular, size: 17))
+                        .font(.system(size: 17, weight: .regular))
                 }
             SalesHistoryView()
                 .tabItem {

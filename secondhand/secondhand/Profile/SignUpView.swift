@@ -69,10 +69,10 @@ struct SignUpView: View {
                             if viewModel.locationName.isEmpty {
                                 Image(systemName: "plus")
                                 Text("위치 추가")
-                                    .font(.system(.regular, size: 15))
+                                    .font(.system(size: 15, weight: .regular))
                             } else {
                                 Text(viewModel.locationName)
-                                    .font(.system(.regular, size: 15))
+                                    .font(.system(size: 15, weight: .regular))
                                 Spacer()
                                 Image(systemName: "xmark")
                             }
@@ -117,7 +117,7 @@ struct SignUpView: View {
                         }
                     } label: {
                         Text("완료")
-                            .font(.system(.semibold, size: 17))
+                            .font(.system(size: 17, weight: .semibold))
                     }
                     .disabled(viewModel.username.isEmpty || viewModel.locationName.isEmpty)
                     .alert(isPresented: $viewModel.showErrorAlert, content: {
@@ -167,14 +167,14 @@ private struct SignUpSuccessView: View {
     var body: some View {
         VStack {
             Text("축하합니다!")
-                .font(.system(.regular, size: 28))
+                .font(.system(size: 28, weight: .regular))
                 .padding(.top, 40)
             
             Text("회원가입을 완료했습니다.")
-                .font(.system(.regular, size: 17))
+                .font(.system(size: 17, weight: .regular))
                 .padding(.top, 32)
             Text("지금 로그인해보세요!")
-                .font(.system(.regular, size: 17))
+                .font(.system(size: 17, weight: .regular))
             
             Spacer()
         }

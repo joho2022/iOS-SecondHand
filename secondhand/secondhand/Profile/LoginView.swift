@@ -41,7 +41,7 @@ struct LoginView: View {
                         .foregroundColor(.customWhite)
                         .background(.customOrange)
                         .cornerRadius(8)
-                        .font(.system(.regular, size: 15))
+                        .font(.system(size: 15, weight: .regular))
                 }
                 .padding()
                 
@@ -49,7 +49,7 @@ struct LoginView: View {
                     showSignUpView = true
                 } label: {
                     Text("회원가입")
-                        .font(.system(.regular, size: 15))
+                        .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.customGray900)
                 }
                 .padding(.bottom, 90)

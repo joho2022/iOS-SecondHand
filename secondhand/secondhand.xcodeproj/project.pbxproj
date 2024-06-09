@@ -15,7 +15,6 @@
 		D643856B2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */; };
 		D643857B2C0DAE1B004F5856 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D643857A2C0DAE1B004F5856 /* .swiftlint.yml */; };
 		D64385802C0DB82C004F5856 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D643857F2C0DB82C004F5856 /* Color.xcassets */; };
-		D64385882C0DCB04004F5856 /* Font+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385872C0DCB04004F5856 /* Font+Extensions.swift */; };
 		D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643858B2C0DD45B004F5856 /* ContentView.swift */; };
 		D643858E2C0E2C0E004F5856 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643858D2C0E2C0E004F5856 /* LoginView.swift */; };
 		D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385902C0E2C6C004F5856 /* SignUpView.swift */; };
@@ -60,7 +59,6 @@
 		D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secondhandUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D643857A2C0DAE1B004F5856 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D643857F2C0DB82C004F5856 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
-		D64385872C0DCB04004F5856 /* Font+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Extensions.swift"; sourceTree = "<group>"; };
 		D643858B2C0DD45B004F5856 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D643858D2C0E2C0E004F5856 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		D64385902C0E2C6C004F5856 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
@@ -131,7 +129,6 @@
 				D643854D2C0DA868004F5856 /* secondhandApp.swift */,
 				D643858B2C0DD45B004F5856 /* ContentView.swift */,
 				D643858F2C0E2C14004F5856 /* Profile */,
-				D64385832C0DBDC5004F5856 /* Extensions */,
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385A72C0FF867004F5856 /* Network */,
 				D64385512C0DA86A004F5856 /* Assets.xcassets */,
@@ -166,14 +163,6 @@
 				D643856A2C0DA86A004F5856 /* secondhandUITestsLaunchTests.swift */,
 			);
 			path = secondhandUITests;
-			sourceTree = "<group>";
-		};
-		D64385832C0DBDC5004F5856 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				D64385872C0DCB04004F5856 /* Font+Extensions.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D643858F2C0E2C14004F5856 /* Profile */ = {
@@ -374,7 +363,6 @@
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
-				D64385882C0DCB04004F5856 /* Font+Extensions.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
 				D64385AB2C0FFE2E004F5856 /* JusoService.swift in Sources */,
 				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
