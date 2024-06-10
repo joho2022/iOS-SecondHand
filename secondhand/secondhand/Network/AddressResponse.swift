@@ -27,6 +27,16 @@ struct Common: Codable {
     let errorMessage: String
 }
 
-struct Address: Codable {
+struct Address: Codable, Equatable, Hashable {
     let roadAddr: String
+    let emdNm: String
+    
+    static func == (lhs: Address, rhs: Address) -> Bool {
+        return lhs.roadAddr == rhs.roadAddr && lhs.emdNm == rhs.emdNm
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(roadAddr)
+        hasher.combine(emdNm)
+    }
 }

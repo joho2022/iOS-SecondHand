@@ -28,7 +28,7 @@ final class AddressServiceTests: XCTestCase {
             switch result {
             case .success(let addresses):
                 XCTAssertFalse(addresses.isEmpty)
-                XCTAssert(addresses.map { $0.contains("호매실") }.count == 20 )
+                XCTAssert(addresses.map { $0.roadAddr.contains("호매실") }.count == 20 )
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail("[테스트 에러]: \(error.localizedDescription)")

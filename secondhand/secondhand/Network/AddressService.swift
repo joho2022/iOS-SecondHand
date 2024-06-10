@@ -24,7 +24,7 @@ class AddressService: AddressServiceProtocol {
         return Bundle.main.object(forInfoDictionaryKey: "API_KEY") as? String
     }
     
-    func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[String], NetworkError>) -> Void) {
+    func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[Address], NetworkError>) -> Void) {
         guard let confmKey = confmKey else {
             completion(.failure(.unauthorized))
             return
@@ -71,8 +71,7 @@ class AddressService: AddressServiceProtocol {
                 if common.errorCode != "0" {
                     completion(.failure(.serverError("\(common.errorCode): \(common.errorMessage)")))
                 } else {
-                    let readAddresses = jusoResponse.results.addresses.map { $0.roadAddr }
-                    completion(.success(readAddresses))
+                    completion(.success(jusoResponse.results.addresses))
                 }
             } catch {
                 completion(.failure(.jsonDecodingFailed))

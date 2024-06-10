@@ -32,7 +32,7 @@ struct LoginView: View {
                 
                 Button {
                     if userManager.login(username: username) {
-                        os_log("\(userManager.user)")
+                        os_log("[ 로그인 성공 ] : 현재 유저 정보\n\(userManager.user)")
                     }
                 } label: {
                     Text("로그인")

@@ -17,5 +17,6 @@ class User: Object {
 
 class Location: Object {
     @Persisted var name: String = ""
+    @Persisted var dongName: String = ""
     @Persisted var isDefault: Bool = false
 }

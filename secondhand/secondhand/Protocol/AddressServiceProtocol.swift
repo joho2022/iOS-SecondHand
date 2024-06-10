@@ -8,5 +8,5 @@
 import Foundation
 
 protocol AddressServiceProtocol {
-    func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[String], NetworkError>) -> Void)
+    func fetchRoadAddresses(keyword: String, page: Int, completion: @escaping (Result<[Address], NetworkError>) -> Void)
 }

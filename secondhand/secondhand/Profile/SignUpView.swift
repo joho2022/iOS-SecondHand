@@ -46,7 +46,7 @@ struct SignUpView: View {
                         Text("완료")
                             .font(.system(size: 17, weight: .semibold))
                     }
-                    .disabled(viewModel.username.isEmpty || viewModel.locationName.isEmpty)
+                    .disabled(viewModel.username.isEmpty || viewModel.selectedLocation == nil)
                     .alert(isPresented: $viewModel.showErrorAlert, content: {
                         Alert(title: Text("오류"), message: Text("서버저장에 실패하였습니다."), dismissButton: .default(Text("확인")))
                     })
@@ -146,21 +146,21 @@ struct SignUpFormView: View {
                 viewModel.showLocationSearch = true
             } label: {
                 HStack {
-                    if viewModel.locationName.isEmpty {
+                    if viewModel.selectedLocation == nil {
                         Image(systemName: "plus")
                         Text("위치 추가")
                             .font(.system(size: 15, weight: .regular))
                     } else {
-                        Text(viewModel.locationName)
+                        Text(viewModel.selectedLocation?.roadAddr ?? "")
                             .font(.system(size: 15, weight: .regular))
                         Spacer()
                         Image(systemName: "xmark")
                     }
                 }
-                .foregroundColor(viewModel.locationName.isEmpty ? .black : .customWhite)
+                .foregroundColor(viewModel.selectedLocation == nil ? .black : .customWhite)
                 .padding()
                 .frame(maxWidth: .infinity)
-                .background(viewModel.locationName.isEmpty ? Color.clear : .customOrange)
+                .background(viewModel.selectedLocation == nil ? Color.clear : .customOrange)
                 .cornerRadius(8)
                 .overlay(
                     RoundedRectangle(cornerRadius: 8)
@@ -170,7 +170,7 @@ struct SignUpFormView: View {
             .padding(.top, 40)
             .padding()
             .sheet(isPresented: $viewModel.showLocationSearch, content: {
-                LocationSearchView(selectedLocation: $viewModel.locationName)
+                LocationSearchView(selectedLocation: $viewModel.selectedLocation)
             })
             
             Spacer()
