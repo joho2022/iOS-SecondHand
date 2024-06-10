@@ -20,7 +20,6 @@
 		D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385902C0E2C6C004F5856 /* SignUpView.swift */; };
 		D643859B2C0F1D5B004F5856 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643859A2C0F1D5B004F5856 /* User.swift */; };
 		D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D643859D2C0F2568004F5856 /* SignUpViewModel.swift */; };
-		D64385A42C0F34C1004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385A32C0F34C1004F5856 /* RealmSwift */; };
 		D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AA2C0FFE2E004F5856 /* AddressService.swift */; };
 		D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AC2C0FFE4E004F5856 /* AddressResponse.swift */; };
 		D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385AE2C10087C004F5856 /* LocationSearchViewModel.swift */; };
@@ -32,6 +31,13 @@
 		D64385C52C15BA8D004F5856 /* LocationSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */; };
 		D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */; };
 		D64385C92C1615DD004F5856 /* SignUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C82C1615DD004F5856 /* SignUpViewModelTests.swift */; };
+		D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385CA2C168EB4004F5856 /* HomeView.swift */; };
+		D64385CD2C1693E7004F5856 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385CC2C1693E6004F5856 /* Product.swift */; };
+		D64385D02C169A05004F5856 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385CF2C169A05004F5856 /* Category.swift */; };
+		D64385D32C16A08D004F5856 /* Products.json in Resources */ = {isa = PBXBuildFile; fileRef = D64385D12C16A08D004F5856 /* Products.json */; };
+		D64385D72C16B4E7004F5856 /* LocationSettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */; };
+		D64385DD2C16CBEE004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385DC2C16CBEE004F5856 /* RealmSwift */; };
+		D64385DF2C16D826004F5856 /* LocationSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385DE2C16D826004F5856 /* LocationSettingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +87,12 @@
 		D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModelTests.swift; sourceTree = "<group>"; };
 		D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
 		D64385C82C1615DD004F5856 /* SignUpViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModelTests.swift; sourceTree = "<group>"; };
+		D64385CA2C168EB4004F5856 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D64385CC2C1693E6004F5856 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		D64385CF2C169A05004F5856 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		D64385D22C16A08D004F5856 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.json; name = en; path = en.lproj/Products.json; sourceTree = "<group>"; };
+		D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettingViewModel.swift; sourceTree = "<group>"; };
+		D64385DE2C16D826004F5856 /* LocationSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSettingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +100,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D64385A42C0F34C1004F5856 /* RealmSwift in Frameworks */,
+				D64385DD2C16CBEE004F5856 /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,10 +148,13 @@
 			children = (
 				D643854D2C0DA868004F5856 /* secondhandApp.swift */,
 				D643858B2C0DD45B004F5856 /* ContentView.swift */,
+				D64385D52C16A424004F5856 /* Home */,
 				D643858F2C0E2C14004F5856 /* Profile */,
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385A72C0FF867004F5856 /* Network */,
 				D64385C32C15AC6A004F5856 /* Protocol */,
+				D64385CE2C169685004F5856 /* Product */,
+				D64385D42C16A32E004F5856 /* Mock */,
 				D64385512C0DA86A004F5856 /* Assets.xcassets */,
 				D643857F2C0DB82C004F5856 /* Color.xcassets */,
 				D64385BA2C10734A004F5856 /* Info.plist */,
@@ -216,6 +231,33 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		D64385CE2C169685004F5856 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				D64385CC2C1693E6004F5856 /* Product.swift */,
+				D64385CF2C169A05004F5856 /* Category.swift */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		D64385D42C16A32E004F5856 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				D64385D12C16A08D004F5856 /* Products.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		D64385D52C16A424004F5856 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				D64385CA2C168EB4004F5856 /* HomeView.swift */,
+				D64385DE2C16D826004F5856 /* LocationSettingView.swift */,
+				D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -234,7 +276,7 @@
 			);
 			name = secondhand;
 			packageProductDependencies = (
-				D64385A32C0F34C1004F5856 /* RealmSwift */,
+				D64385DC2C16CBEE004F5856 /* RealmSwift */,
 			);
 			productName = secondhand;
 			productReference = D643854A2C0DA868004F5856 /* secondhand.app */;
@@ -309,7 +351,7 @@
 			);
 			mainGroup = D64385412C0DA868004F5856;
 			packageReferences = (
-				D64385A22C0F34C1004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				D64385DB2C16CBEE004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
 			);
 			productRefGroup = D643854B2C0DA868004F5856 /* Products */;
 			projectDirPath = "";
@@ -331,6 +373,7 @@
 				D64385802C0DB82C004F5856 /* Color.xcassets in Resources */,
 				D64385552C0DA86A004F5856 /* Preview Assets.xcassets in Resources */,
 				D64385522C0DA86A004F5856 /* Assets.xcassets in Resources */,
+				D64385D32C16A08D004F5856 /* Products.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,17 +423,22 @@
 				D643858E2C0E2C0E004F5856 /* LoginView.swift in Sources */,
 				D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */,
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
+				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
+				D64385D72C16B4E7004F5856 /* LocationSettingViewModel.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
 				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
+				D64385CD2C1693E7004F5856 /* Product.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
+				D64385D02C169A05004F5856 /* Category.swift in Sources */,
 				D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */,
 				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
 				D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */,
 				D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */,
 				D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */,
+				D64385DF2C16D826004F5856 /* LocationSettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,6 +476,17 @@
 			targetProxy = D64385652C0DA86A004F5856 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D64385D12C16A08D004F5856 /* Products.json */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D64385D22C16A08D004F5856 /* en */,
+			);
+			name = Products.json;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D643856C2C0DA86A004F5856 /* Debug */ = {
@@ -731,7 +790,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D64385A22C0F34C1004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
+		D64385DB2C16CBEE004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-cocoa.git";
 			requirement = {
@@ -742,9 +801,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D64385A32C0F34C1004F5856 /* RealmSwift */ = {
+		D64385DC2C16CBEE004F5856 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = D64385A22C0F34C1004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
+			package = D64385DB2C16CBEE004F5856 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

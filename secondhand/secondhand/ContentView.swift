@@ -51,12 +51,6 @@ struct ContentView: View {
     }
 }
 
-struct HomeView: View {
-    var body: some View {
-        Text("홈화면")
-    }
-}
-
 struct SalesHistoryView: View {
     var body: some View {
         Text("판매내역")
