@@ -9,10 +9,13 @@ import Foundation
 
 struct Product: Codable {
     let id: Int
-    let title: String
-    let price: Int
-    let location: String
-    let category: [Category]
-    let image: String
+    var title: String
+    var price: Int
+    var location: String
+    var category: [Category]
+    var image: String
     let timePosted: String
+    var likes: Int
+    var comments: Int
+    var isReserved: Bool
 }
