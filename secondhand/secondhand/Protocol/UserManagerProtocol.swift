@@ -17,4 +17,6 @@ protocol UserManagerProtocol {
     func isUserNameTaken(_ username: String) -> Bool
     func updateProfileImage(for username: String, with imageData: Data)
     func saveUser(_ user: User) throws
+    func addLocation(_ address: Address)
+    func removeLocation(_ address: Address)
 }

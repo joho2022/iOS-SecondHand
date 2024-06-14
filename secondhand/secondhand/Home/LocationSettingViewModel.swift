@@ -21,11 +21,13 @@ class LocationSettingViewModel: ObservableObject {
     func addLocation(_ location: Address) {
         if selectedLocations.count < 2 {
             selectedLocations.append(location)
+            userManager.addLocation(location)
         }
     }
     
     func removeLocation(_ location: Address) {
         selectedLocations.removeAll { $0 == location }
+        userManager.removeLocation(location)
     }
     
     private func setupDefaultLocation() {

@@ -54,4 +54,19 @@ class UserManager: ObservableObject, UserManagerProtocol {
     func saveUser(_ user: User) {
         RealmManager.shared.saveUser(user)
     }
+    
+    func addLocation(_ address: Address) {
+        guard let user = user else { return }
+        let location = Location()
+        location.name = address.roadAddr
+        location.dongName = address.emdNm
+        RealmManager.shared.addLocation(to: user, location: location)
+    }
+    
+    func removeLocation(_ address: Address) {
+        guard let user = user else { return }
+        if let location = user.locations.first(where: { $0.dongName == address.emdNm && $0.name == address.roadAddr }) {
+            RealmManager.shared.removeLocation(from: user, location: location)
+        }
+    }
 }

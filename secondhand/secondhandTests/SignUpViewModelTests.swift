@@ -10,6 +10,14 @@ import Combine
 @testable import secondhand
 
 final class MockUserManager: UserManagerProtocol {
+    func addLocation(_ address: secondhand.Address) {
+        print("addLocation")
+    }
+    
+    func removeLocation(_ address: secondhand.Address) {
+        print("removeLocation")
+    }
+    
     @Published var user: User?
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""

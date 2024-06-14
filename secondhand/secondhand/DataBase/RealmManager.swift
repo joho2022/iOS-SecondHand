@@ -57,7 +57,7 @@ class RealmManager {
         }
     }
     
-    func removeLocation(form user: User, location: Location) {
+    func removeLocation(from user: User, location: Location) {
         do {
             try realm.write {
                 if let index = user.locations.index(of: location) {
