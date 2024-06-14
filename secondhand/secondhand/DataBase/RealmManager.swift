@@ -68,4 +68,13 @@ class RealmManager {
             os_log(.error, "location 삭제 실패: %{public}@", "\(error)")
         }
     }
+    
+    func setDefaultLocation(for user: User, location: Location) {
+        try! realm.write {
+            user.locations.forEach { $0.isDefault = false }
+            if let index = user.locations.firstIndex(of: location ) {
+                user.locations[index].isDefault = true
+            }
+        }
+    }
 }

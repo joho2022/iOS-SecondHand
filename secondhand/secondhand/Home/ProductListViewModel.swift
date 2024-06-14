@@ -6,13 +6,34 @@
 //
 
 import Foundation
+import Combine
 
 class ProductListViewModel: ObservableObject {
-    @Published var products: [Product] = []
+    private var products: [Product] = []
+    @Published var filteredProducts: [Product] = []
     @Published var showloadErrorAlert: Bool = false
+    @Published var selectedLocation: Address?
     
-    init() {
+    private var userManager: UserManager?
+    private var cancellables = Set<AnyCancellable>()
+    
+    init(userManager: UserManager) {
+        self.userManager = userManager
         loadProducts()
+        setupBindings()
+    }
+    
+    private func setupBindings() {
+        userManager?.$user
+            .sink { [weak self] _ in
+                self?.filterProducts()
+            }
+            .store(in: &cancellables)
+    }
+        
+    func setUserManager(_ userManager: UserManager) {
+        self.userManager = userManager
+        filterProducts()
     }
     
     func loadProducts() {
@@ -24,6 +45,18 @@ class ProductListViewModel: ObservableObject {
         }
         printPrettyJSON(products: products)
         self.products = products
+    }
+    
+    func filterProducts() {
+        guard let userManager = userManager else { return }
+        
+        if let location = selectedLocation {
+            filteredProducts = products.filter { $0.location == location.emdNm }
+        } else if let user = userManager.user, let userLocation = user.locations.first(where: { $0.isDefault }) {
+            filteredProducts = products.filter { $0.location == userLocation.dongName }
+        } else {
+            filteredProducts = products.filter { $0.location == "역삼동" }
+        }
     }
     
     private func printPrettyJSON(products: [Product]) {

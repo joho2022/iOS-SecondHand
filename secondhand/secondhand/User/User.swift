@@ -17,7 +17,18 @@ class User: Object {
 }
 
 class Location: Object {
+    @Persisted(primaryKey: true) var id: String = UUID().uuidString
     @Persisted var name: String = ""
     @Persisted var dongName: String = ""
     @Persisted var isDefault: Bool = false
+    
+    required override init() {
+        super.init()
+    }
+
+    init(name: String, dongName: String, isDefault: Bool) {
+        self.name = name
+        self.dongName = dongName
+        self.isDefault = isDefault
+    }
 }

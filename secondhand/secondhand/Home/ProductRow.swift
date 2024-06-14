@@ -80,8 +80,7 @@ struct ProductRow: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
                 .padding(.top, 24)
             } // VStack
-            .padding(.top, 3)
-            
+            .padding(.top, 3)  
         } // HStack
         .frame(height: 150)
         .frame(maxWidth: .infinity, alignment: .leading)

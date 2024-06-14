@@ -17,6 +17,12 @@ class UserManager: ObservableObject, UserManagerProtocol {
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
     
+    func refreshUser() {
+        if let username = user?.username {
+            self.user = RealmManager.shared.fetchUser(by: username)
+        }
+    }
+    
     func login(username: String) -> Bool {
         if let fetchedUser = RealmManager.shared.fetchUser(by: username) {
             self.user = fetchedUser
@@ -61,12 +67,36 @@ class UserManager: ObservableObject, UserManagerProtocol {
         location.name = address.roadAddr
         location.dongName = address.emdNm
         RealmManager.shared.addLocation(to: user, location: location)
+        refreshUser()
     }
     
     func removeLocation(_ address: Address) {
         guard let user = user else { return }
         if let location = user.locations.first(where: { $0.dongName == address.emdNm && $0.name == address.roadAddr }) {
             RealmManager.shared.removeLocation(from: user, location: location)
+            
+            if location.isDefault {
+                if let newDefaultLocation = user.locations.first {
+                    setDefaultLocation(location: newDefaultLocation)
+                }
+            }
+            
+            refreshUser()
         }
+    }
+    
+    func getDefaultLocation() -> Location {
+        if let user = user, let defaultLocation = user.locations.first(where: { $0.isDefault }) {
+            return defaultLocation
+        } else {
+            return Location(name: "로그인 이전 기본값", dongName: "역삼동", isDefault: true)
+        }
+    }
+    
+    func setDefaultLocation(location: Location) {
+        guard let user = user else { return }
+        
+        RealmManager.shared.setDefaultLocation(for: user, location: location)
+        refreshUser()
     }
 }
