@@ -18,7 +18,7 @@ class UserManager: ObservableObject, UserManagerProtocol {
     @Published var alertMessage: String = ""
     
     func login(username: String) -> Bool {
-        if let fetchedUser = fetchUser(byUserName: username) {
+        if let fetchedUser = RealmManager.shared.fetchUser(by: username) {
             self.user = fetchedUser
             return true
         } else {
@@ -34,12 +34,12 @@ class UserManager: ObservableObject, UserManagerProtocol {
     }
     
     func isUserNameTaken(_ username: String) -> Bool {
-        return fetchUser(byUserName: username) != nil
+        return RealmManager.shared.fetchUser(by: username) != nil
     }
     
     func updateProfileImage(for username: String, with imageData: Data) {
         let realm = try! Realm()
-        if let user = fetchUser(byUserName: username) {
+        if let user = RealmManager.shared.fetchUser(by: username) {
             try! realm.write {
                 user.profileImageData = imageData
             }
@@ -51,15 +51,7 @@ class UserManager: ObservableObject, UserManagerProtocol {
         }
     }
     
-    func saveUser(_ user: User) throws {
-        let realm = try! Realm()
-        try realm.write {
-            realm.add(user)
-        }
-    }
-    
-    private func fetchUser(byUserName username: String) -> User? {
-        let realm = try! Realm()
-        return realm.objects(User.self).filter("username == %@", username).first
+    func saveUser(_ user: User) {
+        RealmManager.shared.saveUser(user)
     }
 }

@@ -98,6 +98,7 @@ struct SignUpFormView: View {
             Divider()
             
             Button {
+                
                 viewModel.showImagePicker = true
             } label: {
                 ZStack {

@@ -43,6 +43,7 @@
 		D64385E52C180ADB004F5856 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385E42C180ADB004F5856 /* UIImage+Extensions.swift */; };
 		D64385E82C180BDB004F5856 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385E72C180BDB004F5856 /* Date+Extensions.swift */; };
 		D64385EA2C181CFE004F5856 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385E92C181CFE004F5856 /* ProductRow.swift */; };
+		D64385EC2C1BFBCF004F5856 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385EB2C1BFBCF004F5856 /* RealmManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +104,7 @@
 		D64385E42C180ADB004F5856 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		D64385E72C180BDB004F5856 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D64385E92C181CFE004F5856 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
+		D64385EB2C1BFBCF004F5856 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385E62C180AE5004F5856 /* Extension */,
 				D64385A72C0FF867004F5856 /* Network */,
+				D64385ED2C1BFBD9004F5856 /* DataBase */,
 				D64385C32C15AC6A004F5856 /* Protocol */,
 				D64385CE2C169685004F5856 /* Product */,
 				D64385D42C16A32E004F5856 /* Mock */,
@@ -279,6 +282,14 @@
 				D64385E72C180BDB004F5856 /* Date+Extensions.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		D64385ED2C1BFBD9004F5856 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				D64385EB2C1BFBCF004F5856 /* RealmManager.swift */,
+			);
+			path = DataBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,6 +476,7 @@
 				D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */,
 				D64385EA2C181CFE004F5856 /* ProductRow.swift in Sources */,
 				D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */,
+				D64385EC2C1BFBCF004F5856 /* RealmManager.swift in Sources */,
 				D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */,
 				D64385DF2C16D826004F5856 /* LocationSettingView.swift in Sources */,
 			);
