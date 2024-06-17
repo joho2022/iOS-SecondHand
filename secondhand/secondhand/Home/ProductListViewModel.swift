@@ -14,10 +14,10 @@ class ProductListViewModel: ObservableObject {
     @Published var showloadErrorAlert: Bool = false
     @Published var selectedLocation: Address?
     
-    private var userManager: UserManagerProtocol?
+    private var userManager: UserProvider?
     private var cancellables = Set<AnyCancellable>()
     
-    init(userManager: UserManagerProtocol) {
+    init(userManager: UserProvider) {
         self.userManager = userManager
         loadProducts()
         setupBindings()
@@ -31,7 +31,7 @@ class ProductListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
         
-    func setUserManager(_ userManager: UserManagerProtocol) {
+    func setUserManager(_ userManager: UserProvider) {
         self.userManager = userManager
         filterProducts()
     }

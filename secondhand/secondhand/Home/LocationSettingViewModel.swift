@@ -10,9 +10,9 @@ import SwiftUI
 class LocationSettingViewModel: ObservableObject {
     @Published var selectedLocations: [Address] = []
     
-    private let userManager: UserManagerProtocol
+    private let userManager: (UserProvider & UserLocationProvider)
     
-    init(userManager: UserManagerProtocol) {
+    init(userManager: (UserProvider & UserLocationProvider)) {
         self.userManager = userManager
         
         setupDefaultLocation()

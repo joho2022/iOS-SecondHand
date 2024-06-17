@@ -12,7 +12,7 @@ struct SignUpView: View {
     @StateObject private var viewModel: SignUpViewModel
     @State private var inputImage: UIImage?
     
-    init(userManager: UserManagerProtocol) {
+    init(userManager: UserSignUpProvider) {
         _viewModel = StateObject(wrappedValue: SignUpViewModel(userManager: userManager))
     }
     

@@ -71,5 +71,5 @@ struct ChatView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(UserManager.shared)
+    ContentView().environmentObject(UserManager())
 }

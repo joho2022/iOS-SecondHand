@@ -7,17 +7,28 @@
 
 import Foundation
 
-protocol UserManagerProtocol {
+protocol UserProvider {
     var user: User? { get set }
+    var userPublisher: Published<User?>.Publisher { get }
+}
+
+protocol UserAlertProVider {
     var showAlert: Bool { get set }
     var alertMessage: String { get set }
-    var userPublisher: Published<User?>.Publisher { get }
-    
+}
+
+protocol UserLoginProvider {
     func login(username: String) -> Bool
     func logout()
-    func isUserNameTaken(_ username: String) -> Bool
     func updateProfileImage(for username: String, with imageData: Data)
-    func saveUser(_ user: User) throws
+}
+
+protocol UserLocationProvider {
     func addLocation(_ address: Address)
     func removeLocation(_ address: Address)
+}
+
+protocol UserSignUpProvider {
+    func isUserNameTaken(_ username: String) -> Bool
+    func saveUser(_ user: User) throws
 }

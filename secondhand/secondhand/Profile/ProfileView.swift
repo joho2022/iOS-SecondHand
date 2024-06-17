@@ -92,5 +92,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView().environmentObject(UserManager.shared)
+    ProfileView().environmentObject(UserManager())
 }

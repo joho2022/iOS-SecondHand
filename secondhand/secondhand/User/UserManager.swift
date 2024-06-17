@@ -10,8 +10,7 @@ import RealmSwift
 import os
 import Foundation
 
-class UserManager: ObservableObject, UserManagerProtocol {
-    static let shared = UserManager()
+class UserManager: ObservableObject, UserProvider, UserAlertProVider, UserLoginProvider, UserSignUpProvider, UserLocationProvider {
     
     @Published var user: User?
     @Published var showAlert: Bool = false
@@ -20,7 +19,7 @@ class UserManager: ObservableObject, UserManagerProtocol {
         $user
     }
     
-    func refreshUser() {
+    private func refreshUser() {
         if let username = user?.username {
             self.user = RealmManager.shared.fetchUser(by: username)
         }
