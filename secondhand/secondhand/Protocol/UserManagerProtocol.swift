@@ -12,13 +12,11 @@ protocol UserProvider {
     var userPublisher: Published<User?>.Publisher { get }
 }
 
-protocol UserAlertProvider {
-    var showAlert: Bool { get set }
-    var alertMessage: String { get set }
-}
-
 protocol UserLoginProvider {
     func login(username: String) -> Bool
+}
+
+protocol UserUpdateProvider {
     func logout()
     func updateProfileImage(for username: String, with imageData: Data)
 }

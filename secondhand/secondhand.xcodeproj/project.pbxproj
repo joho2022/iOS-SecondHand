@@ -44,6 +44,8 @@
 		D64385EC2C1BFBCF004F5856 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385EB2C1BFBCF004F5856 /* RealmManager.swift */; };
 		D64385F32C1FD434004F5856 /* ProductListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */; };
 		D64385F62C2005C1004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385F52C2005C1004F5856 /* RealmSwift */; };
+		D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F72C2054CD004F5856 /* LoginViewModel.swift */; };
+		D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F92C205B27004F5856 /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +107,8 @@
 		D64385E92C181CFE004F5856 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
 		D64385EB2C1BFBCF004F5856 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
+		D64385F72C2054CD004F5856 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		D64385F92C205B27004F5856 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,7 +213,9 @@
 			isa = PBXGroup;
 			children = (
 				D643858D2C0E2C0E004F5856 /* LoginView.swift */,
+				D64385F72C2054CD004F5856 /* LoginViewModel.swift */,
 				D64385BD2C142EFE004F5856 /* ProfileView.swift */,
+				D64385F92C205B27004F5856 /* ProfileViewModel.swift */,
 				D64385902C0E2C6C004F5856 /* SignUpView.swift */,
 				D643859D2C0F2568004F5856 /* SignUpViewModel.swift */,
 				D64385B02C100BB8004F5856 /* LocationSearchView.swift */,
@@ -457,11 +463,13 @@
 				D643858E2C0E2C0E004F5856 /* LoginView.swift in Sources */,
 				D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */,
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
+				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
 				D64385E12C17FF8B004F5856 /* ProductListViewModel.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
+				D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */,
 				D64385D72C16B4E7004F5856 /* LocationSettingViewModel.swift in Sources */,
 				D64385E32C18026A004F5856 /* ProductListView.swift in Sources */,
 				D64385E82C180BDB004F5856 /* Date+Extensions.swift in Sources */,

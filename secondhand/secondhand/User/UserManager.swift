@@ -10,11 +10,8 @@ import RealmSwift
 import os
 import Foundation
 
-class UserManager: ObservableObject, UserProvider, UserAlertProvider, UserLoginProvider, UserSignUpProvider, UserLocationProvider {
-    
+class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdateProvider, UserSignUpProvider, UserLocationProvider {
     @Published var user: User?
-    @Published var showAlert: Bool = false
-    @Published var alertMessage: String = ""
     var userPublisher: Published<User?>.Publisher {
         $user
     }
@@ -31,8 +28,6 @@ class UserManager: ObservableObject, UserProvider, UserAlertProvider, UserLoginP
             return true
         } else {
             os_log("[ 로그인 실패 ]: 유저정보가 없음")
-            alertMessage = "로그인 실패: 유저정보가 없습니다."
-            showAlert = true
         }
         return false
     }
@@ -53,9 +48,7 @@ class UserManager: ObservableObject, UserProvider, UserAlertProvider, UserLoginP
             }
             self.user = user
         } else {
-            os_log("[ 사진 업데이트 실패 ]: 유저정보 없음")
-            alertMessage = "사진 업데이트 실패: 유저정보가 없습니다."
-            showAlert = true
+            os_log(.error ,"[ 사진 업데이트 실패 ]: 유저정보 없음")
         }
     }
     
