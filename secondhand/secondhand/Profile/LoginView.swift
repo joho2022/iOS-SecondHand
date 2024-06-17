@@ -32,7 +32,7 @@ struct LoginView: View {
                 
                 Button {
                     if userManager.login(username: username) {
-                        os_log("\(userManager.user)")
+                        os_log("[ 로그인 성공 ] : 현재 유저 정보\n\(userManager.user)")
                     }
                 } label: {
                     Text("로그인")
@@ -41,7 +41,7 @@ struct LoginView: View {
                         .foregroundColor(.customWhite)
                         .background(.customOrange)
                         .cornerRadius(8)
-                        .font(.system(.regular, size: 15))
+                        .font(.system(size: 15, weight: .regular))
                 }
                 .padding()
                 
@@ -49,12 +49,12 @@ struct LoginView: View {
                     showSignUpView = true
                 } label: {
                     Text("회원가입")
-                        .font(.system(.regular, size: 15))
+                        .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.customGray900)
                 }
                 .padding(.bottom, 90)
                 .sheet(isPresented: $showSignUpView, content: {
-                    SignUpView()
+                    SignUpView(userManager: userManager)
                 })
             }
             .navigationBarTitle("내 계정", displayMode: .inline)
@@ -66,5 +66,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView().environmentObject(UserManager.shared)
+    LoginView().environmentObject(UserManager())
 }

@@ -13,10 +13,11 @@ struct ContentView: View {
     var body: some View {
         TabView {
             HomeView()
+                .environmentObject(userManager)
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈화면")
-                        .font(.system(.regular, size: 17))
+                        .font(.system(size: 17, weight: .regular))
                 }
             SalesHistoryView()
                 .tabItem {
@@ -48,12 +49,6 @@ struct ContentView: View {
             }
         }
         .tint(.orange)
-    }
-}
-
-struct HomeView: View {
-    var body: some View {
-        Text("홈화면")
     }
 }
 
