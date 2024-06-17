@@ -16,6 +16,9 @@ class UserManager: ObservableObject, UserManagerProtocol {
     @Published var user: User?
     @Published var showAlert: Bool = false
     @Published var alertMessage: String = ""
+    var userPublisher: Published<User?>.Publisher {
+        $user
+    }
     
     func refreshUser() {
         if let username = user?.username {

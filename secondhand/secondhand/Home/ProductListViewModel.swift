@@ -9,29 +9,29 @@ import Foundation
 import Combine
 
 class ProductListViewModel: ObservableObject {
-    private var products: [Product] = []
+    private(set) var products: [Product] = []
     @Published var filteredProducts: [Product] = []
     @Published var showloadErrorAlert: Bool = false
     @Published var selectedLocation: Address?
     
-    private var userManager: UserManager?
+    private var userManager: UserManagerProtocol?
     private var cancellables = Set<AnyCancellable>()
     
-    init(userManager: UserManager) {
+    init(userManager: UserManagerProtocol) {
         self.userManager = userManager
         loadProducts()
         setupBindings()
     }
     
     private func setupBindings() {
-        userManager?.$user
+        userManager?.userPublisher
             .sink { [weak self] _ in
                 self?.filterProducts()
             }
             .store(in: &cancellables)
     }
         
-    func setUserManager(_ userManager: UserManager) {
+    func setUserManager(_ userManager: UserManagerProtocol) {
         self.userManager = userManager
         filterProducts()
     }

@@ -11,6 +11,7 @@ protocol UserManagerProtocol {
     var user: User? { get set }
     var showAlert: Bool { get set }
     var alertMessage: String { get set }
+    var userPublisher: Published<User?>.Publisher { get }
     
     func login(username: String) -> Bool
     func logout()

@@ -44,6 +44,7 @@
 		D64385E82C180BDB004F5856 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385E72C180BDB004F5856 /* Date+Extensions.swift */; };
 		D64385EA2C181CFE004F5856 /* ProductRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385E92C181CFE004F5856 /* ProductRow.swift */; };
 		D64385EC2C1BFBCF004F5856 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385EB2C1BFBCF004F5856 /* RealmManager.swift */; };
+		D64385F32C1FD434004F5856 /* ProductListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		D64385E72C180BDB004F5856 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		D64385E92C181CFE004F5856 /* ProductRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductRow.swift; sourceTree = "<group>"; };
 		D64385EB2C1BFBCF004F5856 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,7 +167,7 @@
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385E62C180AE5004F5856 /* Extension */,
 				D64385A72C0FF867004F5856 /* Network */,
-				D64385ED2C1BFBD9004F5856 /* DataBase */,
+				D64385ED2C1BFBD9004F5856 /* Data */,
 				D64385C32C15AC6A004F5856 /* Protocol */,
 				D64385CE2C169685004F5856 /* Product */,
 				D64385D42C16A32E004F5856 /* Mock */,
@@ -192,6 +194,7 @@
 				D64385BF2C149134004F5856 /* AddressServiceTests.swift */,
 				D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */,
 				D64385C82C1615DD004F5856 /* SignUpViewModelTests.swift */,
+				D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */,
 			);
 			path = secondhandTests;
 			sourceTree = "<group>";
@@ -284,12 +287,12 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		D64385ED2C1BFBD9004F5856 /* DataBase */ = {
+		D64385ED2C1BFBD9004F5856 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				D64385EB2C1BFBCF004F5856 /* RealmManager.swift */,
 			);
-			path = DataBase;
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -490,6 +493,7 @@
 				D64385C02C149134004F5856 /* AddressServiceTests.swift in Sources */,
 				D64385C92C1615DD004F5856 /* SignUpViewModelTests.swift in Sources */,
 				D643855F2C0DA86A004F5856 /* secondhandTests.swift in Sources */,
+				D64385F32C1FD434004F5856 /* ProductListViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
