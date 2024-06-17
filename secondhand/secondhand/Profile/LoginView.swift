@@ -54,7 +54,7 @@ struct LoginView: View {
                 }
                 .padding(.bottom, 90)
                 .sheet(isPresented: $showSignUpView, content: {
-                    SignUpView(userManager: userManager)
+                    SignUpView(viewModel: SignUpViewModel(userManager: userManager))
                 })
             }
             .navigationBarTitle("내 계정", displayMode: .inline)

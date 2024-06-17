@@ -10,7 +10,7 @@ import RealmSwift
 import os
 import Foundation
 
-class UserManager: ObservableObject, UserProvider, UserAlertProVider, UserLoginProvider, UserSignUpProvider, UserLocationProvider {
+class UserManager: ObservableObject, UserProvider, UserAlertProvider, UserLoginProvider, UserSignUpProvider, UserLocationProvider {
     
     @Published var user: User?
     @Published var showAlert: Bool = false

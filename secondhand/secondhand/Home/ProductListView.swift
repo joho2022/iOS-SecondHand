@@ -10,8 +10,8 @@ import SwiftUI
 struct ProductListView: View {
     @StateObject private var viewModel: ProductListViewModel
     
-    init(userManager: UserManager) {
-        _viewModel = StateObject(wrappedValue: ProductListViewModel(userManager: userManager))
+    init(viewModel: ProductListViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -32,6 +32,6 @@ struct ProductListView: View {
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(userManager: UserManager())
+        ProductListView(viewModel: ProductListViewModel(userManager: UserManager()))
     }
 }

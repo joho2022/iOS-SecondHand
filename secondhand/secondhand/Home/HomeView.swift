@@ -16,7 +16,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 Divider()
-                ProductListView(userManager: userManager)
+                ProductListView(viewModel: ProductListViewModel(userManager: userManager))
                     .navigationBarItems(
                         leading: menuContent)
             }

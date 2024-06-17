@@ -9,14 +9,21 @@ import XCTest
 import Combine
 @testable import secondhand
 
+final class MockUserProvider: UserProvider {
+    @Published var user: User?
+    var userPublisher: Published<secondhand.User?>.Publisher {
+        $user
+    }
+}
+
 final class ProductListViewModelTests: XCTestCase {
     var viewModel: ProductListViewModel!
-    var userManager: MockUserManager!
+    var userManager: MockUserProvider!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        userManager = MockUserManager()
+        userManager = MockUserProvider()
         viewModel = ProductListViewModel(userManager: userManager)
         cancellables = []
     }

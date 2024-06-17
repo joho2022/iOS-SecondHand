@@ -12,7 +12,7 @@ protocol UserProvider {
     var userPublisher: Published<User?>.Publisher { get }
 }
 
-protocol UserAlertProVider {
+protocol UserAlertProvider {
     var showAlert: Bool { get set }
     var alertMessage: String { get set }
 }
@@ -26,6 +26,7 @@ protocol UserLoginProvider {
 protocol UserLocationProvider {
     func addLocation(_ address: Address)
     func removeLocation(_ address: Address)
+    func setDefaultLocation(location: Location)
 }
 
 protocol UserSignUpProvider {

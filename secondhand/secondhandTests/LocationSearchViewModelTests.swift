@@ -106,7 +106,6 @@ final class LocationSearchViewModelTests: XCTestCase {
         
         viewModel.searchQuery = "호매실"
         
-        
         self.wait(for: [expectation], timeout: 2.0)
     }
 }
