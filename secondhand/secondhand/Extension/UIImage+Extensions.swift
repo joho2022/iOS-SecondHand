@@ -7,20 +7,32 @@
 
 import UIKit
 
+enum ImageLoadingError: Error {
+    case invalidURL
+    case networkError(Error)
+    case invalidImageData
+}
+
 extension UIImage {
-    static func loadImage(from urlString: String, completion: @escaping (UIImage?) -> Void) {
-        DispatchQueue.global().async {
-            guard let url = URL(string: urlString),
-                  let data = try? Data(contentsOf: url),
-                  let image = UIImage(data: data) else {
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
+    static func loadImage(from urlString: String, completion: @escaping (Result<UIImage, ImageLoadingError>) -> Void) {
+        guard let url = URL(string: urlString) else {
+            completion(.failure(.invalidURL))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+            if let error = error {
+                completion(.failure(.networkError(error)))
                 return
             }
-            DispatchQueue.main.async {
-                completion(image)
+            
+            guard let data = data, let image = UIImage(data: data) else {
+                completion(.failure(.invalidImageData))
+                return
             }
+            
+            completion(.success(image))
         }
+        task.resume()
     }
 }

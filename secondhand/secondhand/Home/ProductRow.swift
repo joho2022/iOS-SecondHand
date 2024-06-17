@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os
 
 struct ProductRow: View {
     @State private var uiImage: UIImage?
@@ -88,8 +89,15 @@ struct ProductRow: View {
     }
     
     private func loadImage() {
-        UIImage.loadImage(from: product.image) { image in
-            self.uiImage = image
+        UIImage.loadImage(from: product.image) { result in
+            switch result {
+            case .success(let image):
+                DispatchQueue.main.async {
+                    self.uiImage = image
+                }
+            case .failure(let error):
+                os_log(.error, "Failed to load image: \(error.localizedDescription)")
+            }
         }
     }
 }
