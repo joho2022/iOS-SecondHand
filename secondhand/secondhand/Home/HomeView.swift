@@ -12,18 +12,31 @@ struct HomeView: View {
     @State private var showAlert: Bool = false
     @State private var showLocationSettingView: Bool = false
     @State private var selectedCategory: Category?
+    @State private var isDragging: Bool = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Divider()
-                ProductListView(viewModel: ProductListViewModel(userManager: userManager), selectedCategory: $selectedCategory)
+            ZStack {
+                VStack {
+                    Divider()
+                    ProductListView(viewModel: ProductListViewModel(userManager: userManager), selectedCategory: $selectedCategory, isDragging: $isDragging)
+                        
+                }
+                .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
+                .navigationBarItems(
+                    leading: menuContent,
+                    trailing: categoryButton
+                )
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        AddProductButton(isDragging: $isDragging)
+                            .padding([.bottom, .trailing], 16)
+                    }
+                }
             }
-            .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
-            .navigationBarItems(
-                leading: menuContent,
-                trailing: categoryButton
-            )
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -69,6 +82,28 @@ struct HomeView: View {
     private var categoryButton: some View {
         NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) {
             Image(systemName: "line.horizontal.3")
+        }
+    }
+    
+    struct AddProductButton: View {
+        @Binding var isDragging: Bool
+        
+        var body: some View {
+            Button {
+                
+            } label: {
+                HStack {
+                    Image(systemName: "plus")
+                    if !isDragging {
+                        Text("글쓰기")
+                    }
+                }
+                .padding()
+                .background(.customOrange)
+                .foregroundColor(.customWhite)
+                .cornerRadius(30)
+            }
+            .animation(.default, value: isDragging)
         }
     }
 }
