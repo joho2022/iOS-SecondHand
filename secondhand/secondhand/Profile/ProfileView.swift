@@ -93,5 +93,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProductListView(viewModel: ProductListViewModel(userManager: UserManager()))
+    ProfileView(viewModel: ProfileViewModel(userManager: UserManager()))
 }

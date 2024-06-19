@@ -48,7 +48,7 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
             }
             self.user = user
         } else {
-            os_log(.error ,"[ 사진 업데이트 실패 ]: 유저정보 없음")
+            os_log(.error, "[ 사진 업데이트 실패 ]: 유저정보 없음")
         }
     }
     

@@ -24,7 +24,7 @@ final class ProductListViewModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         userManager = MockUserProvider()
-        viewModel = ProductListViewModel(userManager: userManager)
+        viewModel = ProductListViewModel(userManager: UserManager())
         cancellables = []
     }
     

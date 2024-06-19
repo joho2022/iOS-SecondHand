@@ -45,6 +45,7 @@
 		D64385F62C2005C1004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385F52C2005C1004F5856 /* RealmSwift */; };
 		D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F72C2054CD004F5856 /* LoginViewModel.swift */; };
 		D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F92C205B27004F5856 /* ProfileViewModel.swift */; };
+		D64385FC2C21B996004F5856 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385FB2C21B996004F5856 /* CategorySelectionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 		D64385F72C2054CD004F5856 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D64385F92C205B27004F5856 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		D64385FB2C21B996004F5856 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -275,6 +277,7 @@
 				D64385E02C17FF8B004F5856 /* ProductListViewModel.swift */,
 				D64385DE2C16D826004F5856 /* LocationSettingView.swift */,
 				D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */,
+				D64385FB2C21B996004F5856 /* CategorySelectionView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -462,6 +465,7 @@
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
 				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
+				D64385FC2C21B996004F5856 /* CategorySelectionView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
 				D64385E12C17FF8B004F5856 /* ProductListViewModel.swift in Sources */,
