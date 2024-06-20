@@ -46,6 +46,7 @@
 		D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F72C2054CD004F5856 /* LoginViewModel.swift */; };
 		D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F92C205B27004F5856 /* ProfileViewModel.swift */; };
 		D64385FC2C21B996004F5856 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385FB2C21B996004F5856 /* CategorySelectionView.swift */; };
+		D654563E2C23CB26000441B0 /* ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +110,7 @@
 		D64385F72C2054CD004F5856 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D64385F92C205B27004F5856 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		D64385FB2C21B996004F5856 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +280,7 @@
 				D64385DE2C16D826004F5856 /* LocationSettingView.swift */,
 				D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */,
 				D64385FB2C21B996004F5856 /* CategorySelectionView.swift */,
+				D654563C2C23CAE7000441B0 /* NewProductView */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -296,6 +299,14 @@
 				D64385EB2C1BFBCF004F5856 /* RealmManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		D654563C2C23CAE7000441B0 /* NewProductView */ = {
+			isa = PBXGroup;
+			children = (
+				D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */,
+			);
+			path = NewProductView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -469,6 +480,7 @@
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
 				D64385E12C17FF8B004F5856 /* ProductListViewModel.swift in Sources */,
+				D654563E2C23CB26000441B0 /* ImageUploadViewController.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
 				D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */,
 				D64385D72C16B4E7004F5856 /* LocationSettingViewModel.swift in Sources */,
