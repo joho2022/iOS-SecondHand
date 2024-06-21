@@ -1,5 +1,5 @@
 //
-//  CategorySelectionView.swift
+//  CategoryGridView.swift
 //  secondhand
 //
 //  Created by 조호근 on 6/18/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CategorySelectionView: View {
+struct CategoryGridView: View {
     @Environment(\.presentationMode) var presentationMode
     @Binding var selectedCategory: Category?
     
@@ -78,7 +78,7 @@ struct CategorySelectionView: View {
         @State var value: Category?
         
         var body: some View {
-            CategorySelectionView(selectedCategory: $value)
+            CategoryGridView(selectedCategory: $value)
         }
     }
     return PreviewWrapper()

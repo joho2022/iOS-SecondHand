@@ -13,8 +13,9 @@ struct secondhandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(userManager)
+//            ContentView()
+//                .environmentObject(userManager)
+            ProductInfoViewControllerRepresentable()
         }
     }
 }

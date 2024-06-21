@@ -80,7 +80,7 @@ struct HomeView: View {
     }
     
     private var categoryButton: some View {
-        NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) {
+        NavigationLink(destination: CategoryGridView(selectedCategory: $selectedCategory)) {
             Image(systemName: "line.horizontal.3")
         }
     }
