@@ -32,9 +32,20 @@ class ProductInfoViewController: UIViewController {
         return textField
     }()
     
+    private let placeholderText = "()에 올릴 게시물 내용을 작성해주세요.(판매금지 물품은 게시가 제한 될 수 있어요.)"
+    private let descriptionTextView: UITextView = {
+        let textView = UITextView()
+        textView.font = .systemFont(ofSize: 20, weight: .regular)
+        textView.backgroundColor = .customMint
+        textView.isScrollEnabled = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        return textView
+    }()
+    
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
+        stackView.backgroundColor = .yellow
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -55,15 +66,18 @@ class ProductInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         titleTextField.delegate = self
+        descriptionTextView.delegate = self
         setupViews()
         setupLayout()
         bindViewModel()
+        setPlaceholder()
     }
     
     private func setupViews() {
         view.addSubview(mainStackView)
         mainStackView.addArrangedSubview(titleTextField)
         mainStackView.addArrangedSubview(priceTextField)
+        mainStackView.addArrangedSubview(descriptionTextView)
     }
     
     private func setupLayout() {
@@ -73,8 +87,15 @@ class ProductInfoViewController: UIViewController {
             
             mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
         ])
+        descriptionTextView.heightAnchor.constraint(equalToConstant: descriptionTextView.font!.lineHeight * 5 + descriptionTextView.textContainerInset.top + descriptionTextView.textContainerInset.bottom).isActive = true
+    }
+    
+    private func setPlaceholder() {
+        descriptionTextView.text = placeholderText
+        descriptionTextView.textColor = .lightGray
     }
     
     private func addCategoryViews() {
@@ -227,6 +248,39 @@ extension ProductInfoViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == titleTextField {
             addCategoryViews()
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate
+extension ProductInfoViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        let size = CGSize(width: textView.frame.width, height: .infinity)
+        let estimatedSize = textView.sizeThatFits(size)
+        
+        let lineHeight = textView.font!.lineHeight
+        let numberOfLines = Int(estimatedSize.height / lineHeight)
+        let roundedLines = ceil(Double(numberOfLines) / 5) * 5
+        let newHeight = lineHeight * CGFloat(roundedLines) + textView.textContainerInset.top + textView.textContainerInset.bottom
+        
+        textView.constraints.forEach { constraint in
+            if constraint.firstAttribute == .height {
+                constraint.constant = newHeight
+            }
+        }
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == placeholderText {
+            textView.text = nil
+            textView.textColor = .black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = placeholderText
+            textView.textColor = .lightGray
         }
     }
 }
