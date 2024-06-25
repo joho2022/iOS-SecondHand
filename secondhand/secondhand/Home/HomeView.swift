@@ -35,7 +35,11 @@ struct HomeView: View {
                     HStack {
                         Spacer()
                         Button {
-                            isPresentingNewProductView.toggle()
+                            if userManager.user != nil {
+                                isPresentingNewProductView.toggle()
+                            } else {
+                                showAlert.toggle()
+                            }
                         } label: {
                             AddProductButton(isDragging: $isDragging)
                                 .padding([.bottom, .trailing], 16)
@@ -47,7 +51,7 @@ struct HomeView: View {
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("로그인 필요"),
-                message: Text("동네 설정은 로그인 후 이용 가능한 서비스입니다.")
+                message: Text("로그인 후 이용 가능한 서비스입니다.")
                 , dismissButton: .default(Text("확인"))
             )
         }

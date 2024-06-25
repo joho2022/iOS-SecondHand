@@ -113,7 +113,8 @@ class NewProductViewController: UIViewController {
         guard let title = productInfoViewController.titleText, !title.isEmpty,
               let selectedCategory = productInfoViewController.viewModel.selectedCategory,
               let description = productInfoViewController.descriptionText, !description.isEmpty,
-              !imageUploadViewController.selectedImages.isEmpty else {
+              !imageUploadViewController.selectedImages.isEmpty,
+              let username = userManager.user?.username else {
             return
         }
         
@@ -133,7 +134,9 @@ class NewProductViewController: UIViewController {
             timePosted: Date().iso8601,
             likes: 0,
             comments: 0,
-            isReserved: false
+            isReserved: false,
+            user: username,
+            description: description
         )
         
         productManager.addProduct(newProduct)

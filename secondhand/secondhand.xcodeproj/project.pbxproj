@@ -55,6 +55,7 @@
 		D654564C2C285ADB000441B0 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654564B2C285ADB000441B0 /* ProductManager.swift */; };
 		D65456502C2868E9000441B0 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654564F2C2868E9000441B0 /* ImageManager.swift */; };
 		D65456522C29A8AB000441B0 /* ProductManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */; };
+		D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456532C2A89E2000441B0 /* CategoryItemView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		D654564B2C285ADB000441B0 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		D654564F2C2868E9000441B0 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManagerProtocol.swift; sourceTree = "<group>"; };
+		D65456532C2A89E2000441B0 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -298,6 +300,7 @@
 				D64385DE2C16D826004F5856 /* LocationSettingView.swift */,
 				D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */,
 				D64385FB2C21B996004F5856 /* CategoryGridView.swift */,
+				D65456532C2A89E2000441B0 /* CategoryItemView.swift */,
 				D654563C2C23CAE7000441B0 /* NewProductView */,
 			);
 			path = Home;
@@ -503,6 +506,7 @@
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
 				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
+				D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */,
 				D64385FC2C21B996004F5856 /* CategoryGridView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,

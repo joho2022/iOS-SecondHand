@@ -22,43 +22,18 @@ struct CategoryGridView: View {
             Spacer().frame(height: 16)
             
             LazyVGrid(columns: columns, spacing: 16) {
-                VStack {
-                    Image("icon_all")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 44)
-                        .padding(5)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(.customOrange, lineWidth: 2)
-                        )
-                    Text("전체상품")
-                        .font(.system(size: 13, weight: .regular))
-                        .multilineTextAlignment(.center)
-                        .foregroundColor(.customGray900)
-                }
-                .onTapGesture {
-                    selectedCategory = nil
-                    presentationMode.wrappedValue.dismiss()
-                }
+                CategoryItemView(
+                    imageName: "icon_all",
+                    title: "전체상품") {
+                        selectedCategory = nil
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 
                 ForEach(Category.allCases, id: \.self) { category in
-                    VStack {
-                        Image(category.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height: 44)
-                            .padding(5)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .stroke(.customOrange, lineWidth: 2)
-                            )
-                        Text(category.rawValue)
-                            .font(.system(size: 13, weight: .regular))
-                            .multilineTextAlignment(.center)
-                            .foregroundColor(.customGray900)
-                    }
-                    .onTapGesture {
+                    CategoryItemView(
+                        imageName: category.imageName,
+                        title: category.rawValue
+                    ) {
                         selectedCategory = category
                         presentationMode.wrappedValue.dismiss()
                     }

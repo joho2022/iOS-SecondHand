@@ -18,6 +18,8 @@ struct Product: Identifiable, Codable {
     var likes: Int
     var comments: Int
     var isReserved: Bool
+    let user: String
+    var description: String
     
     var imageURL: URL? {
         if image.starts(with: "http") {
