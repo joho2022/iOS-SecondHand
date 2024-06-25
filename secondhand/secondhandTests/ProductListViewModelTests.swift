@@ -16,26 +16,12 @@ final class MockUserProvider: UserProvider {
     }
 }
 
-final class ProductListViewModelTests: XCTestCase {
-    var viewModel: ProductListViewModel!
-    var userManager: MockUserProvider!
-    var cancellables: Set<AnyCancellable>!
+class MockProductManager: ProductManagerProtocol {
+    @Published var products: [Product] = []
     
-    override func setUp() {
-        super.setUp()
-        userManager = MockUserProvider()
-        viewModel = ProductListViewModel(userManager: UserManager())
-        cancellables = []
-    }
+    var productsPublisher: Published<[Product]>.Publisher { $products }
     
-    override func tearDown() {
-        viewModel = nil
-        userManager = nil
-        cancellables = nil
-        super.tearDown()
-    }
-    
-    func test_LoadProducts() {
+    func loadMockProducts() {
         guard let url = Bundle.main.url(forResource: "Products", withExtension: "json") else {
             XCTFail("Missing file: Products.json")
             return
@@ -44,15 +30,64 @@ final class ProductListViewModelTests: XCTestCase {
         let data = try! Data(contentsOf: url)
         let products = try! JSONDecoder().decode([Product].self, from: data)
         
-        XCTAssertFalse(products.isEmpty, "Mock 데이터가 있어야 한다.")
+        self.products = products
+    }
+    
+    func getProducts() -> [Product] {
+        return products
+    }
+    
+    func addProduct(_ product: Product) {
+        products.append(product)
+    }
+    
+    func getNextProductId() -> Int {
+        return (products.map { $0.id }.max() ?? 0) + 1
+    }
+}
+
+final class ProductListViewModelTests: XCTestCase {
+    var viewModel: ProductListViewModel!
+    var productManager: MockProductManager!
+    var userManager: MockUserProvider!
+    var cancellables: Set<AnyCancellable>!
+    
+    override func setUp() {
+        super.setUp()
+        userManager = MockUserProvider()
+        productManager = MockProductManager()
+        viewModel = ProductListViewModel(userManager: userManager, productManager: productManager)
+        cancellables = []
+    }
+    
+    override func tearDown() {
+        viewModel = nil
+        productManager = nil
+        userManager = nil
+        cancellables = nil
+        super.tearDown()
+    }
+    
+    func test_LoadProducts() {
+        let expectation = XCTestExpectation(description: "Products loaded")
         
-        viewModel.loadProducts()
+        productManager.loadMockProducts()
         
-        XCTAssertEqual(viewModel.products.count, products.count, "로드된 데이터 수가 일치해야 한다.")
+        productManager.$products
+            .sink { products in
+                XCTAssertFalse(products.isEmpty, "Mock 데이터가 있어야 한다.")
+                
+                XCTAssertEqual(self.viewModel.filteredProducts.count, products.count, "로드된 데이터 수가 일치해야 한다.")
+                
+                for (index, product) in products.enumerated() {
+                    XCTAssertEqual(self.viewModel.filteredProducts[index].title, product.title, "제품 이름이 일치해야 합니다.")
+                }
+                
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
         
-        for (index, product) in products.enumerated() {
-            XCTAssertEqual(viewModel.products[index].title, product.title, "제품 이름이 일치해야 합니다.")
-        }
+        wait(for: [expectation], timeout: 1.0)
     }
     
     func test_filterProducts() {

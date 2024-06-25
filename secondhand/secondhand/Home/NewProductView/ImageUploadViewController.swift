@@ -11,7 +11,7 @@ import PhotosUI
 
 class ImageUploadViewController: UIViewController {
     
-    private var selectedImages: [UIImage] = []
+    @Published private(set) var selectedImages: [UIImage] = []
     
     private lazy var imageButton: UIButton = {
         var configuration = UIButton.Configuration.plain()

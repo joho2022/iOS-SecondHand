@@ -9,17 +9,19 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var productManager: ProductManager
     @State private var showAlert: Bool = false
     @State private var showLocationSettingView: Bool = false
     @State private var selectedCategory: Category?
     @State private var isDragging: Bool = false
+    @State private var isPresentingNewProductView = false
     
     var body: some View {
         NavigationView {
             ZStack {
                 VStack {
                     Divider()
-                    ProductListView(viewModel: ProductListViewModel(userManager: userManager), selectedCategory: $selectedCategory, isDragging: $isDragging)
+                    ProductListView(viewModel: ProductListViewModel(userManager: userManager, productManager: productManager), selectedCategory: $selectedCategory, isDragging: $isDragging)
                         
                 }
                 .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
@@ -32,8 +34,12 @@ struct HomeView: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        AddProductButton(isDragging: $isDragging)
-                            .padding([.bottom, .trailing], 16)
+                        Button {
+                            isPresentingNewProductView.toggle()
+                        } label: {
+                            AddProductButton(isDragging: $isDragging)
+                                .padding([.bottom, .trailing], 16)
+                        }
                     }
                 }
             }
@@ -47,6 +53,9 @@ struct HomeView: View {
         }
         .sheet(isPresented: $showLocationSettingView) {
             LocationSettingView(userManager: userManager)
+        }
+        .fullScreenCover(isPresented: $isPresentingNewProductView) {
+            NewProductViewControllerRepresentable(userManager: userManager, productManager: productManager, isPresented: $isPresentingNewProductView)
         }
     }
     
@@ -89,20 +98,16 @@ struct HomeView: View {
         @Binding var isDragging: Bool
         
         var body: some View {
-            Button {
-                
-            } label: {
-                HStack {
-                    Image(systemName: "plus")
-                    if !isDragging {
-                        Text("글쓰기")
-                    }
+            HStack {
+                Image(systemName: "plus")
+                if !isDragging {
+                    Text("글쓰기")
                 }
-                .padding()
-                .background(.customOrange)
-                .foregroundColor(.customWhite)
-                .cornerRadius(30)
             }
+            .padding()
+            .background(Color.customOrange)
+            .foregroundColor(Color.customWhite)
+            .cornerRadius(30)
             .animation(.default, value: isDragging)
         }
     }
@@ -111,4 +116,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(UserManager())
+        .environmentObject(ProductManager())
 }

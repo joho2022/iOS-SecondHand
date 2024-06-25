@@ -14,12 +14,14 @@ struct ProductRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
             Group {
-                AsyncImage(url: URL(string: product.image)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
+                if let imageURL = product.imageURL {
+                    AsyncImage(url: imageURL) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                    }
                 }
             } // Group
             .frame(width: 120, height: 120)

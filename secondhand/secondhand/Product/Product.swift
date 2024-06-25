@@ -18,4 +18,12 @@ struct Product: Identifiable, Codable {
     var likes: Int
     var comments: Int
     var isReserved: Bool
+    
+    var imageURL: URL? {
+        if image.starts(with: "http") {
+            return URL(string: image)
+        } else {
+            return ImageManager.shared.getImageURL(fileName: image)
+        }
+    }
 }

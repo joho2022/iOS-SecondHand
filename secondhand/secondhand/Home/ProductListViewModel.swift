@@ -9,44 +9,43 @@ import Foundation
 import Combine
 
 class ProductListViewModel: ObservableObject {
-    private(set) var products: [Product] = []
     @Published var filteredProducts: [Product] = []
     @Published var showloadErrorAlert: Bool = false
     @Published var selectedLocation: Address?
     @Published var selectedCategory: Category?
     
     private var userManager: UserProvider?
+    @Published var productManager: ProductManagerProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    init(userManager: UserProvider) {
+    init(userManager: UserProvider, productManager: ProductManagerProtocol) {
         self.userManager = userManager
-        loadProducts()
+        self.productManager = productManager
         setupBindings()
+        filterProducts()
     }
     
     private func setupBindings() {
         userManager?.userPublisher
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.filterProducts()
             }
             .store(in: &cancellables)
         
         $selectedCategory
+            .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 self?.filterProducts()
             }
             .store(in: &cancellables)
-    }
-    
-    func loadProducts() {
-        guard let url = Bundle.main.url(forResource: "Products", withExtension: "json"),
-              let data = try? Data(contentsOf: url),
-              let products = try? JSONDecoder().decode([Product].self, from: data) else {
-            showloadErrorAlert = true
-            return
-        }
-        printPrettyJSON(products: products)
-        self.products = products
+        
+        productManager.productsPublisher
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.filterProducts()
+            }
+            .store(in: &cancellables)
     }
     
     func setSelectedCategory(_ category: Category?) {
@@ -57,7 +56,7 @@ class ProductListViewModel: ObservableObject {
     func filterProducts() {
         guard let userManager = userManager else { return }
         
-        var filtered = products
+        var filtered = productManager.getProducts()
         
         if let category = selectedCategory {
             filtered = filtered.filter { $0.category.contains(category) }
@@ -72,19 +71,5 @@ class ProductListViewModel: ObservableObject {
         }
         
         filteredProducts = filtered
-    }
-    
-    private func printPrettyJSON(products: [Product]) {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        do {
-            let jsonData = try encoder.encode(products)
-            // swiftlint:disable:next non_optional_string_data_conversion
-            if let jsonString = String(data: jsonData, encoding: .utf8) {
-                print(jsonString)                
-            }
-        } catch {
-            print("Failed to encode products to JSON: \(error)")
-        }
     }
 }

@@ -42,6 +42,6 @@ struct ProductListView: View {
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(viewModel: ProductListViewModel(userManager: UserManager()), selectedCategory: .constant(nil), isDragging: .constant(false))
+        ProductListView(viewModel: ProductListViewModel(userManager: UserManager(), productManager: ProductManager()), selectedCategory: .constant(nil), isDragging: .constant(false))
     }
 }

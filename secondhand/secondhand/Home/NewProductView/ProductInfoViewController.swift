@@ -10,6 +10,9 @@ import SwiftUI
 import Combine
 
 class ProductInfoViewController: UIViewController {
+    @Published var isValid = false
+    private let placeholderText: String
+    
     private let titleTextField: UITextField = {
         let titleField = UITextField()
         titleField.font = .systemFont(ofSize: 20, weight: .regular)
@@ -18,6 +21,10 @@ class ProductInfoViewController: UIViewController {
         titleField.translatesAutoresizingMaskIntoConstraints = false
         return titleField
     }()
+    
+    var titleText: String? {
+        return titleTextField.text
+    }
     
     private var categoryScrollView: UIScrollView?
     private var categoryStackView: UIStackView?
@@ -28,11 +35,15 @@ class ProductInfoViewController: UIViewController {
         textField.font = .systemFont(ofSize: 20, weight: .regular)
         textField.backgroundColor = .systemPink
         textField.placeholder = "₩ 가격(선택사항)"
+        textField.keyboardType = .numberPad
         textField.translatesAutoresizingMaskIntoConstraints = false
         return textField
     }()
     
-    private let placeholderText = "()에 올릴 게시물 내용을 작성해주세요.(판매금지 물품은 게시가 제한 될 수 있어요.)"
+    var priceText: String? {
+        return priceTextField.text
+    }
+    
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 20, weight: .regular)
@@ -41,6 +52,10 @@ class ProductInfoViewController: UIViewController {
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
+    
+    var descriptionText: String? {
+        return descriptionTextView.text
+    }
     
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
@@ -54,13 +69,15 @@ class ProductInfoViewController: UIViewController {
     private var cancellables =  Set<AnyCancellable>()
     var viewModel: CategoryViewModel!
     
-    init(viewModel: CategoryViewModel) {
+    init(viewModel: CategoryViewModel, placeholderText: String) {
         self.viewModel = viewModel
+        self.placeholderText = placeholderText
         super.init(nibName: nil, bundle: nil)
+        bindValidation()
     }
     
     required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError("init(coder:) has not been implemented")
     }
         
     override func viewDidLoad() {
@@ -75,8 +92,11 @@ class ProductInfoViewController: UIViewController {
     
     private func setupViews() {
         view.addSubview(mainStackView)
+        addSeparator(to: mainStackView)
         mainStackView.addArrangedSubview(titleTextField)
+        addSeparator(to: mainStackView)
         mainStackView.addArrangedSubview(priceTextField)
+        addSeparator(to: mainStackView)
         mainStackView.addArrangedSubview(descriptionTextView)
     }
     
@@ -85,7 +105,7 @@ class ProductInfoViewController: UIViewController {
             titleTextField.heightAnchor.constraint(equalToConstant: 54),
             priceTextField.heightAnchor.constraint(equalToConstant: 54),
             
-            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            mainStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             mainStackView.bottomAnchor.constraint(lessThanOrEqualTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16)
@@ -143,7 +163,7 @@ class ProductInfoViewController: UIViewController {
         
         categoryContainerView.alpha = 0.0
         
-        mainStackView.insertArrangedSubview(categoryContainerView, at: 1)
+        mainStackView.insertArrangedSubview(categoryContainerView, at: 2)
         
         self.categoryScrollView = scrollView
         self.categoryStackView = stackView
@@ -178,6 +198,28 @@ class ProductInfoViewController: UIViewController {
                 self?.updateSelectedCategory(category)
             }
             .store(in: &cancellables)
+    }
+    
+    private func bindValidation() {
+        titleTextField.publisher(for: \.text)
+            .sink { [weak self] _ in self?.validateFields() }
+            .store(in: &cancellables)
+        
+        descriptionTextView.publisher(for: \.text)
+            .sink { [weak self] _ in self?.validateFields() }
+            .store(in: &cancellables)
+        
+        viewModel.$selectedCategory
+            .sink { [weak self] _ in self?.validateFields() }
+            .store(in: &cancellables)
+    }
+    
+    private func validateFields() {
+        let title = titleTextField.text ?? ""
+        let description = descriptionTextView.text ?? ""
+        let isDescriptionPlaceholder = description == placeholderText
+        
+        isValid = !title.isEmpty && viewModel.selectedCategory != nil && !description.isEmpty && !isDescriptionPlaceholder
     }
     
     private func updateCategoryButtons(_ categories: [Category]) {
@@ -241,6 +283,18 @@ class ProductInfoViewController: UIViewController {
         
         categoryScrollView?.setContentOffset(.zero, animated: true)
     }
+    
+    private func addSeparator(to stackView: UIStackView) {
+        let separator = UIView()
+        separator.backgroundColor = .customGray600
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        stackView.addArrangedSubview(separator)
+        NSLayoutConstraint.activate([
+            separator.heightAnchor.constraint(equalToConstant: 1),
+            separator.leadingAnchor.constraint(equalTo: stackView.leadingAnchor),
+            separator.trailingAnchor.constraint(equalTo: stackView.trailingAnchor)
+        ])
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -249,6 +303,7 @@ extension ProductInfoViewController: UITextFieldDelegate {
         if textField == titleTextField {
             addCategoryViews()
         }
+        validateFields()
     }
 }
 
@@ -259,8 +314,9 @@ extension ProductInfoViewController: UITextViewDelegate {
         let estimatedSize = textView.sizeThatFits(size)
         
         let lineHeight = textView.font!.lineHeight
+        let maxLines = 15
         let numberOfLines = Int(estimatedSize.height / lineHeight)
-        let roundedLines = ceil(Double(numberOfLines) / 5) * 5
+        let roundedLines = min(ceil(Double(numberOfLines) / 5) * 5, Double(maxLines))
         let newHeight = lineHeight * CGFloat(roundedLines) + textView.textContainerInset.top + textView.textContainerInset.bottom
         
         textView.constraints.forEach { constraint in
@@ -268,6 +324,7 @@ extension ProductInfoViewController: UITextViewDelegate {
                 constraint.constant = newHeight
             }
         }
+        validateFields()
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -282,6 +339,7 @@ extension ProductInfoViewController: UITextViewDelegate {
             textView.text = placeholderText
             textView.textColor = .lightGray
         }
+        validateFields()
     }
 }
 
@@ -289,7 +347,7 @@ extension ProductInfoViewController: UITextViewDelegate {
 struct ProductInfoViewControllerRepresentable: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> ProductInfoViewController {
-        return ProductInfoViewController(viewModel: CategoryViewModel())
+        return ProductInfoViewController(viewModel: CategoryViewModel(), placeholderText: "테스트 placeholder")
     }
     
     func updateUIViewController(_ uiViewController: ProductInfoViewController, context: Context) {}
