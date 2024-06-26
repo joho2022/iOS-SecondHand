@@ -119,6 +119,6 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(UserManager())
+        .environmentObject(UserManager(realmManager: RealmManager(realm: nil)))
         .environmentObject(ProductManager())
 }

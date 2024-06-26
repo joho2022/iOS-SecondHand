@@ -94,5 +94,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView(viewModel: ProfileViewModel(userManager: UserManager()))
+    ProfileView(viewModel: ProfileViewModel(userManager: UserManager(realmManager: RealmManager(realm: nil))))
 }

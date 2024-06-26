@@ -60,6 +60,8 @@
 		D65456592C2A98F3000441B0 /* UserUpdateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */; };
 		D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565A2C2A9902000441B0 /* UserLocationProvider.swift */; };
 		D654565D2C2A9911000441B0 /* UserSignUpProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */; };
+		D654565F2C2BBBAA000441B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565E2C2BBBAA000441B0 /* AppState.swift */; };
+		D65456612C2BF709000441B0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456602C2BF709000441B0 /* Chat.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +139,8 @@
 		D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateProvider.swift; sourceTree = "<group>"; };
 		D654565A2C2A9902000441B0 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
 		D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpProvider.swift; sourceTree = "<group>"; };
+		D654565E2C2BBBAA000441B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D65456602C2BF709000441B0 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +261,7 @@
 			children = (
 				D643859A2C0F1D5B004F5856 /* User.swift */,
 				D64385BB2C107D29004F5856 /* UserManager.swift */,
+				D65456602C2BF709000441B0 /* Chat.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 			children = (
 				D64385EB2C1BFBCF004F5856 /* RealmManager.swift */,
 				D654564F2C2868E9000441B0 /* ImageManager.swift */,
+				D654565E2C2BBBAA000441B0 /* AppState.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
 				D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */,
+				D654565F2C2BBBAA000441B0 /* AppState.swift in Sources */,
 				D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */,
 				D64385FC2C21B996004F5856 /* CategoryGridView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
@@ -545,6 +552,7 @@
 				D65456442C2522A7000441B0 /* CategoryTableViewController.swift in Sources */,
 				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
 				D64385CD2C1693E7004F5856 /* Product.swift in Sources */,
+				D65456612C2BF709000441B0 /* Chat.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
 				D64385D02C169A05004F5856 /* Category.swift in Sources */,
 				D65456592C2A98F3000441B0 /* UserUpdateProvider.swift in Sources */,

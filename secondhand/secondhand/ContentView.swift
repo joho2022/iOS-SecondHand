@@ -70,5 +70,5 @@ struct ChatView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(UserManager())
+    ContentView().environmentObject(UserManager(realmManager: RealmManager(realm: nil)))
 }

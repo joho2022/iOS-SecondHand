@@ -32,7 +32,7 @@ class NewProductViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        self.userManager = UserManager()
+        self.userManager = UserManager(realmManager: RealmManager(realm: nil))
         self.productManager = ProductManager()
         
         let defaultLocation = userManager.getDefaultLocation().dongName
@@ -232,6 +232,6 @@ struct NewProductViewControllerRepresentable: UIViewControllerRepresentable {
 
 struct NewProductViewController_Previews: PreviewProvider {
     static var previews: some View {
-        NewProductViewControllerRepresentable(userManager: UserManager(), productManager: ProductManager(), isPresented: .constant(true))
+        NewProductViewControllerRepresentable(userManager: UserManager(realmManager: RealmManager(realm: nil)), productManager: ProductManager(), isPresented: .constant(true))
     }
 }

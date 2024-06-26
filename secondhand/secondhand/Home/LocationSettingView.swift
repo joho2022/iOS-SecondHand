@@ -128,5 +128,5 @@ struct LocationSettingView: View {
 }
 
 #Preview {
-    LocationSettingView(userManager: UserManager())
+    LocationSettingView(userManager: UserManager(realmManager: RealmManager(realm: nil)))
 }
