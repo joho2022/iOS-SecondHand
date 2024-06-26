@@ -11,10 +11,13 @@ import os
 
 class AppState: ObservableObject {
     @Published var realm: Realm?
+    @Published var userManager: UserManager?
     private var app: App
     
     init() {
         self.app = App(id: "application-0-fahelom")
+        let realmManager = RealmManager(realm: nil)
+        self.userManager = UserManager(realmManager: realmManager)
         login()
     }
     
@@ -71,6 +74,10 @@ class AppState: ObservableObject {
                 print("Successfully updated subscriptions")
                 DispatchQueue.main.async {
                     self.realm = realm
+                    if let userManager = self.userManager {
+                        let realmManager = RealmManager(realm: realm)
+                        userManager.updateRealmManager(realmManager)
+                    }
                 }
             }
         }

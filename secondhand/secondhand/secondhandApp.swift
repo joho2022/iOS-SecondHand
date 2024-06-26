@@ -14,9 +14,7 @@ struct secondhandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if let realm = appState.realm {
-                let realmManager = RealmManager(realm: realm)
-                let userManager = UserManager(realmManager: realmManager)
+            if appState.realm != nil, let userManager = appState.userManager {
                 ContentView()
                     .environmentObject(userManager)
                     .environmentObject(productManager)

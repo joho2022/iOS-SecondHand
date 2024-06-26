@@ -16,10 +16,15 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
         $user
     }
     
-    private let realmManager: RealmManager
+    private var realmManager: RealmManager
     
     init(realmManager: RealmManager) {
         self.realmManager = realmManager
+    }
+    
+    func updateRealmManager(_ realmManager: RealmManager) {
+        self.realmManager = realmManager
+        refreshUser()
     }
     
     private func refreshUser() {
