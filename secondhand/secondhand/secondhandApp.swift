@@ -14,10 +14,14 @@ struct secondhandApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if appState.realm != nil, let userManager = appState.userManager {
+            if appState.realm != nil,
+               let userManager = appState.userManager,
+               let chatRoomViewModel = appState.chatRoomViewModel {
                 ContentView()
                     .environmentObject(userManager)
                     .environmentObject(productManager)
+                    .environmentObject(appState)
+                    .environmentObject(chatRoomViewModel)
             } else {
                 ProgressView("Connecting to Realm...")
             }

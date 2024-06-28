@@ -12,6 +12,7 @@ import os
 class AppState: ObservableObject {
     @Published var realm: Realm?
     @Published var userManager: UserManager?
+    @Published var chatRoomViewModel: ChatRoomViewModel?
     private var app: App
     
     init() {
@@ -69,17 +70,52 @@ class AppState: ObservableObject {
             }
         } onComplete: { error in
             if let error = error {
-                print("Failed to update subscriptions: \(error.localizedDescription)")
+                os_log(.error, "Failed to update subscriptions: %{public}@", "\(error.localizedDescription)")
             } else {
-                print("Successfully updated subscriptions")
                 DispatchQueue.main.async {
                     self.realm = realm
                     if let userManager = self.userManager {
                         let realmManager = RealmManager(realm: realm)
                         userManager.updateRealmManager(realmManager)
+                        self.chatRoomViewModel = ChatRoomViewModel(realm: realm)
                     }
                 }
             }
+        }
+    }
+    
+    private func insertSampleData() {
+        guard let realm = self.realm else { return }
+        
+        try? realm.write {
+            let user1 = realm.object(ofType: User.self, forPrimaryKey: "840C2AEB-E6E8-4BCF-B8D5-AAA88B6F0E0E")
+            let user2 = realm.object(ofType: User.self, forPrimaryKey: "A959D814-69D4-4DED-83CD-883E1C0C3F71")
+            
+            guard let alice = user1, let bob = user2 else {
+                print("Error: Users not found")
+                return
+            }
+            
+            let message1 = Message()
+            message1.sender = alice
+            message1.content = "Hello, Bob!"
+            message1.timestamp = Date()
+            message1.isRead = false
+            
+            let message2 = Message()
+            message2.sender = bob
+            message2.content = "Hi, Alice!"
+            message2.timestamp = Date()
+            message2.isRead = false
+            
+            let chatRoom = ChatRoom()
+            chatRoom.participants.append(objectsIn: [alice, bob])
+            chatRoom.messages.append(objectsIn: [message1, message2])
+            chatRoom.updatedAt = Date()
+            chatRoom.productId = 1
+            
+            realm.add([message1, message2, chatRoom])
+            print("insertSampleData()!!")
         }
     }
 }

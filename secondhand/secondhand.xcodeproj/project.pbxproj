@@ -61,7 +61,11 @@
 		D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565A2C2A9902000441B0 /* UserLocationProvider.swift */; };
 		D654565D2C2A9911000441B0 /* UserSignUpProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */; };
 		D654565F2C2BBBAA000441B0 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565E2C2BBBAA000441B0 /* AppState.swift */; };
-		D65456612C2BF709000441B0 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456602C2BF709000441B0 /* Chat.swift */; };
+		D65456612C2BF709000441B0 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456602C2BF709000441B0 /* ChatRoom.swift */; };
+		D65456632C2CFF3A000441B0 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456622C2CFF3A000441B0 /* ChatRoomViewModel.swift */; };
+		D65456662C2D2EB0000441B0 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456652C2D2EB0000441B0 /* ChatListView.swift */; };
+		D65456682C2D79D7000441B0 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456672C2D79D7000441B0 /* ChatDetailView.swift */; };
+		D654566A2C2DB542000441B0 /* ChatRoomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456692C2DB542000441B0 /* ChatRoomRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,7 +144,11 @@
 		D654565A2C2A9902000441B0 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
 		D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpProvider.swift; sourceTree = "<group>"; };
 		D654565E2C2BBBAA000441B0 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
-		D65456602C2BF709000441B0 /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		D65456602C2BF709000441B0 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		D65456622C2CFF3A000441B0 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
+		D65456652C2D2EB0000441B0 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		D65456672C2D79D7000441B0 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
+		D65456692C2DB542000441B0 /* ChatRoomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +205,7 @@
 				D643854D2C0DA868004F5856 /* secondhandApp.swift */,
 				D643858B2C0DD45B004F5856 /* ContentView.swift */,
 				D64385D52C16A424004F5856 /* Home */,
+				D65456642C2CFF41000441B0 /* Chat */,
 				D643858F2C0E2C14004F5856 /* Profile */,
 				D643859C2C0F1D62004F5856 /* User */,
 				D64385E62C180AE5004F5856 /* Extension */,
@@ -261,7 +270,7 @@
 			children = (
 				D643859A2C0F1D5B004F5856 /* User.swift */,
 				D64385BB2C107D29004F5856 /* UserManager.swift */,
-				D65456602C2BF709000441B0 /* Chat.swift */,
+				D65456602C2BF709000441B0 /* ChatRoom.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -360,6 +369,17 @@
 				D65456562C2A98E3000441B0 /* UserLoginProvider.swift */,
 			);
 			path = UserProtocols;
+			sourceTree = "<group>";
+		};
+		D65456642C2CFF41000441B0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				D65456652C2D2EB0000441B0 /* ChatListView.swift */,
+				D65456692C2DB542000441B0 /* ChatRoomRow.swift */,
+				D65456672C2D79D7000441B0 /* ChatDetailView.swift */,
+				D65456622C2CFF3A000441B0 /* ChatRoomViewModel.swift */,
+			);
+			path = Chat;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -532,6 +552,7 @@
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
 				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
+				D654566A2C2DB542000441B0 /* ChatRoomRow.swift in Sources */,
 				D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */,
 				D654565F2C2BBBAA000441B0 /* AppState.swift in Sources */,
 				D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */,
@@ -539,6 +560,7 @@
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
 				D64385C72C1612BD004F5856 /* UserProvider.swift in Sources */,
 				D64385E12C17FF8B004F5856 /* ProductListViewModel.swift in Sources */,
+				D65456632C2CFF3A000441B0 /* ChatRoomViewModel.swift in Sources */,
 				D654564C2C285ADB000441B0 /* ProductManager.swift in Sources */,
 				D654563E2C23CB26000441B0 /* ImageUploadViewController.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
@@ -550,10 +572,12 @@
 				D64385E82C180BDB004F5856 /* Date+Extensions.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
 				D65456442C2522A7000441B0 /* CategoryTableViewController.swift in Sources */,
+				D65456682C2D79D7000441B0 /* ChatDetailView.swift in Sources */,
 				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
 				D64385CD2C1693E7004F5856 /* Product.swift in Sources */,
-				D65456612C2BF709000441B0 /* Chat.swift in Sources */,
+				D65456612C2BF709000441B0 /* ChatRoom.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
+				D65456662C2D2EB0000441B0 /* ChatListView.swift in Sources */,
 				D64385D02C169A05004F5856 /* Category.swift in Sources */,
 				D65456592C2A98F3000441B0 /* UserUpdateProvider.swift in Sources */,
 				D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */,

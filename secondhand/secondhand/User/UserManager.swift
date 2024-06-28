@@ -52,11 +52,8 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
     }
     
     func updateProfileImage(for username: String, with imageData: Data) {
-        let realm = try! Realm()
         if let user = realmManager.fetchUser(by: username) {
-            try! realm.write {
-                user.profileImageData = imageData
-            }
+            realmManager.updateUserImage(for: user, with: imageData)
             self.user = user
         } else {
             os_log(.error, "[ 사진 업데이트 실패 ]: 유저정보 없음")

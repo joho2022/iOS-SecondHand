@@ -38,7 +38,6 @@ class ImageUploadViewController: UIViewController {
     
     private let imagesScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .yellow
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
@@ -54,7 +53,6 @@ class ImageUploadViewController: UIViewController {
     
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.backgroundColor = .green
         stackView.axis = .horizontal
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +116,6 @@ class ImageUploadViewController: UIViewController {
             let xmarkView = createXmarkView()
             
             let containerView = UIView()
-            containerView.backgroundColor = .red
             containerView.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(imageView)
             containerView.addSubview(xmarkView)

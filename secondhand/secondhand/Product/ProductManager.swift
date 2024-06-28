@@ -65,6 +65,10 @@ class ProductManager: ObservableObject, ProductManagerProtocol {
         return (products.map { $0.id }.max() ?? 0) + 1
     }
     
+    func getProduct(byId id: Int) -> Product? {
+        return products.first { $0.id == id }
+    }
+    
     private func printPrettyJSON(products: [Product]) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
