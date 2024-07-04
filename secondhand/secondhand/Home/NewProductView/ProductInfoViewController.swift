@@ -73,7 +73,10 @@ class ProductInfoViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.placeholderText = ""
+        self.viewModel = CategoryViewModel()
+        super.init(coder: coder)
+        bindValidation()
     }
         
     override func viewDidLoad() {
