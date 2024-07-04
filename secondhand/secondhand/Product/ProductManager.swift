@@ -44,10 +44,6 @@ class ProductManager: ObservableObject, ProductManagerProtocol {
         }
     }
     
-    func getProducts() -> [Product] {
-        return products
-    }
-    
     func addProduct(_ product: Product) {
         products.append(product)
         saveProducts()
