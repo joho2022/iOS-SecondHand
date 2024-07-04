@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CategoryGridView: View {
-    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.dismiss) var dismiss
     @Binding var selectedCategory: Category?
     
     let columns: [GridItem] = [
@@ -26,7 +26,7 @@ struct CategoryGridView: View {
                     imageName: "icon_all",
                     title: "전체상품") {
                         selectedCategory = nil
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }
                 
                 ForEach(Category.allCases, id: \.self) { category in
@@ -35,7 +35,7 @@ struct CategoryGridView: View {
                         title: category.rawValue
                     ) {
                         selectedCategory = category
-                        presentationMode.wrappedValue.dismiss()
+                        dismiss()
                     }
                 } // ForEach
             } // LazyVGrid
