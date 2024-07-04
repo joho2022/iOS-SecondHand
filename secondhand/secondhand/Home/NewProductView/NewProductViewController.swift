@@ -12,6 +12,7 @@ import Combine
 class NewProductViewController: UIViewController {
     private let userManager: UserManager
     private let productManager: ProductManager
+    private let imageManager: ImageSavingProtocol
     private let imageUploadViewController = ImageUploadViewController()
     private let productInfoViewController: ProductInfoViewController
     private let toolBar = UIToolbar()
@@ -20,9 +21,10 @@ class NewProductViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
-    init(userManager: UserManager, productManager: ProductManager) {
+    init(userManager: UserManager, productManager: ProductManager, imageManager: ImageSavingProtocol) {
         self.userManager = userManager
         self.productManager = productManager
+        self.imageManager = imageManager
         
         let defaultLocation = userManager.getDefaultLocation().dongName
         let placeholderText = "(\(defaultLocation))에 올릴 게시물 내용을 작성해주세요.(판매금지 물품은 게시가 제한 될 수 있어요.)"
@@ -34,6 +36,7 @@ class NewProductViewController: UIViewController {
     required init?(coder: NSCoder) {
         self.userManager = UserManager(realmManager: RealmManager(realm: nil))
         self.productManager = ProductManager()
+        self.imageManager = ImageManager()
         
         let defaultLocation = userManager.getDefaultLocation().dongName
         let placeholderText = "(\(defaultLocation))에 올릴 게시물 내용을 작성해주세요.(판매금지 물품은 게시가 제한 될 수 있어요.)"
@@ -120,7 +123,7 @@ class NewProductViewController: UIViewController {
         
         let images = imageUploadViewController.selectedImages
         let fileName = UUID().uuidString + ".jpg"
-        guard let imagePath = ImageManager.shared.saveImageToDocumentsDirectory(image: images.first!, fileName: fileName) else {
+        guard let imagePath = imageManager.saveImageToDocumentsDirectory(image: images.first!, fileName: fileName) else {
             return
         }
         
@@ -188,6 +191,7 @@ class NewProductViewController: UIViewController {
 struct NewProductViewControllerRepresentable: UIViewControllerRepresentable {
     var userManager: UserManager
     var productManager: ProductManager
+    var imageManager: ImageSavingProtocol
     @Binding var isPresented: Bool
     
     class Coordinator: NSObject {
@@ -215,7 +219,7 @@ struct NewProductViewControllerRepresentable: UIViewControllerRepresentable {
     }
     
     func makeUIViewController(context: Context) -> UINavigationController {
-        let viewController = NewProductViewController(userManager: userManager, productManager: productManager)
+        let viewController = NewProductViewController(userManager: userManager, productManager: productManager, imageManager: imageManager)
         context.coordinator.viewController = viewController
         
         viewController.navigationItem.title = "내 물건 팔기"
@@ -232,6 +236,6 @@ struct NewProductViewControllerRepresentable: UIViewControllerRepresentable {
 
 struct NewProductViewController_Previews: PreviewProvider {
     static var previews: some View {
-        NewProductViewControllerRepresentable(userManager: UserManager(realmManager: RealmManager(realm: nil)), productManager: ProductManager(), isPresented: .constant(true))
+        NewProductViewControllerRepresentable(userManager: UserManager(realmManager: RealmManager(realm: nil)), productManager: ProductManager(), imageManager: ImageManager(), isPresented: .constant(true))
     }
 }

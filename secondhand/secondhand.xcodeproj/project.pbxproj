@@ -66,6 +66,7 @@
 		D65456662C2D2EB0000441B0 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456652C2D2EB0000441B0 /* ChatListView.swift */; };
 		D65456682C2D79D7000441B0 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456672C2D79D7000441B0 /* ChatDetailView.swift */; };
 		D654566A2C2DB542000441B0 /* ChatRoomRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456692C2DB542000441B0 /* ChatRoomRow.swift */; };
+		D654566C2C363DEE000441B0 /* ImageSavingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654566B2C363DEE000441B0 /* ImageSavingProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -149,6 +150,7 @@
 		D65456652C2D2EB0000441B0 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		D65456672C2D79D7000441B0 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
 		D65456692C2DB542000441B0 /* ChatRoomRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomRow.swift; sourceTree = "<group>"; };
+		D654566B2C363DEE000441B0 /* ImageSavingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSavingProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,7 +291,8 @@
 			children = (
 				D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */,
 				D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */,
-				D65456552C2A98BF000441B0 /* UserProtocols */,
+				D65456552C2A98BF000441B0 /* UserManagerProtocols */,
+				D654566F2C363E40000441B0 /* ImageManagerProtocols */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -359,7 +362,7 @@
 			path = NewProductView;
 			sourceTree = "<group>";
 		};
-		D65456552C2A98BF000441B0 /* UserProtocols */ = {
+		D65456552C2A98BF000441B0 /* UserManagerProtocols */ = {
 			isa = PBXGroup;
 			children = (
 				D64385C62C1612BD004F5856 /* UserProvider.swift */,
@@ -368,7 +371,7 @@
 				D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */,
 				D65456562C2A98E3000441B0 /* UserLoginProvider.swift */,
 			);
-			path = UserProtocols;
+			path = UserManagerProtocols;
 			sourceTree = "<group>";
 		};
 		D65456642C2CFF41000441B0 /* Chat */ = {
@@ -380,6 +383,14 @@
 				D65456622C2CFF3A000441B0 /* ChatRoomViewModel.swift */,
 			);
 			path = Chat;
+			sourceTree = "<group>";
+		};
+		D654566F2C363E40000441B0 /* ImageManagerProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				D654566B2C363DEE000441B0 /* ImageSavingProtocol.swift */,
+			);
+			path = ImageManagerProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D654564A2C271AD3000441B0 /* NewProductViewController.swift in Sources */,
+				D654566C2C363DEE000441B0 /* ImageSavingProtocol.swift in Sources */,
 				D65456422C247993000441B0 /* ProductInfoViewController.swift in Sources */,
 				D643858E2C0E2C0E004F5856 /* LoginView.swift in Sources */,
 				D65456502C2868E9000441B0 /* ImageManager.swift in Sources */,

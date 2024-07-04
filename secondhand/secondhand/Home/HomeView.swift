@@ -59,7 +59,7 @@ struct HomeView: View {
             LocationSettingView(userManager: userManager)
         }
         .fullScreenCover(isPresented: $isPresentingNewProductView) {
-            NewProductViewControllerRepresentable(userManager: userManager, productManager: productManager, isPresented: $isPresentingNewProductView)
+            NewProductViewControllerRepresentable(userManager: userManager, productManager: productManager, imageManager: ImageManager(), isPresented: $isPresentingNewProductView)
         }
     }
     

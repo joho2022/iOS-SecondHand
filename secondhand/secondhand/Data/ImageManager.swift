@@ -8,9 +8,7 @@
 import UIKit
 import os
 
-class ImageManager {
-    static let shared = ImageManager()
-    
+class ImageManager: ImageSavingProtocol {
     func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = documentsURL.appendingPathComponent(fileName)
@@ -26,7 +24,7 @@ class ImageManager {
         return nil
     }
     
-    func getImageURL(fileName: String) -> URL? {
+    static func getImageURL(fileName: String) -> URL? {
         let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
         return documentsDirectory.appendingPathComponent(fileName)
     }
