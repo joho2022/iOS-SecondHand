@@ -19,24 +19,25 @@ struct ProductListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.filteredProducts, id: \.id) { product in
-                        ProductRow(product: product)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.filteredProducts, id: \.id) { product in
+                    ProductRow(product: product)
+                }
+            } // LazyVStack
+            .background(GeometryReader { geo -> Color in
+                DispatchQueue.main.async {
+                    let newIsDragging = geo.frame(in: .global).minY < 100
+                    if newIsDragging != isDragging {
+                        isDragging = newIsDragging
                     }
-                } // LazyVStack
-                .background(GeometryReader { geo -> Color in
-                    DispatchQueue.main.async {
-                        isDragging = geo.frame(in: .global).minY < 100
-                    }
-                    return Color.clear
-                })
-            } // ScrollView
-            .onChange(of: selectedCategory) { newCategory in
-                viewModel.setSelectedCategory(newCategory)
-            }
-        } // NavigationView
+                }
+                return Color.clear
+            })
+        } // ScrollView
+        .onChange(of: selectedCategory) { newCategory in
+            viewModel.setSelectedCategory(newCategory)
+        }
     }
 }
 
