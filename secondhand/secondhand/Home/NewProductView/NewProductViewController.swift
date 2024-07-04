@@ -21,6 +21,9 @@ class NewProductViewController: UIViewController {
     
     private var cancellables = Set<AnyCancellable>()
     
+    var onDone: (() -> Void)?
+    var onClose: (() -> Void)?
+    
     init(userManager: UserManager, productManager: ProductManager, imageManager: ImageSavingProtocol) {
         self.userManager = userManager
         self.productManager = productManager
@@ -86,7 +89,7 @@ class NewProductViewController: UIViewController {
     }
   
     @objc func closeButtonTapped() {
-        dismiss(animated: true)
+        onClose?()
     }
     
     private func bindViewModel() {
@@ -143,7 +146,7 @@ class NewProductViewController: UIViewController {
         )
         
         productManager.addProduct(newProduct)
-        dismiss(animated: true)
+        onDone?()
     }
 
     private func setupToolBar() {
@@ -194,40 +197,18 @@ struct NewProductViewControllerRepresentable: UIViewControllerRepresentable {
     var imageManager: ImageSavingProtocol
     @Binding var isPresented: Bool
     
-    class Coordinator: NSObject {
-        var parent: NewProductViewControllerRepresentable
-        var viewController: NewProductViewController?
-        
-        init(parent: NewProductViewControllerRepresentable) {
-            self.parent = parent
-        }
-        
-        @objc func doneButtonTapped() {
-            if let viewController = viewController {
-                viewController.doneButtonTapped()
-                parent.isPresented = false
-            }
-        }
-        
-        @objc func closeButtonTapped() {
-            parent.isPresented = false
-        }
-    }
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(parent: self)
-    }
-    
     func makeUIViewController(context: Context) -> UINavigationController {
         let viewController = NewProductViewController(userManager: userManager, productManager: productManager, imageManager: imageManager)
-        context.coordinator.viewController = viewController
         
-        viewController.navigationItem.title = "내 물건 팔기"
-        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: context.coordinator, action: #selector(Coordinator.closeButtonTapped))
-        viewController.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: context.coordinator, action: #selector(Coordinator.doneButtonTapped))
+        viewController.onDone = {
+            isPresented = false
+        }
+        
+        viewController.onClose = {
+            isPresented = false
+        }
         
         let navigationController = UINavigationController(rootViewController: viewController)
-        viewController.navigationItem.rightBarButtonItem?.isEnabled = false
         return navigationController
     }
     
