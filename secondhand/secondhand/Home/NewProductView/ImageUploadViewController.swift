@@ -199,16 +199,28 @@ class ImageUploadViewController: UIViewController {
         
         if let containerView = tappedView.superview,
            let index = imagesStackView.arrangedSubviews.firstIndex(of: containerView) {
-            UIView.animate(withDuration: 0.3, animations: {
+            
+            let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
                 containerView.alpha = 0
                 containerView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            }, completion: { finished in
-                if finished {
+            }
+            
+            animator.addCompletion { position in
+                switch position {
+                case .end:
                     self.selectedImages.remove(at: index)
                     self.updateImagesScrollView()
                     self.updateImageCountLabel()
+                case .start:
+                    break
+                case .current:
+                    break
+                @unknown default:
+                    break
                 }
-            })
+            }
+            
+            animator.startAnimation()
         }
     }
 }
