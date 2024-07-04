@@ -10,14 +10,14 @@ import os
 
 class ImageManager: ImageSavingProtocol {
     func saveImageToDocumentsDirectory(image: UIImage, fileName: String) -> String? {
-        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = documentsURL.appendingPathComponent(fileName)
+        let tempURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
         if let data = image.jpegData(compressionQuality: 1.0) {
             do {
-                try data.write(to: fileURL)
+                try data.write(to: tempURL)
+                print(tempURL.path)
                 return fileName
             } catch {
-                os_log(.error, "[ Error saveImageToDocumentsDirectory() ]: %@: - %@", fileURL.path, error.localizedDescription)
+                os_log(.error, "[ Error saveImageToDocumentsDirectory() ]: %@: - %@", tempURL.path, error.localizedDescription)
                 return nil
             }
         }
@@ -25,7 +25,7 @@ class ImageManager: ImageSavingProtocol {
     }
     
     static func getImageURL(fileName: String) -> URL? {
-        let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        return documentsDirectory.appendingPathComponent(fileName)
+        let tempDirectory = URL(fileURLWithPath: NSTemporaryDirectory())
+        return tempDirectory.appendingPathComponent(fileName)
     }
 }

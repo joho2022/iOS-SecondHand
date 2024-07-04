@@ -51,7 +51,6 @@ class ProductManager: ObservableObject, ProductManagerProtocol {
     func addProduct(_ product: Product) {
         products.append(product)
         saveProducts()
-        printPrettyJSON(products: products)
     }
     
     private func saveProducts() {
