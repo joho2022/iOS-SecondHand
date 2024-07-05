@@ -7,25 +7,33 @@
 
 import Foundation
 
+enum ProductStatus: String, Codable {
+    case selling = "판매중"
+    case reserved = "예약중"
+    case soldOut = "판매완료"
+}
+
 struct Product: Identifiable, Codable {
     let id: Int
     var title: String
     var price: Int
     var location: String
     var category: [Category]
-    var image: String
+    var images: [String]
     let timePosted: String
     var likes: Int
     var comments: Int
-    var isReserved: Bool
+    var status: ProductStatus
     let user: String
     var description: String
     
-    var imageURL: URL? {
-        if image.starts(with: "http") {
-            return URL(string: image)
-        } else {
-            return ImageManager.getImageURL(fileName: image)
+    var imageURLs: [URL] {
+        images.compactMap { imagePath in
+            if imagePath.starts(with: "http") {
+                return URL(string: imagePath)
+            } else {
+                return ImageManager.getImageURL(fileName: imagePath)
+            }
         }
     }
 }

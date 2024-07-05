@@ -18,7 +18,7 @@ struct ChatDetailView: View {
     var body: some View {
         VStack {
             HStack {
-                if let imageURL = product.imageURL {
+                if let imageURL = product.imageURLs.first {
                     AsyncImage(url: imageURL) { image in
                         image
                             .resizable()
@@ -127,7 +127,7 @@ struct ChatDetailView_Previews: PreviewProvider {
         
         let sampleChatRoom = ChatRoom(value: ["_id": UUID().uuidString, "participants": [sampleUser1, sampleUser2], "messages": [sampleMessage1, sampleMessage2], "updatedAt": Date(), "productId": 1])
         
-        let sampleProduct = Product(id: 1, title: "Sample Product", price: 100, location: "Sample Location", category: [], image: "https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp", timePosted: "Just now", likes: 10, comments: 5, isReserved: false, user: "Alice", description: "This is a sample product.")
+        let sampleProduct = Product(id: 0, title: "나이키 티셔츠", price: 40000, location: "역삼동", category: [.mensFashion, .popular], images: ["https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp"], timePosted: "2024-06-10T13:14:08", likes: 10, comments: 2, status: .selling, user: "테스트", description: "테스트 설명입니다")
         
         return ChatDetailView(chatRoom: sampleChatRoom, currentUser: sampleUser1, product: sampleProduct)
     }

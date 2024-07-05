@@ -14,7 +14,7 @@ struct ProductRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
             Group {
-                if let imageURL = product.imageURL {
+                if let imageURL = product.imageURLs.first {
                     AsyncImage(url: imageURL) { image in
                         image
                             .resizable()
@@ -46,7 +46,7 @@ struct ProductRow: View {
                 }
                 
                 HStack {
-                    if product.isReserved {
+                    if product.status == .reserved {
                         Text("예약중")
                             .foregroundColor(.customWhite)
                             .font(.system(size: 12, weight: .regular))
@@ -87,7 +87,7 @@ struct ProductRow: View {
 
 #Preview {
     struct PreviewWrapper: View {
-        let sampleProduct = Product(id: 0, title: "나이키 티셔츠", price: 40000, location: "역삼동", category: [.mensFashion, .popular], image: "https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp", timePosted: "2024-06-10T13:14:08", likes: 10, comments: 2, isReserved: true, user: "테스트", description: "테스트 설명입니다")
+        let sampleProduct = Product(id: 0, title: "나이키 티셔츠", price: 40000, location: "역삼동", category: [.mensFashion, .popular], images: ["https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp"], timePosted: "2024-06-10T13:14:08", likes: 10, comments: 2, status: .selling, user: "테스트", description: "테스트 설명입니다")
         
         var body: some View {
             ProductRow(product: sampleProduct)

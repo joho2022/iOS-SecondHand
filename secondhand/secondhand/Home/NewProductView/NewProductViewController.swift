@@ -8,6 +8,7 @@
 import UIKit
 import SwiftUI
 import Combine
+import os
 
 class NewProductViewController: UIViewController {
     private let userManager: UserManager
@@ -124,10 +125,17 @@ class NewProductViewController: UIViewController {
             return
         }
         
-        let images = imageUploadViewController.selectedImages
-        let fileName = UUID().uuidString + ".jpg"
-        guard let imagePath = imageManager.saveImageToDocumentsDirectory(image: images.first!, fileName: fileName) else {
-            return
+        let selectedImages = imageUploadViewController.selectedImages
+        var imagePaths: [String] = []
+        
+        for image in selectedImages {
+            let fileName = UUID().uuidString + ".jpg"
+            if let imagePath = imageManager.saveImageToDocumentsDirectory(image: image, fileName: fileName) {
+                imagePaths.append(imagePath)
+            } else {
+                os_log(.error, "Error doneButtonTapped(): \(fileName)")
+                return
+            }
         }
         
         let newProduct = Product(
@@ -136,11 +144,11 @@ class NewProductViewController: UIViewController {
             price: Int(productInfoViewController.priceText ?? "0") ?? 0,
             location: selectedLocationLabel.text ?? userManager.getDefaultLocation().dongName,
             category: [selectedCategory],
-            image: imagePath,
+            images: imagePaths,
             timePosted: Date().iso8601,
             likes: 0,
             comments: 0,
-            isReserved: false,
+            status: .selling,
             user: username,
             description: description
         )

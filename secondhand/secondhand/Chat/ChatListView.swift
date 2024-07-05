@@ -44,8 +44,6 @@ struct ChatListView_Previews: PreviewProvider {
         
         let sampleChatRoom = ChatRoom(value: ["_id": UUID().uuidString, "participants": [sampleUser1, sampleUser2], "messages": [sampleMessage1, sampleMessage2], "updatedAt": Date(), "productId": 1])
         
-        let sampleProduct = Product(id: 1, title: "Sample Product", price: 100, location: "Sample Location", category: [], image: "https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp", timePosted: "Just now", likes: 10, comments: 5, isReserved: false, user: "Alice", description: "This is a sample product.")
-        
         let chatRoomViewModel = ChatRoomViewModel(realm: nil)
         chatRoomViewModel.chatRooms = [sampleChatRoom]
         
