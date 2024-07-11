@@ -44,14 +44,9 @@ class ProductManager: ObservableObject, ProductManagerProtocol {
         }
     }
     
-    func getProducts() -> [Product] {
-        return products
-    }
-    
     func addProduct(_ product: Product) {
         products.append(product)
         saveProducts()
-        printPrettyJSON(products: products)
     }
     
     private func saveProducts() {
@@ -63,6 +58,10 @@ class ProductManager: ObservableObject, ProductManagerProtocol {
     
     func getNextProductId() -> Int {
         return (products.map { $0.id }.max() ?? 0) + 1
+    }
+    
+    func getProduct(byId id: Int) -> Product? {
+        return products.first { $0.id == id }
     }
     
     private func printPrettyJSON(products: [Product]) {

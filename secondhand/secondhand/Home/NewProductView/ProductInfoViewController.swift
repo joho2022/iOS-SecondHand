@@ -16,7 +16,6 @@ class ProductInfoViewController: UIViewController {
     private let titleTextField: UITextField = {
         let titleField = UITextField()
         titleField.font = .systemFont(ofSize: 20, weight: .regular)
-        titleField.backgroundColor = .gray
         titleField.placeholder = "글제목"
         titleField.translatesAutoresizingMaskIntoConstraints = false
         return titleField
@@ -33,7 +32,6 @@ class ProductInfoViewController: UIViewController {
     private let priceTextField: UITextField = {
         let textField = UITextField()
         textField.font = .systemFont(ofSize: 20, weight: .regular)
-        textField.backgroundColor = .systemPink
         textField.placeholder = "₩ 가격(선택사항)"
         textField.keyboardType = .numberPad
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -47,7 +45,6 @@ class ProductInfoViewController: UIViewController {
     private let descriptionTextView: UITextView = {
         let textView = UITextView()
         textView.font = .systemFont(ofSize: 20, weight: .regular)
-        textView.backgroundColor = .customMint
         textView.isScrollEnabled = false
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
@@ -60,7 +57,6 @@ class ProductInfoViewController: UIViewController {
     private let mainStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.backgroundColor = .yellow
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         return stackView
@@ -77,7 +73,10 @@ class ProductInfoViewController: UIViewController {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.placeholderText = ""
+        self.viewModel = CategoryViewModel()
+        super.init(coder: coder)
+        bindValidation()
     }
         
     override func viewDidLoad() {
@@ -122,18 +121,15 @@ class ProductInfoViewController: UIViewController {
         guard categoryScrollView == nil else { return }
         
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .green
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         let stackView = UIStackView()
-        stackView.backgroundColor = .yellow
         stackView.axis = .horizontal
         stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         let button = UIButton(type: .system)
-        button.backgroundColor = .blue
         button.setImage(UIImage(systemName: "chevron.right"), for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(showCategoryTableView), for: .touchUpInside)
@@ -251,6 +247,7 @@ class ProductInfoViewController: UIViewController {
             
             if let selectedCategory = viewModel.selectedCategory, selectedCategory == category {
                 button.backgroundColor = .orange
+                button.configuration?.baseForegroundColor = .white
             }
             
             stackView.addArrangedSubview(button)
@@ -275,6 +272,7 @@ class ProductInfoViewController: UIViewController {
             if let button = button as? UIButton {
                 if let title = button.configuration?.title, title == selectedCategory.rawValue {
                     button.backgroundColor = .orange
+                    button.configuration?.baseForegroundColor = .white
                 } else {
                     button.backgroundColor = .clear
                 }

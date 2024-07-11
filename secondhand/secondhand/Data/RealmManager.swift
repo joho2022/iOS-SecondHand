@@ -10,25 +10,28 @@ import os
 import Foundation
 
 class RealmManager {
-    static let shared = RealmManager()
     
-    private var realm: Realm {
-        do {
-            return try Realm()
-        } catch {
-            os_log(.error, "Realm 초기화 실패: %{public}@", "\(error)")
+    private var realm: Realm?
+    
+    init(realm: Realm?) {
+        self.realm = realm
+    }
+    
+    private var safeRealm: Realm {
+        guard let realm = realm else {
             fatalError("Realm 초기화 실패")
         }
+        return realm
     }
     
     func fetchUser(by username: String) -> User? {
-        return realm.objects(User.self).filter("username == %@", username).first
+        return safeRealm.objects(User.self).filter("username == %@", username).first
     }
     
     func saveUser(_ user: User) {
         do {
-            try realm.write {
-                realm.add(user, update: .modified)
+            try safeRealm.write {
+                safeRealm.add(user, update: .modified)
             }
         } catch {
             os_log(.error, "User 저장 실패: %{public}@", "\(error)")
@@ -37,7 +40,7 @@ class RealmManager {
     
     func updateUserImage(for user: User, with imageData: Data) {
         do {
-            try realm.write {
+            try safeRealm.write {
                 user.profileImageData = imageData
             }
         } catch {
@@ -47,7 +50,7 @@ class RealmManager {
     
     func addLocation(to user: User, location: Location) {
         do {
-            try realm.write {
+            try safeRealm.write {
                 if !user.locations.contains(location) {
                     user.locations.append(location)
                 }
@@ -59,7 +62,7 @@ class RealmManager {
     
     func removeLocation(from user: User, location: Location) {
         do {
-            try realm.write {
+            try safeRealm.write {
                 if let index = user.locations.index(of: location) {
                     user.locations.remove(at: index)
                 }
@@ -70,7 +73,7 @@ class RealmManager {
     }
     
     func setDefaultLocation(for user: User, location: Location) {
-        try! realm.write {
+        try! safeRealm.write {
             user.locations.forEach { $0.isDefault = false }
             if let index = user.locations.firstIndex(of: location ) {
                 user.locations[index].isDefault = true

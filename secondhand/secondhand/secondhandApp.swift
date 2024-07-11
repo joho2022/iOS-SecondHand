@@ -9,14 +9,22 @@ import SwiftUI
 
 @main
 struct secondhandApp: App {
-    @StateObject private var userManager = UserManager()
+    @StateObject private var appState = AppState()
     @StateObject private var productManager = ProductManager()
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environmentObject(userManager)
-                .environmentObject(productManager)
+            if appState.realm != nil,
+               let userManager = appState.userManager,
+               let chatRoomViewModel = appState.chatRoomViewModel {
+                ContentView()
+                    .environmentObject(userManager)
+                    .environmentObject(productManager)
+                    .environmentObject(appState)
+                    .environmentObject(chatRoomViewModel)
+            } else {
+                ProgressView("Connecting to Realm...")
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ disabled_rules:
     - empty_enum_arguments
     - force_cast
     - force_try
+    - identifier_name
 opt_in_rules:
     - empty_count
     - empty_string

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         TabView {
@@ -28,11 +29,25 @@ struct ContentView: View {
                     Image(systemName: "heart")
                     Text("관심목록")
                 }
-            ChatView()
-                .tabItem {
-                    Image(systemName: "message")
-                    Text("채팅")
-                }
+            if userManager.user == nil {
+                LoginView(viewModel: LoginViewModel(userManager: userManager))
+                    .tabItem {
+                        Image(systemName: "message")
+                        Text("채팅")
+                    }
+            } else {
+                ChatListView()
+                    .tabItem {
+                        Image(systemName: "message")
+                        Text("채팅")
+                    }
+                    .onAppear {
+                        print("ChatListView on Appear")
+                        if let currentUser = userManager.user {
+                            appState.chatRoomViewModel?.fetchChatRooms(for: currentUser)
+                        }
+                    }
+            }
             if userManager.user == nil {
                 LoginView(viewModel: LoginViewModel(userManager: userManager))
                     .tabItem {
@@ -63,12 +78,7 @@ struct FavoritesView: View {
     }
 }
 
-struct ChatView: View {
-    var body: some View {
-        Text("채팅")
-    }
-}
-
 #Preview {
-    ContentView().environmentObject(UserManager())
+    ContentView().environmentObject(UserManager(realmManager: RealmManager(realm: nil)))
+        .environmentObject(ProductManager())
 }

@@ -66,5 +66,5 @@ struct LoginView: View {
 }
 
 #Preview {
-    LoginView(viewModel: LoginViewModel(userManager: UserManager()))
+    LoginView(viewModel: LoginViewModel(userManager: UserManager(realmManager: RealmManager(realm: nil))))
 }

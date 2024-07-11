@@ -25,7 +25,7 @@ struct Product: Identifiable, Codable {
         if image.starts(with: "http") {
             return URL(string: image)
         } else {
-            return ImageManager.shared.getImageURL(fileName: image)
+            return ImageManager.getImageURL(fileName: image)
         }
     }
 }

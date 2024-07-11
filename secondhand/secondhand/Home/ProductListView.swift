@@ -19,29 +19,30 @@ struct ProductListView: View {
     }
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                LazyVStack {
-                    ForEach(viewModel.filteredProducts, id: \.id) { product in
-                        ProductRow(product: product)
+        ScrollView {
+            LazyVStack {
+                ForEach(viewModel.filteredProducts, id: \.id) { product in
+                    ProductRow(product: product)
+                }
+            } // LazyVStack
+            .background(GeometryReader { geo -> Color in
+                DispatchQueue.main.async {
+                    let newIsDragging = geo.frame(in: .global).minY < 100
+                    if newIsDragging != isDragging {
+                        isDragging = newIsDragging
                     }
-                } // LazyVStack
-                .background(GeometryReader { geo -> Color in
-                    DispatchQueue.main.async {
-                        isDragging = geo.frame(in: .global).minY < 100
-                    }
-                    return Color.clear
-                })
-            } // ScrollView
-            .onChange(of: selectedCategory) { newCategory in
-                viewModel.setSelectedCategory(newCategory)
-            }
-        } // NavigationView
+                }
+                return Color.clear
+            })
+        } // ScrollView
+        .onChange(of: selectedCategory) { newCategory in
+            viewModel.setSelectedCategory(newCategory)
+        }
     }
 }
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(viewModel: ProductListViewModel(userManager: UserManager(), productManager: ProductManager()), selectedCategory: .constant(nil), isDragging: .constant(false))
+        ProductListView(viewModel: ProductListViewModel(userManager: UserManager(realmManager: RealmManager(realm: nil)), productManager: ProductManager()), selectedCategory: .constant(nil), isDragging: .constant(false))
     }
 }

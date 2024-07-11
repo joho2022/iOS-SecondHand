@@ -16,14 +16,25 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
         $user
     }
     
+    private var realmManager: RealmManager
+    
+    init(realmManager: RealmManager) {
+        self.realmManager = realmManager
+    }
+    
+    func updateRealmManager(_ realmManager: RealmManager) {
+        self.realmManager = realmManager
+        refreshUser()
+    }
+    
     private func refreshUser() {
         if let username = user?.username {
-            self.user = RealmManager.shared.fetchUser(by: username)
+            self.user = realmManager.fetchUser(by: username)
         }
     }
     
     func login(username: String) -> Bool {
-        if let fetchedUser = RealmManager.shared.fetchUser(by: username) {
+        if let fetchedUser = realmManager.fetchUser(by: username) {
             self.user = fetchedUser
             return true
         } else {
@@ -37,15 +48,12 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
     }
     
     func isUserNameTaken(_ username: String) -> Bool {
-        return RealmManager.shared.fetchUser(by: username) != nil
+        return realmManager.fetchUser(by: username) != nil
     }
     
     func updateProfileImage(for username: String, with imageData: Data) {
-        let realm = try! Realm()
-        if let user = RealmManager.shared.fetchUser(by: username) {
-            try! realm.write {
-                user.profileImageData = imageData
-            }
+        if let user = realmManager.fetchUser(by: username) {
+            realmManager.updateUserImage(for: user, with: imageData)
             self.user = user
         } else {
             os_log(.error, "[ 사진 업데이트 실패 ]: 유저정보 없음")
@@ -53,7 +61,7 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
     }
     
     func saveUser(_ user: User) {
-        RealmManager.shared.saveUser(user)
+        realmManager.saveUser(user)
     }
     
     func addLocation(_ address: Address) {
@@ -61,14 +69,14 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
         let location = Location()
         location.name = address.roadAddr
         location.dongName = address.emdNm
-        RealmManager.shared.addLocation(to: user, location: location)
+        realmManager.addLocation(to: user, location: location)
         refreshUser()
     }
     
     func removeLocation(_ address: Address) {
         guard let user = user else { return }
         if let location = user.locations.first(where: { $0.dongName == address.emdNm && $0.name == address.roadAddr }) {
-            RealmManager.shared.removeLocation(from: user, location: location)
+            realmManager.removeLocation(from: user, location: location)
             
             if location.isDefault {
                 if let newDefaultLocation = user.locations.first {
@@ -91,7 +99,7 @@ class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdate
     func setDefaultLocation(location: Location) {
         guard let user = user else { return }
         
-        RealmManager.shared.setDefaultLocation(for: user, location: location)
+        realmManager.setDefaultLocation(for: user, location: location)
         refreshUser()
     }
 }

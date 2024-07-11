@@ -108,6 +108,7 @@ struct SignUpFormView: View {
                     if let image = viewModel.profileImage {
                         Image(uiImage: image)
                             .resizable()
+                            .aspectRatio(contentMode: .fill)
                             .frame(width: 80, height: 80)
                             .clipShape(Circle())
                         Image(systemName: "camera")
@@ -198,5 +199,5 @@ private struct SignUpSuccessView: View {
 }
 
 #Preview {
-    SignUpView(viewModel: SignUpViewModel(userManager: UserManager()))
+    SignUpView(viewModel: SignUpViewModel(userManager: UserManager(realmManager: RealmManager(realm: nil))))
 }

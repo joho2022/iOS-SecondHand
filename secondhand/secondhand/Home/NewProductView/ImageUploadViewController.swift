@@ -38,7 +38,6 @@ class ImageUploadViewController: UIViewController {
     
     private let imagesScrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.backgroundColor = .yellow
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.showsHorizontalScrollIndicator = false
         return scrollView
@@ -54,7 +53,6 @@ class ImageUploadViewController: UIViewController {
     
     private let containerStackView: UIStackView = {
         let stackView = UIStackView()
-        stackView.backgroundColor = .green
         stackView.axis = .horizontal
         stackView.spacing = 16
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +116,6 @@ class ImageUploadViewController: UIViewController {
             let xmarkView = createXmarkView()
             
             let containerView = UIView()
-            containerView.backgroundColor = .red
             containerView.translatesAutoresizingMaskIntoConstraints = false
             containerView.addSubview(imageView)
             containerView.addSubview(xmarkView)
@@ -202,16 +199,28 @@ class ImageUploadViewController: UIViewController {
         
         if let containerView = tappedView.superview,
            let index = imagesStackView.arrangedSubviews.firstIndex(of: containerView) {
-            UIView.animate(withDuration: 0.3, animations: {
+            
+            let animator = UIViewPropertyAnimator(duration: 0.3, curve: .easeInOut) {
                 containerView.alpha = 0
                 containerView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            }, completion: { finished in
-                if finished {
+            }
+            
+            animator.addCompletion { position in
+                switch position {
+                case .end:
                     self.selectedImages.remove(at: index)
                     self.updateImagesScrollView()
                     self.updateImageCountLabel()
+                case .start:
+                    break
+                case .current:
+                    break
+                @unknown default:
+                    break
                 }
-            })
+            }
+            
+            animator.startAnimation()
         }
     }
 }

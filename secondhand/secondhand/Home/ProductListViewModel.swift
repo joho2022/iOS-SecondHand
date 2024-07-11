@@ -22,49 +22,32 @@ class ProductListViewModel: ObservableObject {
         self.userManager = userManager
         self.productManager = productManager
         setupBindings()
-        filterProducts()
     }
     
     private func setupBindings() {
         userManager?.userPublisher
+            .combineLatest(productManager.productsPublisher, $selectedCategory, $selectedLocation)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.filterProducts()
-            }
-            .store(in: &cancellables)
-        
-        $selectedCategory
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.filterProducts()
-            }
-            .store(in: &cancellables)
-        
-        productManager.productsPublisher
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.filterProducts()
+            .sink { [weak self] user, products, category, location in
+                self?.filterProducts(user: user, products: products, category: category, location: location)
             }
             .store(in: &cancellables)
     }
     
     func setSelectedCategory(_ category: Category?) {
         selectedCategory = category
-        filterProducts()
     }
     
-    func filterProducts() {
-        guard let userManager = userManager else { return }
+    private func filterProducts(user: User?, products: [Product], category: Category?, location: Address?) {
+        var filtered = products
         
-        var filtered = productManager.getProducts()
-        
-        if let category = selectedCategory {
+        if let category = category {
             filtered = filtered.filter { $0.category.contains(category) }
         }
         
-        if let location = selectedLocation {
+        if let location = location {
             filtered = filtered.filter { $0.location == location.emdNm }
-        } else if let user = userManager.user, let userLocation = user.locations.first(where: { $0.isDefault }) {
+        } else if let user = user, let userLocation = user.locations.first(where: { $0.isDefault }) {
             filtered = filtered.filter { $0.location == userLocation.dongName }
         } else {
             filtered = filtered.filter { $0.location == "역삼동" }
