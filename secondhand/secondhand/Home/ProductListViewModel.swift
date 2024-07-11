@@ -9,31 +9,33 @@ import Foundation
 import Combine
 
 class ProductListViewModel: ObservableObject {
-    private var products: [Product] = []
+    private(set) var products: [Product] = []
     @Published var filteredProducts: [Product] = []
     @Published var showloadErrorAlert: Bool = false
     @Published var selectedLocation: Address?
+    @Published var selectedCategory: Category?
     
-    private var userManager: UserManager?
+    private var userManager: UserProvider?
     private var cancellables = Set<AnyCancellable>()
     
-    init(userManager: UserManager) {
+    init(userManager: UserProvider) {
         self.userManager = userManager
         loadProducts()
         setupBindings()
     }
     
     private func setupBindings() {
-        userManager?.$user
+        userManager?.userPublisher
             .sink { [weak self] _ in
                 self?.filterProducts()
             }
             .store(in: &cancellables)
-    }
         
-    func setUserManager(_ userManager: UserManager) {
-        self.userManager = userManager
-        filterProducts()
+        $selectedCategory
+            .sink { [weak self] _ in
+                self?.filterProducts()
+            }
+            .store(in: &cancellables)
     }
     
     func loadProducts() {
@@ -47,16 +49,29 @@ class ProductListViewModel: ObservableObject {
         self.products = products
     }
     
+    func setSelectedCategory(_ category: Category?) {
+        selectedCategory = category
+        filterProducts()
+    }
+    
     func filterProducts() {
         guard let userManager = userManager else { return }
         
-        if let location = selectedLocation {
-            filteredProducts = products.filter { $0.location == location.emdNm }
-        } else if let user = userManager.user, let userLocation = user.locations.first(where: { $0.isDefault }) {
-            filteredProducts = products.filter { $0.location == userLocation.dongName }
-        } else {
-            filteredProducts = products.filter { $0.location == "역삼동" }
+        var filtered = products
+        
+        if let category = selectedCategory {
+            filtered = filtered.filter { $0.category.contains(category) }
         }
+        
+        if let location = selectedLocation {
+            filtered = filtered.filter { $0.location == location.emdNm }
+        } else if let user = userManager.user, let userLocation = user.locations.first(where: { $0.isDefault }) {
+            filtered = filtered.filter { $0.location == userLocation.dongName }
+        } else {
+            filtered = filtered.filter { $0.location == "역삼동" }
+        }
+        
+        filteredProducts = filtered
     }
     
     private func printPrettyJSON(products: [Product]) {

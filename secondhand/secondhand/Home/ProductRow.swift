@@ -6,25 +6,20 @@
 //
 
 import SwiftUI
+import os
 
 struct ProductRow: View {
-    @State private var uiImage: UIImage?
     let product: Product
     
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
             Group {
-                if let uiImage = uiImage {
-                    Image(uiImage: uiImage)
+                AsyncImage(url: URL(string: product.image)) { image in
+                    image
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                } else {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .onAppear {
-                            loadImage()
-                        }
+                } placeholder: {
+                    ProgressView()
                 }
             } // Group
             .frame(width: 120, height: 120)
@@ -85,12 +80,6 @@ struct ProductRow: View {
         .frame(height: 150)
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-    }
-    
-    private func loadImage() {
-        UIImage.loadImage(from: product.image) { image in
-            self.uiImage = image
-        }
     }
 }
 

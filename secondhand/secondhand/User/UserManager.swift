@@ -10,14 +10,13 @@ import RealmSwift
 import os
 import Foundation
 
-class UserManager: ObservableObject, UserManagerProtocol {
-    static let shared = UserManager()
-    
+class UserManager: ObservableObject, UserProvider, UserLoginProvider, UserUpdateProvider, UserSignUpProvider, UserLocationProvider {
     @Published var user: User?
-    @Published var showAlert: Bool = false
-    @Published var alertMessage: String = ""
+    var userPublisher: Published<User?>.Publisher {
+        $user
+    }
     
-    func refreshUser() {
+    private func refreshUser() {
         if let username = user?.username {
             self.user = RealmManager.shared.fetchUser(by: username)
         }
@@ -29,8 +28,6 @@ class UserManager: ObservableObject, UserManagerProtocol {
             return true
         } else {
             os_log("[ 로그인 실패 ]: 유저정보가 없음")
-            alertMessage = "로그인 실패: 유저정보가 없습니다."
-            showAlert = true
         }
         return false
     }
@@ -51,9 +48,7 @@ class UserManager: ObservableObject, UserManagerProtocol {
             }
             self.user = user
         } else {
-            os_log("[ 사진 업데이트 실패 ]: 유저정보 없음")
-            alertMessage = "사진 업데이트 실패: 유저정보가 없습니다."
-            showAlert = true
+            os_log(.error, "[ 사진 업데이트 실패 ]: 유저정보 없음")
         }
     }
     

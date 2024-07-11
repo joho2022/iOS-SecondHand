@@ -18,9 +18,9 @@ class SignUpViewModel: ObservableObject {
     @Published var showUserNameTakenAlert: Bool = false
     @Published var selectedLocation: Address?
     
-    private let userManager: UserManagerProtocol
+    private let userManager: UserSignUpProvider
     
-    init(userManager: UserManagerProtocol) {
+    init(userManager: UserSignUpProvider) {
         self.userManager = userManager
     }
     

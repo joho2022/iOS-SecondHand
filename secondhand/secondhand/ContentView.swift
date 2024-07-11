@@ -13,7 +13,6 @@ struct ContentView: View {
     var body: some View {
         TabView {
             HomeView()
-                .environmentObject(userManager)
                 .tabItem {
                     Image(systemName: "house")
                     Text("홈화면")
@@ -35,13 +34,13 @@ struct ContentView: View {
                     Text("채팅")
                 }
             if userManager.user == nil {
-                LoginView()
+                LoginView(viewModel: LoginViewModel(userManager: userManager))
                     .tabItem {
                         Image(systemName: "person")
                         Text("내 계정")
                     }
             } else {
-                ProfileView()
+                ProfileView(viewModel: ProfileViewModel(userManager: userManager))
                     .tabItem {
                         Image(systemName: "person")
                         Text("내 계정")
@@ -71,5 +70,5 @@ struct ChatView: View {
 }
 
 #Preview {
-    ContentView().environmentObject(UserManager.shared)
+    ContentView().environmentObject(UserManager())
 }

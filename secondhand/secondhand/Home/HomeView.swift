@@ -11,15 +11,19 @@ struct HomeView: View {
     @EnvironmentObject var userManager: UserManager
     @State private var showAlert: Bool = false
     @State private var showLocationSettingView: Bool = false
+    @State private var selectedCategory: Category?
     
     var body: some View {
         NavigationView {
             VStack {
                 Divider()
-                ProductListView(userManager: userManager)
-                    .navigationBarItems(
-                        leading: menuContent)
+                ProductListView(viewModel: ProductListViewModel(userManager: userManager), selectedCategory: $selectedCategory)
             }
+            .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
+            .navigationBarItems(
+                leading: menuContent,
+                trailing: categoryButton
+            )
         }
         .alert(isPresented: $showAlert) {
             Alert(
@@ -59,6 +63,12 @@ struct HomeView: View {
                 }
                 Image(systemName: "chevron.right")
             }
+        }
+    }
+    
+    private var categoryButton: some View {
+        NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) {
+            Image(systemName: "line.horizontal.3")
         }
     }
 }

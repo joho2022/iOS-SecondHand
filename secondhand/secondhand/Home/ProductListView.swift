@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ProductListView: View {
     @StateObject private var viewModel: ProductListViewModel
+    @Binding var selectedCategory: Category?
     
-    init(userManager: UserManager) {
-        _viewModel = StateObject(wrappedValue: ProductListViewModel(userManager: userManager))
+    init(viewModel: ProductListViewModel, selectedCategory: Binding<Category?>) {
+        self._viewModel = StateObject(wrappedValue: viewModel)
+        self._selectedCategory = selectedCategory
     }
     
     var body: some View {
@@ -23,8 +25,8 @@ struct ProductListView: View {
                     }
                 } // LazyVStack
             } // ScrollView
-            .onAppear {
-                viewModel.filterProducts()
+            .onChange(of: selectedCategory) { newCategory in
+                viewModel.setSelectedCategory(newCategory)
             }
         } // NavigationView
     }
@@ -32,6 +34,6 @@ struct ProductListView: View {
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(userManager: UserManager())
+        ProductListView(viewModel: ProductListViewModel(userManager: UserManager()), selectedCategory: .constant(nil))
     }
 }

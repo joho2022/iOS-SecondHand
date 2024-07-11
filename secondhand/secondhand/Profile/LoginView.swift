@@ -9,9 +9,11 @@ import SwiftUI
 import os
 
 struct LoginView: View {
-    @EnvironmentObject var userManager: UserManager
-    @State private var showSignUpView = false
-    @State private var username: String = ""
+    @StateObject private var viewModel: LoginViewModel
+    
+    init(viewModel: LoginViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -20,7 +22,7 @@ struct LoginView: View {
                 
                 HStack(spacing: 30) {
                     Text("아이디")
-                    TextField("아이디를 입력하세요", text: $username)
+                    TextField("아이디를 입력하세요", text: $viewModel.username)
                         .multilineTextAlignment(.leading)
                 }
                 .padding(.horizontal)
@@ -31,9 +33,7 @@ struct LoginView: View {
                 Spacer()
                 
                 Button {
-                    if userManager.login(username: username) {
-                        os_log("[ 로그인 성공 ] : 현재 유저 정보\n\(userManager.user)")
-                    }
+                    viewModel.login()
                 } label: {
                     Text("로그인")
                         .frame(maxWidth: .infinity)
@@ -46,25 +46,25 @@ struct LoginView: View {
                 .padding()
                 
                 Button {
-                    showSignUpView = true
+                    viewModel.showSignUpView = true
                 } label: {
                     Text("회원가입")
                         .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.customGray900)
                 }
                 .padding(.bottom, 90)
-                .sheet(isPresented: $showSignUpView, content: {
-                    SignUpView(userManager: userManager)
+                .sheet(isPresented: $viewModel.showSignUpView, content: {
+                    SignUpView(viewModel: SignUpViewModel(userManager: viewModel.getUserManager()))
                 })
             }
             .navigationBarTitle("내 계정", displayMode: .inline)
-            .alert(isPresented: $userManager.showAlert) {
-                Alert(title: Text("오류"), message: Text(userManager.alertMessage), dismissButton: .default(Text("확인")))
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(title: Text("오류"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("확인")))
             }
         }
     }
 }
 
 #Preview {
-    LoginView().environmentObject(UserManager())
+    LoginView(viewModel: LoginViewModel(userManager: UserManager()))
 }

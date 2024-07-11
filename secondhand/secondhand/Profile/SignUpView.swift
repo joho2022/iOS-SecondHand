@@ -12,8 +12,8 @@ struct SignUpView: View {
     @StateObject private var viewModel: SignUpViewModel
     @State private var inputImage: UIImage?
     
-    init(userManager: UserManagerProtocol) {
-        _viewModel = StateObject(wrappedValue: SignUpViewModel(userManager: userManager))
+    init(viewModel: SignUpViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -198,5 +198,5 @@ private struct SignUpSuccessView: View {
 }
 
 #Preview {
-    SignUpView(userManager: UserManager())
+    SignUpView(viewModel: SignUpViewModel(userManager: UserManager()))
 }

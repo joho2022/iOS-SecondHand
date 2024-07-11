@@ -24,7 +24,7 @@ struct LocationSettingView: View {
         }
     }
     
-    init(userManager: UserManagerProtocol) {
+    init(userManager: (UserProvider & UserLocationProvider)) {
         _viewModel = StateObject(wrappedValue: LocationSettingViewModel(userManager: userManager))
     }
     

@@ -9,46 +9,15 @@ import XCTest
 import Combine
 @testable import secondhand
 
-final class MockUserManager: UserManagerProtocol {
-    func addLocation(_ address: secondhand.Address) {
-        print("addLocation")
-    }
-    
-    func removeLocation(_ address: secondhand.Address) {
-        print("removeLocation")
-    }
-    
-    @Published var user: User?
-    @Published var showAlert: Bool = false
-    @Published var alertMessage: String = ""
-    
+final class MockUserSignUpProvider: UserSignUpProvider {
+    var user: User?
     var users: [String: User] = [:]
-    
-    func login(username: String) -> Bool {
-        if let fetchedUser = users[username] {
-            self.user = fetchedUser
-            return true
-        }
-        return false
-    }
-    
-    func logout() {
-        self.user = nil
-    }
     
     func isUserNameTaken(_ username: String) -> Bool {
         return users[username] != nil
     }
     
-    func updateProfileImage(for username: String, with imageData: Data) {
-        if let user = users[username] {
-            user.profileImageData = imageData
-            self.user = user
-            users[username] = user
-        }
-    }
-    
-    func saveUser(_ user: User) throws {
+    func saveUser(_ user: secondhand.User) throws {
         if isUserNameTaken(user.username) {
             throw NSError(domain: "User already exists", code: -1)
         }
@@ -59,19 +28,19 @@ final class MockUserManager: UserManagerProtocol {
 
 final class SignUpViewModelTests: XCTestCase {
     var viewModel: SignUpViewModel!
-    var mockUserManager: MockUserManager!
+    var mockUserSignUpProvider: MockUserSignUpProvider!
     var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
         super.setUp()
-        mockUserManager = MockUserManager()
-        viewModel = SignUpViewModel(userManager: mockUserManager)
+        mockUserSignUpProvider = MockUserSignUpProvider()
+        viewModel = SignUpViewModel(userManager: mockUserSignUpProvider)
         cancellables = []
     }
     
     override func tearDown() {
         viewModel = nil
-        mockUserManager = nil
+        mockUserSignUpProvider = nil
         cancellables = nil
         super.tearDown()
     }
@@ -85,7 +54,7 @@ final class SignUpViewModelTests: XCTestCase {
             .dropFirst()
             .sink { success in
                 XCTAssertTrue(success)
-                XCTAssertEqual(self.mockUserManager.user?.username, "testUser")
+                XCTAssertEqual(self.mockUserSignUpProvider.user?.username, "testUser")
                 expectation.fulfill()
             }
             .store(in: &cancellables)
@@ -102,7 +71,7 @@ final class SignUpViewModelTests: XCTestCase {
         
         let existingUser = User()
         existingUser.username = "testUser"
-        try! mockUserManager.saveUser(existingUser)
+        try! mockUserSignUpProvider.saveUser(existingUser)
         
         viewModel.username = "testUser"
         viewModel.$showUserNameTakenAlert

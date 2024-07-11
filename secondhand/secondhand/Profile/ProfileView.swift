@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject var userManager: UserManager
-    @State private var showImagePicker = false
-    @State private var inputImage: UIImage?
+    @StateObject private var viewModel: ProfileViewModel
+    
+    init(viewModel: ProfileViewModel) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         NavigationView {
@@ -18,12 +20,11 @@ struct ProfileView: View {
                 Divider()
                 
                 Button {
-                    self.showImagePicker = true
+                    viewModel.showImagePicker = true
                 } label: {
                     ZStack {
-                        if let profileImage = userManager.user?.profileImageData,
-                           let uiImage = UIImage(data: profileImage) {
-                            Image(uiImage: uiImage)
+                        if let profileImage = viewModel.profileImage {
+                            Image(uiImage: profileImage)
                                 .resizable()
                                 .frame(width: 80, height: 80)
                                 .clipShape(Circle())
@@ -52,11 +53,11 @@ struct ProfileView: View {
                     .clipShape(Circle())
                 } // Button
                 .padding(.top, 90)
-                .sheet(isPresented: $showImagePicker, onDismiss: loadImage, content: {
-                    ImagePicker(image: $inputImage)
+                .sheet(isPresented: $viewModel.showImagePicker, onDismiss: viewModel.updateProfileImage, content: {
+                    ImagePicker(image: $viewModel.inputImage)
                 })
                 
-                Text(userManager.user?.username ?? "사용자 이름")
+                Text(viewModel.username ?? "사용자 이름")
                     .font(.system(size: 17, weight: .semibold))
                     .padding(.horizontal)
                     .padding(.top, 30)
@@ -64,7 +65,7 @@ struct ProfileView: View {
                 Spacer()
                 
                 Button {
-                    userManager.logout()
+                    viewModel.logout()
                 } label: {
                     
                     Text("로그아웃")
@@ -80,17 +81,17 @@ struct ProfileView: View {
 
             } // VStack
             .navigationBarTitle("내 계정", displayMode: .inline)
+            .alert(isPresented: $viewModel.showAlert) {
+                Alert(
+                    title: Text("오류"),
+                    message: Text(viewModel.alertMessage),
+                    dismissButton: .default(Text("확인"))
+                )
+            }
         } // NavigationView
-    }
-    
-    private func loadImage() {
-        guard let inputImage = inputImage else { return }
-        if let imageData = inputImage.pngData(), let username = userManager.user?.username {
-            userManager.updateProfileImage(for: username, with: imageData)
-        }
     }
 }
 
 #Preview {
-    ProfileView().environmentObject(UserManager.shared)
+    ProfileView(viewModel: ProfileViewModel(userManager: UserManager()))
 }
