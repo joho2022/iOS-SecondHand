@@ -9,31 +9,57 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject var userManager: UserManager
+    @EnvironmentObject var productManager: ProductManager
     @State private var showAlert: Bool = false
     @State private var showLocationSettingView: Bool = false
     @State private var selectedCategory: Category?
+    @State private var isDragging: Bool = false
+    @State private var isPresentingNewProductView = false
     
     var body: some View {
         NavigationView {
-            VStack {
-                Divider()
-                ProductListView(viewModel: ProductListViewModel(userManager: userManager), selectedCategory: $selectedCategory)
+            ZStack {
+                VStack {
+                    Divider()
+                    ProductListView(viewModel: ProductListViewModel(userManager: userManager, productManager: productManager), selectedCategory: $selectedCategory, isDragging: $isDragging)
+                        
+                }
+                .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
+                .navigationBarItems(
+                    leading: menuContent,
+                    trailing: categoryButton
+                )
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            if userManager.user != nil {
+                                isPresentingNewProductView.toggle()
+                            } else {
+                                showAlert.toggle()
+                            }
+                        } label: {
+                            AddProductButton(isDragging: $isDragging)
+                                .padding([.bottom, .trailing], 16)
+                        }
+                    }
+                }
             }
-            .navigationBarTitle(selectedCategory?.rawValue ?? "전체상품", displayMode: .inline)
-            .navigationBarItems(
-                leading: menuContent,
-                trailing: categoryButton
-            )
         }
         .alert(isPresented: $showAlert) {
             Alert(
                 title: Text("로그인 필요"),
-                message: Text("동네 설정은 로그인 후 이용 가능한 서비스입니다.")
+                message: Text("로그인 후 이용 가능한 서비스입니다.")
                 , dismissButton: .default(Text("확인"))
             )
         }
         .sheet(isPresented: $showLocationSettingView) {
             LocationSettingView(userManager: userManager)
+        }
+        .fullScreenCover(isPresented: $isPresentingNewProductView) {
+            NewProductViewControllerRepresentable(userManager: userManager, productManager: productManager, isPresented: $isPresentingNewProductView)
         }
     }
     
@@ -67,8 +93,26 @@ struct HomeView: View {
     }
     
     private var categoryButton: some View {
-        NavigationLink(destination: CategorySelectionView(selectedCategory: $selectedCategory)) {
+        NavigationLink(destination: CategoryGridView(selectedCategory: $selectedCategory)) {
             Image(systemName: "line.horizontal.3")
+        }
+    }
+    
+    struct AddProductButton: View {
+        @Binding var isDragging: Bool
+        
+        var body: some View {
+            HStack {
+                Image(systemName: "plus")
+                if !isDragging {
+                    Text("글쓰기")
+                }
+            }
+            .padding()
+            .background(Color.customOrange)
+            .foregroundColor(Color.customWhite)
+            .cornerRadius(30)
+            .animation(.default, value: isDragging)
         }
     }
 }
@@ -76,4 +120,5 @@ struct HomeView: View {
 #Preview {
     HomeView()
         .environmentObject(UserManager())
+        .environmentObject(ProductManager())
 }

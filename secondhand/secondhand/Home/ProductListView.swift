@@ -10,10 +10,12 @@ import SwiftUI
 struct ProductListView: View {
     @StateObject private var viewModel: ProductListViewModel
     @Binding var selectedCategory: Category?
+    @Binding var isDragging: Bool
     
-    init(viewModel: ProductListViewModel, selectedCategory: Binding<Category?>) {
+    init(viewModel: ProductListViewModel, selectedCategory: Binding<Category?>, isDragging: Binding<Bool>) {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self._selectedCategory = selectedCategory
+        self._isDragging = isDragging
     }
     
     var body: some View {
@@ -24,6 +26,12 @@ struct ProductListView: View {
                         ProductRow(product: product)
                     }
                 } // LazyVStack
+                .background(GeometryReader { geo -> Color in
+                    DispatchQueue.main.async {
+                        isDragging = geo.frame(in: .global).minY < 100
+                    }
+                    return Color.clear
+                })
             } // ScrollView
             .onChange(of: selectedCategory) { newCategory in
                 viewModel.setSelectedCategory(newCategory)
@@ -34,6 +42,6 @@ struct ProductListView: View {
 
 struct ProductListView_Previews: PreviewProvider {
     static var previews: some View {
-        ProductListView(viewModel: ProductListViewModel(userManager: UserManager()), selectedCategory: .constant(nil))
+        ProductListView(viewModel: ProductListViewModel(userManager: UserManager(), productManager: ProductManager()), selectedCategory: .constant(nil), isDragging: .constant(false))
     }
 }

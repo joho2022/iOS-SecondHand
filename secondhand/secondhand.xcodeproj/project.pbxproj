@@ -28,7 +28,7 @@
 		D64385C02C149134004F5856 /* AddressServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385BF2C149134004F5856 /* AddressServiceTests.swift */; };
 		D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */; };
 		D64385C52C15BA8D004F5856 /* LocationSearchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */; };
-		D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */; };
+		D64385C72C1612BD004F5856 /* UserProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C62C1612BD004F5856 /* UserProvider.swift */; };
 		D64385C92C1615DD004F5856 /* SignUpViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385C82C1615DD004F5856 /* SignUpViewModelTests.swift */; };
 		D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385CA2C168EB4004F5856 /* HomeView.swift */; };
 		D64385CD2C1693E7004F5856 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385CC2C1693E6004F5856 /* Product.swift */; };
@@ -45,7 +45,21 @@
 		D64385F62C2005C1004F5856 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = D64385F52C2005C1004F5856 /* RealmSwift */; };
 		D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F72C2054CD004F5856 /* LoginViewModel.swift */; };
 		D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385F92C205B27004F5856 /* ProfileViewModel.swift */; };
-		D64385FC2C21B996004F5856 /* CategorySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385FB2C21B996004F5856 /* CategorySelectionView.swift */; };
+		D64385FC2C21B996004F5856 /* CategoryGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D64385FB2C21B996004F5856 /* CategoryGridView.swift */; };
+		D654563E2C23CB26000441B0 /* ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */; };
+		D65456422C247993000441B0 /* ProductInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456412C247993000441B0 /* ProductInfoViewController.swift */; };
+		D65456442C2522A7000441B0 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456432C2522A7000441B0 /* CategoryTableViewController.swift */; };
+		D65456462C25254B000441B0 /* CategoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456452C25254B000441B0 /* CategoryTableCell.swift */; };
+		D65456482C252F8E000441B0 /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456472C252F8E000441B0 /* CategoryViewModel.swift */; };
+		D654564A2C271AD3000441B0 /* NewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456492C271AD3000441B0 /* NewProductViewController.swift */; };
+		D654564C2C285ADB000441B0 /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654564B2C285ADB000441B0 /* ProductManager.swift */; };
+		D65456502C2868E9000441B0 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654564F2C2868E9000441B0 /* ImageManager.swift */; };
+		D65456522C29A8AB000441B0 /* ProductManagerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */; };
+		D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456532C2A89E2000441B0 /* CategoryItemView.swift */; };
+		D65456572C2A98E3000441B0 /* UserLoginProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456562C2A98E3000441B0 /* UserLoginProvider.swift */; };
+		D65456592C2A98F3000441B0 /* UserUpdateProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */; };
+		D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565A2C2A9902000441B0 /* UserLocationProvider.swift */; };
+		D654565D2C2A9911000441B0 /* UserSignUpProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,7 +106,7 @@
 		D64385BF2C149134004F5856 /* AddressServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceTests.swift; sourceTree = "<group>"; };
 		D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressServiceProtocol.swift; sourceTree = "<group>"; };
 		D64385C42C15BA8D004F5856 /* LocationSearchViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchViewModelTests.swift; sourceTree = "<group>"; };
-		D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManagerProtocol.swift; sourceTree = "<group>"; };
+		D64385C62C1612BD004F5856 /* UserProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvider.swift; sourceTree = "<group>"; };
 		D64385C82C1615DD004F5856 /* SignUpViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModelTests.swift; sourceTree = "<group>"; };
 		D64385CA2C168EB4004F5856 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D64385CC2C1693E6004F5856 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
@@ -108,7 +122,21 @@
 		D64385F22C1FD434004F5856 /* ProductListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewModelTests.swift; sourceTree = "<group>"; };
 		D64385F72C2054CD004F5856 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		D64385F92C205B27004F5856 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		D64385FB2C21B996004F5856 /* CategorySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategorySelectionView.swift; sourceTree = "<group>"; };
+		D64385FB2C21B996004F5856 /* CategoryGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryGridView.swift; sourceTree = "<group>"; };
+		D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUploadViewController.swift; sourceTree = "<group>"; };
+		D65456412C247993000441B0 /* ProductInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductInfoViewController.swift; sourceTree = "<group>"; };
+		D65456432C2522A7000441B0 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		D65456452C25254B000441B0 /* CategoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableCell.swift; sourceTree = "<group>"; };
+		D65456472C252F8E000441B0 /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
+		D65456492C271AD3000441B0 /* NewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewProductViewController.swift; sourceTree = "<group>"; };
+		D654564B2C285ADB000441B0 /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
+		D654564F2C2868E9000441B0 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManagerProtocol.swift; sourceTree = "<group>"; };
+		D65456532C2A89E2000441B0 /* CategoryItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItemView.swift; sourceTree = "<group>"; };
+		D65456562C2A98E3000441B0 /* UserLoginProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLoginProvider.swift; sourceTree = "<group>"; };
+		D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserUpdateProvider.swift; sourceTree = "<group>"; };
+		D654565A2C2A9902000441B0 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
+		D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,7 +274,8 @@
 			isa = PBXGroup;
 			children = (
 				D64385C12C15AC5B004F5856 /* AddressServiceProtocol.swift */,
-				D64385C62C1612BD004F5856 /* UserManagerProtocol.swift */,
+				D65456512C29A8AB000441B0 /* ProductManagerProtocol.swift */,
+				D65456552C2A98BF000441B0 /* UserProtocols */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -255,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				D64385CC2C1693E6004F5856 /* Product.swift */,
+				D654564B2C285ADB000441B0 /* ProductManager.swift */,
 				D64385CF2C169A05004F5856 /* Category.swift */,
 			);
 			path = Product;
@@ -277,7 +307,9 @@
 				D64385E02C17FF8B004F5856 /* ProductListViewModel.swift */,
 				D64385DE2C16D826004F5856 /* LocationSettingView.swift */,
 				D64385D62C16B4E7004F5856 /* LocationSettingViewModel.swift */,
-				D64385FB2C21B996004F5856 /* CategorySelectionView.swift */,
+				D64385FB2C21B996004F5856 /* CategoryGridView.swift */,
+				D65456532C2A89E2000441B0 /* CategoryItemView.swift */,
+				D654563C2C23CAE7000441B0 /* NewProductView */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -294,8 +326,34 @@
 			isa = PBXGroup;
 			children = (
 				D64385EB2C1BFBCF004F5856 /* RealmManager.swift */,
+				D654564F2C2868E9000441B0 /* ImageManager.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		D654563C2C23CAE7000441B0 /* NewProductView */ = {
+			isa = PBXGroup;
+			children = (
+				D65456492C271AD3000441B0 /* NewProductViewController.swift */,
+				D654563D2C23CB26000441B0 /* ImageUploadViewController.swift */,
+				D65456412C247993000441B0 /* ProductInfoViewController.swift */,
+				D65456432C2522A7000441B0 /* CategoryTableViewController.swift */,
+				D65456452C25254B000441B0 /* CategoryTableCell.swift */,
+				D65456472C252F8E000441B0 /* CategoryViewModel.swift */,
+			);
+			path = NewProductView;
+			sourceTree = "<group>";
+		};
+		D65456552C2A98BF000441B0 /* UserProtocols */ = {
+			isa = PBXGroup;
+			children = (
+				D64385C62C1612BD004F5856 /* UserProvider.swift */,
+				D654565C2C2A9911000441B0 /* UserSignUpProvider.swift */,
+				D654565A2C2A9902000441B0 /* UserLocationProvider.swift */,
+				D65456582C2A98F3000441B0 /* UserUpdateProvider.swift */,
+				D65456562C2A98E3000441B0 /* UserLoginProvider.swift */,
+			);
+			path = UserProtocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,33 +518,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D654564A2C271AD3000441B0 /* NewProductViewController.swift in Sources */,
+				D65456422C247993000441B0 /* ProductInfoViewController.swift in Sources */,
 				D643858E2C0E2C0E004F5856 /* LoginView.swift in Sources */,
+				D65456502C2868E9000441B0 /* ImageManager.swift in Sources */,
 				D64385BE2C142EFE004F5856 /* ProfileView.swift in Sources */,
 				D64385912C0E2C6C004F5856 /* SignUpView.swift in Sources */,
 				D64385FA2C205B27004F5856 /* ProfileViewModel.swift in Sources */,
 				D64385CB2C168EB4004F5856 /* HomeView.swift in Sources */,
-				D64385FC2C21B996004F5856 /* CategorySelectionView.swift in Sources */,
+				D654565B2C2A9902000441B0 /* UserLocationProvider.swift in Sources */,
+				D65456542C2A89E2000441B0 /* CategoryItemView.swift in Sources */,
+				D64385FC2C21B996004F5856 /* CategoryGridView.swift in Sources */,
 				D643859B2C0F1D5B004F5856 /* User.swift in Sources */,
-				D64385C72C1612BD004F5856 /* UserManagerProtocol.swift in Sources */,
+				D64385C72C1612BD004F5856 /* UserProvider.swift in Sources */,
 				D64385E12C17FF8B004F5856 /* ProductListViewModel.swift in Sources */,
+				D654564C2C285ADB000441B0 /* ProductManager.swift in Sources */,
+				D654563E2C23CB26000441B0 /* ImageUploadViewController.swift in Sources */,
 				D64385AF2C10087C004F5856 /* LocationSearchViewModel.swift in Sources */,
+				D65456462C25254B000441B0 /* CategoryTableCell.swift in Sources */,
 				D64385F82C2054CD004F5856 /* LoginViewModel.swift in Sources */,
 				D64385D72C16B4E7004F5856 /* LocationSettingViewModel.swift in Sources */,
+				D654565D2C2A9911000441B0 /* UserSignUpProvider.swift in Sources */,
 				D64385E32C18026A004F5856 /* ProductListView.swift in Sources */,
 				D64385E82C180BDB004F5856 /* Date+Extensions.swift in Sources */,
 				D64385B12C100BB8004F5856 /* LocationSearchView.swift in Sources */,
+				D65456442C2522A7000441B0 /* CategoryTableViewController.swift in Sources */,
 				D64385C22C15AC5B004F5856 /* AddressServiceProtocol.swift in Sources */,
 				D64385CD2C1693E7004F5856 /* Product.swift in Sources */,
 				D64385BC2C107D29004F5856 /* UserManager.swift in Sources */,
 				D64385D02C169A05004F5856 /* Category.swift in Sources */,
+				D65456592C2A98F3000441B0 /* UserUpdateProvider.swift in Sources */,
 				D64385AB2C0FFE2E004F5856 /* AddressService.swift in Sources */,
 				D643858C2C0DD45B004F5856 /* ContentView.swift in Sources */,
 				D643854E2C0DA868004F5856 /* secondhandApp.swift in Sources */,
+				D65456522C29A8AB000441B0 /* ProductManagerProtocol.swift in Sources */,
 				D64385EA2C181CFE004F5856 /* ProductRow.swift in Sources */,
 				D643859E2C0F2568004F5856 /* SignUpViewModel.swift in Sources */,
+				D65456482C252F8E000441B0 /* CategoryViewModel.swift in Sources */,
 				D64385EC2C1BFBCF004F5856 /* RealmManager.swift in Sources */,
 				D64385AD2C0FFE4E004F5856 /* AddressResponse.swift in Sources */,
 				D64385DF2C16D826004F5856 /* LocationSettingView.swift in Sources */,
+				D65456572C2A98E3000441B0 /* UserLoginProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,6 +748,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,6 +780,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

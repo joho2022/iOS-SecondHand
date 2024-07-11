@@ -10,11 +10,13 @@ import SwiftUI
 @main
 struct secondhandApp: App {
     @StateObject private var userManager = UserManager()
+    @StateObject private var productManager = ProductManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(userManager)
+                .environmentObject(productManager)
         }
     }
 }

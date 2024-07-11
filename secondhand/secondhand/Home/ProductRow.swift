@@ -14,12 +14,14 @@ struct ProductRow: View {
     var body: some View {
         HStack(alignment: .top, spacing: 15) {
             Group {
-                AsyncImage(url: URL(string: product.image)) { image in
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                } placeholder: {
-                    ProgressView()
+                if let imageURL = product.imageURL {
+                    AsyncImage(url: imageURL) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    } placeholder: {
+                        ProgressView()
+                    }
                 }
             } // Group
             .frame(width: 120, height: 120)
@@ -85,7 +87,7 @@ struct ProductRow: View {
 
 #Preview {
     struct PreviewWrapper: View {
-        let sampleProduct = Product(id: 0, title: "나이키 티셔츠", price: 40000, location: "역삼동", category: [.mensFashion, .popular], image: "https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp", timePosted: "2024-06-10T13:14:08", likes: 10, comments: 2, isReserved: true)
+        let sampleProduct = Product(id: 0, title: "나이키 티셔츠", price: 40000, location: "역삼동", category: [.mensFashion, .popular], image: "https://kream-phinf.pstatic.net/MjAyMzA0MTRfMjAw/MDAxNjgxNDUxNDAyMTUz.5q0cKoTNu0T3fLSHXHRomwuYI5EE3bxDXCcjHFeZnuUg.ts4o7ZUeK19uolxTSWNmVNDCr_mg9472IQ0YZcj0heIg.JPEG/a_d7263afeb4e04111abafbda2b5b67bea.jpg?type=l_webp", timePosted: "2024-06-10T13:14:08", likes: 10, comments: 2, isReserved: true, user: "테스트", description: "테스트 설명입니다")
         
         var body: some View {
             ProductRow(product: sampleProduct)

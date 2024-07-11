@@ -26,6 +26,7 @@ struct ProfileView: View {
                         if let profileImage = viewModel.profileImage {
                             Image(uiImage: profileImage)
                                 .resizable()
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: 80, height: 80)
                                 .clipShape(Circle())
                                 .overlay(Circle().stroke(.customGray500, lineWidth: /*@START_MENU_TOKEN@*/1.0/*@END_MENU_TOKEN@*/))
@@ -53,7 +54,7 @@ struct ProfileView: View {
                     .clipShape(Circle())
                 } // Button
                 .padding(.top, 90)
-                .sheet(isPresented: $viewModel.showImagePicker, onDismiss: viewModel.updateProfileImage, content: {
+                .sheet(isPresented: $viewModel.showImagePicker, onDismiss: { viewModel.updateProfileImage(with: viewModel.inputImage) }, content: {
                     ImagePicker(image: $viewModel.inputImage)
                 })
                 

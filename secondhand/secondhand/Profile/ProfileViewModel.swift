@@ -27,8 +27,8 @@ class ProfileViewModel: ObservableObject {
         userManager.logout()
     }
     
-    func updateProfileImage() {
-        guard let inputImage = inputImage else {
+    func updateProfileImage(with image: UIImage?) {
+        guard let inputImage = image else {
             showAlert = true
             alertMessage = "이미지를 선택해주세요."
             return
