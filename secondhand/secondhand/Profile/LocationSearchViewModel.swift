@@ -11,16 +11,18 @@ import os
 
 class LocationSearchViewModel: ObservableObject {
     @Published var searchQuery: String = ""
-    @Published var searchResults: [String] = []
+    @Published var searchResults: [Address] = []
     @Published var isLoading: Bool = false
     
     private var currentPage: Int = 1
     private var canLoadMorePages = true
     private var cancellables = Set<AnyCancellable>()
     
-    private var jusoService = JusoService()
+    private let addressService: AddressServiceProtocol
     
-    init() {
+    init(addressService: AddressServiceProtocol) {
+        self.addressService = addressService
+        
         $searchQuery
             .dropFirst()
             .debounce(for: .milliseconds(500), scheduler: RunLoop.main)
@@ -36,16 +38,16 @@ class LocationSearchViewModel: ObservableObject {
     private func fetchResults() {
         guard !searchQuery.isEmpty && canLoadMorePages else { return }
         isLoading = true
-        jusoService.fetchRoadAddresses(keyword: searchQuery, page: currentPage) { [weak self] result in
+        addressService.fetchRoadAddresses(keyword: searchQuery, page: currentPage) { [weak self] result in
             DispatchQueue.main.async {
                 self?.isLoading = false
                 switch result {
-                case .success(let newResult):
-                    self?.searchResults.append(contentsOf: newResult)
+                case .success(let newResults):
+                    self?.searchResults.append(contentsOf: newResults)
                     self?.currentPage += 1
-                    self?.canLoadMorePages = !newResult.isEmpty
+                    self?.canLoadMorePages = !newResults.isEmpty
                 case .failure(let error):
-                    os_log("[ jusoService ]: \(error)")
+                    os_log("[ AddressService ]: \(error)")
                 }
             }
         }

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct LocationSearchView: View {
     @Environment(\.presentationMode) var presentationMode
-    @StateObject private var viewModel = LocationSearchViewModel()
-    @Binding var selectedLocation: String
+    @StateObject private var viewModel = LocationSearchViewModel(addressService: AddressService())
+    @Binding var selectedLocation: Address?
     
     var body: some View {
         NavigationView {
@@ -33,7 +33,7 @@ struct LocationSearchView: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(viewModel.searchResults, id: \.self) { result in
-                                Text(result)
+                                Text(result.roadAddr)
                                     .padding()
                                     .onTapGesture {
                                         selectedLocation = result
@@ -71,7 +71,7 @@ struct LocationSearchView: View {
 
 #Preview {
     struct PreviewWrapper: View {
-        @State var value: String = ""
+        @State var value: Address? = Address(roadAddr: "", emdNm: "")
         
         var body: some View {
             LocationSearchView(selectedLocation: $value)

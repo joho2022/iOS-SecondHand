@@ -38,7 +38,7 @@ struct ProfileView: View {
                         }
                         
                         Text("편집")
-                            .font(.system(.regular, size: 11))
+                            .font(.system(size: 11, weight: .regular))
                             .frame(width: 100)
                             .padding(2)
                             .padding(.bottom, 10)
@@ -57,7 +57,7 @@ struct ProfileView: View {
                 })
                 
                 Text(userManager.user?.username ?? "사용자 이름")
-                    .font(.system(.semibold, size: 17))
+                    .font(.system(size: 17, weight: .semibold))
                     .padding(.horizontal)
                     .padding(.top, 30)
                 
@@ -70,7 +70,7 @@ struct ProfileView: View {
                     Text("로그아웃")
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .font(.system(.regular, size: 15))
+                        .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.customWhite)
                         .background(.customOrange)
                         .cornerRadius(8)

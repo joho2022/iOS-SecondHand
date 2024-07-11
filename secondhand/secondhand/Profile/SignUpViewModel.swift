@@ -6,21 +6,26 @@
 //
 
 import SwiftUI
-import RealmSwift
 import os
 
 class SignUpViewModel: ObservableObject {
     @Published var username: String = ""
-    @Published var locationName: String = ""
     @Published var profileImage: UIImage?
     @Published var showSuccessView: Bool = false
     @Published var showErrorAlert: Bool = false
     @Published var showImagePicker: Bool = false
     @Published var showLocationSearch: Bool = false
     @Published var showUserNameTakenAlert: Bool = false
+    @Published var selectedLocation: Address?
+    
+    private let userManager: UserManagerProtocol
+    
+    init(userManager: UserManagerProtocol) {
+        self.userManager = userManager
+    }
     
     func signUp() {
-        guard !UserManager.shared.isUserNameTaken(username) else {
+        guard !userManager.isUserNameTaken(username) else {
             showUserNameTakenAlert = true
             return
         }
@@ -29,10 +34,7 @@ class SignUpViewModel: ObservableObject {
         os_log("[ 회원가입 ]: \(user)")
         
         do {
-            let realm = try Realm()
-            try realm.write {
-                realm.add(user)
-            }
+            try userManager.saveUser(user)
             showSuccessView = true
         } catch {
             showErrorAlert = true
@@ -50,10 +52,14 @@ class SignUpViewModel: ObservableObject {
         if let profileImage = self.profileImage {
             user.profileImageData = profileImage.pngData()
         }
-        let location = Location()
-        location.name = self.locationName
-        location.isDefault = true
-        user.locations.append(location)
+        
+        if let selectedLocation = self.selectedLocation {
+            let location = Location()
+            location.name = selectedLocation.roadAddr
+            location.dongName = selectedLocation.emdNm
+            location.isDefault = true
+            user.locations.append(location)
+        }
         return user
     }
 }
