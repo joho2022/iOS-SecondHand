@@ -1,238 +1,75 @@
-# swift-secondhand
-iOS 마지막 프로젝트
+# 🥕세컨드 핸드
+동네를 기준으로 중고 물품 거래하는 당근마켓 클론 프로젝트입니다.
 
-<details>
-<summary><h2>로그인<h2></summary>
-  
-# 🎯주요 작업
+# 📚 목차
+- 📌 핵심 키워드
+- 💻 결과화면
+- 🔫 트러블 슈팅
 
-- [x]  swiftLint
-- [x]  swiftUI로 탭바, 로그인 구현
-- [x]  realm을 사용하여 DB구축
-- [x]  회원가입시 각 유저의 id 랜덤생성
-- [x]  내 계정
-    - [x]  회원가입
-    - [x]  아이디와 등록할 동네만 입력시 회원가입 버튼 활성화
-    - [x]  회원가입 후 아이디를 입력해 [로그인] 가능
-    - [x]  로그인 후에는 로그아웃 버튼을 눌러 계정에서 로그아웃
-    - [x]  사용자 프로필 이미지 등록하는 기능 구현
 
-# 📚학습 키워드
+# 📌 핵심 키워드
 
-- swiftUI
-- .resizable(): 이미지는 크기에 맞춰서 표시되지만, resizable()사용하게 되면 프레임에 맞게 크기를 조정가능
-- ObservableObject : 뷰가 이 객체의 상태 변화를 감지하고 UI를 업데이트
-- Published : 프로퍼티들이 변경될 때마다 구독하는 뷰가 업데이트
-- State:
-    - SwiftUI 뷰 내에서 선언
-    - 값이 변경되면 뷰가 다시 랜더링 함
-    - 해당 뷰의 생명 주기동안 상태 유지
-- Binding: 자식 뷰에 프로퍼티 변경되면 부모 뷰의 프로퍼티 값 변경
-- StateObject:
-    - ObservableObject 객체의 상태를 관리
-    - 뷰의 수명 동안 관찰하는 객체를 유지
-- SwiftUI에서 UIKit을 사용하는 방법 : UIViewControllerRepresentable, UIViewRepresentable
+- UIKit + SwiftUI 통합해서 개발하는 것을 목표로 하였습니다.
+- URLProtocol 방식으로 서버에서 내려준 JSON 데이터라고 가정하고 개발하였습니다.
+- iOS의 데이터 저장 경로를 이해하고 활용하기 위해서, 기존에 Mock 상품 데이터와 같이 상품관련된 데이터는 Document경로에 저장하고 진행하였습니다.
+- 동기화를 위해서 회원정보와 관련된 것은 클라우드 Realm을 활용하여 진행하였습니다.
+- MVVM 구조를 채택하였습니다.
 
-# 🤔고민과 해결
+# 💻 결과화면
 
-Realm에 대해 시각화로 확인하는 방법? ..studio
+<img width="1205" alt="스크린샷 2024-07-21 오전 12 05 14" src="https://github.com/user-attachments/assets/a179cad1-b2d0-418f-a15c-555aaa2b1417">
 
-- `print("realm 위치 \(Realm.Configuration.defaultConfiguration.fileURL!)")`
+---
+## 로그인
 
-- 폴더로 이동 → 파일실행하면 됨
-![image](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/4d9ddf56-c8c2-402e-99b4-e5cede30b9b9)
+| 동네 설정 | 회원가입 완료  | 로그인 |
+| :--: | :--: | :--: |
+| ![동네설정](https://github.com/user-attachments/assets/7132f137-8298-45da-88b5-ed82374f6b3e) | ![회원가입완료](https://github.com/user-attachments/assets/bcda7d57-09c0-45f6-b6ab-fa1f0dd738cc)  | ![로그인](https://github.com/user-attachments/assets/1d767174-078c-4af4-9b4f-9057b0c41148) |
 
-도로명주소 ??
-### -> 주소기반산업지원서비스에서 제공되는 도로명 api를 활용하여 위치추가 기능을 구현하였습니다.
-api에서 호출되는 데이터를 어떻게 관리를 해야하나 고민을 많이 했는데, 한번에 불러오는 것보다 스크롤 끝에 도달했을 때마다 데이터를 불러오는 페이징을 구현하여서, 유저가 그전에 원하는 위치를 찾을 수 있다면, 효율적인 흐름이라고 판단하였고, api레퍼런스를 훑어보니 뭔가 페이징을 의도하라는 것처럼 느껴져서 구현해보았습니다.
+## 필터링
 
-# 💻결과
-![로그인기능결과](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/f92102a6-853c-4496-ab5d-95ef719b8699)
+| 동네 선택 | 동네 추가  | 카테고리 |
+| :--: | :--: | :--: |
+| ![동네선택](https://github.com/user-attachments/assets/266aac0e-6ad6-4285-a2d8-68b180248d3e) | ![동네추가](https://github.com/user-attachments/assets/e91a9b6a-e279-41ee-9606-42b8514aebd5)  | ![카테고리](https://github.com/user-attachments/assets/2c0b41d4-4f44-4536-b72b-194d1e4d893b) |
 
-</div>
-</details>
+## 상품 등록
 
-<details>
-<summary><h2>동네설정<h2></summary>
+| 이미지 | 카테고리 선택 | 등록 완료 |
+| :--: | :--: | :--: |
+| ![상품등록-이미지](https://github.com/user-attachments/assets/2e0f602b-0f74-4cf6-8d78-ab71f933b0d8)  |  ![상품등록-카테고리](https://github.com/user-attachments/assets/d6df71cc-e19e-4e83-9378-ba867b8b6733)  | ![상품등록 - 완료](https://github.com/user-attachments/assets/b45b79c7-a42d-4d05-a07a-5d417085c0f7) |
 
-# 🎯주요 작업
+## 버튼변화, 채팅
 
-- [x]  피드백 개선
-- [x]  (leftItem 1) 동네 이름을 누르면 지역 설정할 수 있는 목록 표시
-- [x]  회원가입에 지역 데이터를 활용하여 기본으로 선택 설정
-- [x]  (leftItem 1 - 동네설정)목록 중에서 특정 동네 셀을 선택하면, 동네 설정 화면 빠져나오고 해당 동네의 중고거래 목록 표시
-- [x]  (leftItem 2 내 동네설정하기) 지역 등록, 삭제하는 화면 이동
-- [x]  동명(읍, 면)을 검색하여 추가 → 검색된 필터로 목록이 나온다.
-- [x]  최대 2곳까지 등록가능
-- [x]  등록된 동네 이름 옆의 x버튼을 누르면 해당 동네 삭제할 것인지 알럿 표시
-- [x]  닫기 버튼을 통해 해당 화면 빠져나오면, 선택한 동네의 중고 거래 목록 표시
-- [x]  하나의 동네만 등록된 상태에서 해제를 할려고 하면, “동네는 최소 1개 이상 선택해야해요. 새로운 동네를 선택한 후, 삭제해주세요” (확인) 알럿 표시
+| 드래그 | 읽음처리 | 채팅 |
+| :--: | :--: | :--: |
+| ![드래그](https://github.com/user-attachments/assets/e2127cf2-a1dd-411f-80cf-ccca53e41ee5)  | ![채팅-읽음처리](https://github.com/user-attachments/assets/14baaa8d-4d10-4d7a-981f-7fb07ff3725f)   | ![채팅-상세화면](https://github.com/user-attachments/assets/084027b4-69ed-482e-af78-e33383b711b9) |
 
-# 📚학습 키워드
+---
 
-- StateObject 초기화할 때 _붙이는 이유
+# 🔫 트러블 슈팅
 
-→ Swift는 StateObject를 직접 초기화할 수 없다. 그래서 생성자 내부에서 초기화 값을 제공해야하는데, 이때 _를 사용하여 초기화한다.
+## 1.동네 설정
 
-- `ScrollView`는 더 많은 유연성을 제공하지만, `List`는 더 간단하고 효율적인 데이터 목록 처리를 제공
-- **@ObservedObject 와 @StateObject 차이점**
-- `ScrollView`와 함께 `VStack`을 사용하면 모든 자식 뷰가 한 번에 메모리에 로드되는 반면, LazyVStack은 필요한 시점에 뷰를 생성, 즉 스크롤할 때 화면에 보이는 부분을 랜더링한다. 이는 메모리 사용을 줄이고, 최적화에 도움이된다. 그래서 UITableView처럼 데이터가 많을 때 한번에 생성하지 않고, 필요할 때만 생성하게 됨
-
-# 🤔고민
-
-- 비동기 테스트를 작성할 때, 비동기 작업이 완료가 되지않아서, 의도하는 결과를 확인할 수 없었음.
-
-→ asyncAfter를 사용하여 메인 스레드에서 일정 시간 후에 비동기 작업이 완료될 때까지 기다리도록 하여 해결함
-
-- Test작성 시 Mock모델을 만들었는데 왜 Realm에 접근하는가?
-
-→ 기존 LocationSearchView에 UserManager를 주입시킨다고 했는데 중간에 shared하는 코드 한줄이 있었음. ㅜㅜ
-
-- 구조체는 자동으로 멤버와이즈 이니셜라이저를 제공한다.
-
-→ 그러나 사용자 정의 이니셜라이저를 추가하면, 더이상 자동으로 멤버와이즈 이니셜라이저를 제공하지 않는다.
-
-- 알림(alert)이 두 가지 중 하나만 표시되는 이유는 SwiftUI에서 한 번에 하나의 알림만 표시할 수 있기 때문. 따라서 두 알림이 동시에 트리거될 경우, 마지막으로 설정된 알림만 표시
-
-### 🤔 searchQuery가 바뀔 때마다 (debounce가 있지만) 이렇게 sink하는 부분을searchQuery를 바꾸는 메소드를 만드는 것과 어떤 차이가 있을까요?
-
-기존 방식은 모든 변경에 대해 대응하기 때문에 자동으로 업데이트가 되서 편리하지만, 불필요한 요청까지도 발생하게 됩니다.
-
-메소드로 만들게 되면 제어를 할 수 있기때문에, 명확하지만 직접 메소드를 호출해야 해서 많은 코드가 필요하게 된다고 생각합니다.
-
-# [ 트러블 슈팅 ]
-
-**문제 설명**: 사용자가 프로필 이미지를 업데이트하거나 위치를 추가/삭제한 후, `UserManager`의 `user` 속성이 최신 정보를 반영하지 않아 UI가 올바르게 업데이트되지 않는 문제가 발생했습니다.
-
-**해결 방법**: `UserManager` 클래스에 `refreshUser` 메서드를 추가하여 Realm 데이터베이스에서 최신 사용자 정보를 가져와 `user` 속성을 업데이트하도록 했습니다.
-
+**문제 설명**: 사용자가 프로필 이미지를 업데이트하거나 위치를 추가/삭제한 후,
+                    UserManager의 user 속성이 최신 정보를 반영하지 않아 UI가 올바르게 업데이트되지 않는 문제가 발생했습니다.  
+**해결 방법**: UserManager 클래스에 refreshUser 메서드를 추가하여
+                    Realm 데이터베이스에서 최신 사용자 정보를 가져와 user 속성을 업데이트하도록 했습니다.  
 **구체적인 구현**:
+- refreshUser 메서드를 추가하여 사용자의 username을 기준으로 Realm 데이터베이스에서 최신 정보를 가져와 user 속성에 할당했습니다.
+- updateProfileImage, addLocation, removeLocation 등의 메서드에서 데이터베이스에 변경이 발생한 후 refreshUser를 호출하여 user 속성이 항상 최신 상태를 유지하도록 했습니다.
+  
+**결과**: 사용자가 프로필 이미지를 업데이트하거나 위치를 추가/삭제한 후
+           UI가 최신 정보를 반영하게 되어 데이터 일관성과 사용자 경험이 향상되었습니다.
 
-- `refreshUser` 메서드를 추가하여 사용자의 `username`을 기준으로 Realm 데이터베이스에서 최신 정보를 가져와 `user` 속성에 할당했습니다.
-- `updateProfileImage`, `addLocation`, `removeLocation` 등의 메서드에서 데이터베이스에 변경이 발생한 후 `refreshUser`를 호출하여 `user` 속성이 항상 최신 상태를 유지하도록 했습니다.
+## 2.상품 등록
 
-**결과**: 사용자가 프로필 이미지를 업데이트하거나 위치를 추가/삭제한 후 UI가 최신 정보를 반영하게 되어 데이터 일관성과 사용자 경험이 향상되었습니다.
-
-# 💻결과
-![동네설정 결과](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/328a7cff-800c-42d1-9879-db32d16787a3)
-
-
-</div>
-</details>
-
-<details>
-<summary><h2>카테고리<h2></summary>
-
-# 🎯주요 작업
-
-- [x]  홈: 카테고리
-    - [x]  홈에서 (rightItem) 카테고리 버튼을 누르면, 화면 오른쪽에서 왼쪽으로 푸시 애니메이션으로 카테고리 화면 이동
-    - [x]  뒤로 버튼 누르면 직전 페이지로 이동
-    - [x]  각 카테고리를 누르면, 현재 동네에서 판매되고 있는 상품 중에 해당 카테고리에 포함된 것만 보여준다.
-    - [x]  카테고리 종류는 19개
-
-# 📚학습 키워드
-
-Data(constentsOf:) : 주어진 네트워크 URL를 요청하기 위해 동기적인 작업으로 사용하면 안된다. 느린 네트워크인 경우에 현재 스레드를 블락이 될 수 있으며, 사용자 경험을 저하시키기 때문이다. 최악의 경우 앱이 중단될 수 있다.
-
-그래서 URLSession의 `dataTask(with:completionHandler:)` 를 사용을 권장한다. 이 메서드는 네트워크 요청 자체를 비동기적으로 작업을 처리하고, 콜백이나 클로저를 통해 결과를 전달받을 수 있어서 메인스레드를 블락하지 않고 효율적으로 데이터를 처리한다.
-
-- **@StateObject**: 뷰가 직접 소유하고 관리해야 하는 객체의 상태를 관리할 때 사용합니다. 주로 뷰 내에서 객체를 생성하고 초기화할 때 사용합니다.
-- **@ObservedObject**: 외부에서 전달된 객체의 상태를 관찰할 때 사용합니다. 객체는 다른 곳에서 생성되고 관리됩니다.
-
-### **지연 로딩(Lazy Loading)**
-
-- 두 그리드 모두 지연 로딩 방식을 사용하여 성능을 최적화합니다. 화면에 보이는 아이템만 로드하여 메모리 사용을 줄입니다.
-- 이와 달리 일반 `ForEach`나 `VStack`, `HStack`은 모든 아이템을 한 번에 로드합니다. 데이터가 많을 경우 성능 저하가 발생할 수 있습니다.
-
-# 🤔고민과 해결
-
-## @State private var uiImage: UIImage?
-
-`@State`는 SwiftUI에서 상태를 관리하는 데 사용되며, 상태가 변경될 때 뷰를 다시 렌더링하도록 합니다. 만약 `private var uiImage: UIImage?`로 상태를 선언하면 SwiftUI는 상태 변경을 감지하지 못하므로 뷰가 업데이트되지 않아서, 속성래퍼를 사용하게 됨.
-
-→ 위의 방법보다 SwiftUI에서는 `AsyncImage` 방법이 있음 !!!
-
-카테고리 기능을 구현할 때,
-
-HomeView에서 카테고리 선택을 해서 selectedCategory가 변화하면 ProductListView가 감지를 해서 onChange를 사용해서 바뀔때마다 ProductListViewModel의 카테고리 필터링이 되도록 흐름을 의도함.
-
-## 그냥 self.wait 을 하는 것과 DispatchQueue.main.asyncAfter() 하는 것과 어떤 차이가 있던가요? 왜 꼭 메인 스레드여야 했나요?
-
-`test_SearchQueryUpdateResults(): XCTAssertEqual failed: ("[]") is not equal to ("[secondhand.Address(roadAddr: "경기도 수원시 권선구 호매실로 103 (호매실동, 호매실스타힐스)", emdNm: "호매실동"), secondhand.Address(roadAddr: "경기도 수원시 권선구 호매실로90번길 86 (호매실동)", emdNm: "호매실동")]")`
-
-이러한 에러가 발생 
-
-`viewModel.searchQuery = "호매실"`의 설정 후에 발생하는 비동기 작업들이 완료되기를 보장하기 위해서, 의도하는 테스트의 에러를 해결하기 위해서 DispatchQueue.main.asyncAfter()하게 되었습니다.
-
-# 💻결과
-
-![카테고리 결과](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/f93d7f9d-1986-44bc-8033-7ccd989a2785)
+![image](https://github.com/user-attachments/assets/5f51fe3a-60f0-49a5-86a0-558a90d7ca54)
 
 
-</div>
-</details>
-
-<details>
-<summary><h2>상품등록<h2></summary>
-
-# 🎯주요 작업
-
-- [x]  홈: 새로운 상품 등록 - 이미지
-    - [x]  이미지 - 내 이미지를 불러와 업로드
-    - [x]  이미지 버튼에는 등록된 갯수만큼 숫자 카운팅 (1장~10장)
-    - [x]  등록한 이미지는 가로 스크롤링을 통해 확인
-    - [x]  처음 등록된 이미지는 자동으로 `대표 사진`이 표시, 썸네일에도 활용됨
-    - [x]  등록한 이미지들은 모두 오른쪽 상단에 X버튼이 달린 형태
-        - [x]  X버튼을 포함한 이미지를 한 영역으로 하여 누르면 해당이미지를 삭제 가능
-- [x]  홈: 새로운 상품 등록 - 카테고리
-    - [x]  글 제목을 입력하면, 하단에 추천 카테고리를 랜덤 순서로 3개 보여준다.
-    - [x]  카테고리는 하나만 선택할 수 있고, 사용자가 선택한 카테고리는 즉시 색상이 변경
-    - [x]  카테고리 영역 오른쪽 >를 누르면 모든 카테고리를 선택할 수 있는 영역 나타남
-    - [x]  목록중에서 카테고리 선택하면 직전화면으로 돌아가고, 해당 카테고리가 적용
-- [x]  홈: 새로운 상품 등록 - 설명, 기능 구현
-    - [x]  상세 설명 영역의 높이는 5줄의 내용이 늘어나는 높이로 최소
-    - [x]  사용자가 입력하는 내용에 맞춰 크기 조절
-    - [x]  가격은 선택사항, 아무런 정보를 입력하지 않을 경우 상세 페이지에는 “가격 없음”으로 나타남
-    - [x]  하단 왼쪽은 등록될 동네를 보여주는 영역, 홈에서 설정되었던 동네를 그대로 보여준다.
-    - [x]  해당 영역을 누르면 내가 등록해놓은 동네 중에서 이 상품이 업로드 될 동네를 선택할 수 있도록 해줌
-    - [x]  홈에서는 역삼1동인데, 상품 등록 페이지에서 다른 동네 선택시 완료버튼을 눌렀을 때, 다른 동네로 될 수 있도록 해야 한다.
-    - [ ]  활성화 된 완료버튼을 누르면 등록한 상품의 상세 페이지로 이동
-
-# 📚학습 키워드
-## 1️⃣  글쓰기 버튼
-### GeometryReader
-
-- swiftUI에서 뷰의 크기와 위치를 읽어올 수 있는 컨테이너 뷰
-- 자신이 포함하는 뷰의 레이아웃 정보에 접근할 수 있도록 해줍니다.
-- 클로저를 받아들여, GeometryProxy 라는 매개변수를 통해 뷰의 레이아웃을 제공합니다.
-
-## 2️⃣ 홈: 새로운 상품 등록 - 이미지
-- UIKit코드로 SwiftUI Preview 사용해서 코드베이스로 원활하게 결과물 확인 가능
-
-## 3️⃣ 홈: 새로운 상품 등록 - 설명, 기능 구현
-- SandBox - Documents
-
-# 🤔고민과 해결
-## 1️⃣ 글쓰기 버튼
-스크롤 감지할 때, 비교값 0, 50, 100의 차이는?
-
-```swift
-.background(GeometryReader { geo -> Color in
-                    DispatchQueue.main.async {
-                        isDragging = geo.frame(in: .global).minY < 100
-                    }
-                    return Color.clear
-                })
-```
-
-→ 비교값이 커질 수록 작은 스크롤만으로 상태가 변경된다. 일정 비교값 이상되면 오히려 스크롤을 올려야 변경됨
-
-## 2️⃣ 홈: 새로운 상품 등록 - 이미지
-
-- SF Symbols의 아이콘을 그대로 쓸 때, 안에 X 표시를 흰색으로 채울려고 할 때, 단순히 틴트색과 배경색을 지정해서 원하는 색은 의도했으나 매끄럽지 않은 것을 포착함.
-
-→ 심볼 팔레트를 구성해서 흰색과 검정색으로 이미지에 색상을 적용한다.
+**문제 설명**: SF Symbols의 아이콘을 사용할 때, 안의 X 표시를 흰색으로 채우려 했으나,
+                    단순한 틴트 색상 변경으로는 의도한 색상이 매끄럽게 적용되지 않는 문제가 발생했습니다.  
+**해결 방법**: 심볼 팔레트를 구성하여 이미지에 색상을 적용했습니다.  
+**구체적인 구현**:
 
 ```swift
 guard var xmarkImage = UIImage(systemName: "xmark.circle.fill") else { return UIImageView() }
@@ -243,119 +80,48 @@ guard var xmarkImage = UIImage(systemName: "xmark.circle.fill") else { return UI
         xmarkImage = xmarkImage.withConfiguration(configuration)
         
         let xmarkView = UIImageView(image: xmarkImage)
+```  
+
+**결과**: 흰색과 검정색으로 이미지의 색상이 매끄럽게 적용되어 원하는 시각적 효과를 얻었습니다.
+
+## 3.상품 등록
+
+**문제 설명**: UIKit으로 만든 상품 등록 뷰와 SwiftUI에서 화면 이동 시 네비게이션 바가 두 개 생기는 문제가 발생했습니다.  
+**해결 방법**: fullScreenCover와 UIViewControllerRepresentable을 사용하여 
+                    SwiftUI와 UIKit 간의 원활한 화면 전환을 구현했습니다.  
+**구체적인 구현**:
+- fullScreenCover를 사용하여 SwiftUI에서 전체 화면을 표시.
+- UIViewControllerRepresentable을 통해 UIKit의 UINavigationController와 UIViewController를 통합.
+- NewProductViewController에서 완료 및 닫기 이벤트를 처리하여 isPresented를 업데이트.  
+
+**결과**: SwiftUI와 UIKit 간의 화면 전환 시 네비게이션 바가 중복되지 않으며, 일관된 사용자 경험을 제공할 수 있었습니다.  
+
+## 4.채팅 기능
+
+**문제 설명**: 클라우드 Realm을 사용하고 나서 상품 등록 완료 후 로그인이 풀리는 버그가 발생했습니다.  
+**해결 방법**: UserManager가 EnvironmentObject로 주입될 때, ObservableObject를 준수하지 않아서 발생한 버그로 판단되었습니다. 이를 해결하기 위해 AppState 클래스에 @Published 속성 래퍼를 사용하여 userManager를 지정했습니다.  
+**구체적인 구현**:
+
+```swift
+class AppState: ObservableObject {
+    @Published var realm: Realm?
+    @Published var userManager: UserManager?
+    @Published var chatRoomViewModel: ChatRoomViewModel?
+    private var app: App
+    
+    init() {
+        self.app = App(id: "application-0-fahelom")
+        let realmManager = RealmManager(realm: nil)
+        self.userManager = UserManager(realmManager: realmManager)
+        login()
+    }
+
 ```
 
-- 이미지뷰와 X표시뷰 둘중 하나를 선택했을 때, 삭제기능을 구현할 때 공통된 메소드가 호출되기 때문에 제스처를 하나 만들어서 두 곳에 제스처하나를 등록했는데, 둘중 하나만 기능이 호출됨
-
-→ 제스처를 각각 따로 만들어서 지정해줬더니 해결됨
-
-## 3️⃣ 새로운 상품 등록(카테고리)
-- 카테고리 선택시 맨 앞에 위치는 하는데 스크롤 된 위치에 그대로 있게 된다.
-
-→ 카테고리 선택 후 스크롤 뷰의 콘텐츠오프셋을 조정하여서 첫 번째 항목을 보여주도록 해결함.
-
-- 제목을 입력하면 스크롤 뷰와 버튼이 생기도록 할려면? 
-
-→ 스택뷰를 사용해서 텍스트필드에서 입력끝이 감지되면, 카테고리 관련된 뷰를 스택뷰에 1번 위치에 넣도록 삽입한다.
-
-## 4️⃣ 홈: 새로운 상품 등록 - 설명, 기능 구현
-- textView의 5줄 높이씩 늘어날 때, safe Area까지 늘어나게 할려면?
-
-→ 초기 높이를 5줄 높이로 설정하고, 델리게이트를 활용하여 5줄 높이씩 늘린다.
-
-→ 그래도 미흡한 점이 보임. ( 15줄로 맥시멈 걸어놨는데, ToolBar 넘어서 크기가 늘어나는 문제 발생)
-
-제약조건 설정에 시간을 많이 보냈다.. 
-
-UIKit으로 만든 상품등록뷰의 네비게이션과 SwiftUI에서 화면 이동시 네비게이션바 2개가 생기는 고민
-
-- 상품등록 기능 구현할 때 서버없이 구현하고자 할때?
-
-→ 앱번들은 읽기만 가능하고, 쓰기는 되지 않는다.
-
-그래서 앱번들에 기본 Products.json파일을  Documents 경로에서 Products.json파일을 찾고 없으면 앱번들에 있는 기본 파일을 넣고, 있으면 Documents파일을 가지고 추가를 한다.
-
-- 상품추가하고 나서 저장이 잘되는것은 확인했는데, 뷰 업데이트가 안되는 현상
-
-→ 메인큐에 지정하니깐 바로 해결.. 이 버그에 시간이 가장 오래 걸렸다..
-
-- PickerView를  SignFormView에서 @State, @Binding으로 사용되고 있는데, 이를 프로필사진 변경할 때, 재사용하기 위해서 ProfileView에서  바인딩 관계로 inputImage를 ProfileView에서도 할 수 밖에 없는 구조.
-
-→ 속성을 그대로 변경하지 않고 매개변수를 받아서 프로필 사진을 업데이트 할 수 있는 방법을 고안
-
-# 💻결과
-
-![상품등록결과](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/9d393499-2e40-4cba-9c33-a10fdf7f2cc2)
 
 
-</div>
-</details>
-
-<details>
-<summary><h2>채팅<h2></summary>
-
-# 🎯주요 작업
-- [x]  채팅
-    - [x]  채팅 목록은 아래와 같이 노출
-        - 상대방 아이디
-        - 가장 최신의 채팅 내용
-        - 마지막 업데이트 시간
-        - 관련 상품이미지
-        - 메세지를 확인하지 않은 경우, 몇 개의 메세지가 남겨졌는지 갯수를 표시
-    - [x]  상세 채팅화면
-        - [x]  왼쪽 상단 - 뒤로버튼, 중앙 - 상대방 닉네임, 오른쪽 - 더보기 버튼
-        - [x]  상단 네비게이션 아래로 관련 상품의 이미지, 상태, 이름, 가격 표시
-        - [x]  화면 하단에는 메세지를 보낼 수 있는 인풋 박스
-        - [x]  메세지를 입력하면 버튼 활성화
-
-# 📚학습 키워드
-
-**combineLatest :** 여러 퍼블리셔의 값을 동시에 감시하고, 그 중 하나라도 값이 변경될 때마다 최신 값을 함께 방출할 수 있습니다.
-
-- MongoDB Atlas: 클라우드 데이터베이스 서비스
-    - 서로 다른 기기가 같은 데이터베이스를 바라보기 위해 Atlas를 사용해야 한다고 판단하였습니다.
-    - MongoDB Realm이 독립된 서비스로 제공되었으나, 현재는 MongoDB Atlas 플랫폼 내에서 Realm을 포함한 다양한 기능을 통합적으로 관리할 수 있습니다.
-        - Device Sync: 모바일 장치와 Atlas 클러스터 간의 실시간 데이터를 동기화합니다.
-        - App Services: 백엔드 인프라를 관리할 필요 없이 개발이 가능합니다.
-        - Realm: MongoDB Atlas와 통합되어 클라우드와 원활한 동기화를 지원합니다. 개발자는 Atlas를 사용하여 데이터를 중앙에서 관리하고, Realm을 통해 모바일 앱에서 데이터를 사용할 수 있습니다.
-
-## 클라우드 Realm을 사용하기 위한 과정
-
-### Atlas
-
-1. 클러스터를 생성합니다.
-    - 클러스터: 여러 대의 컴퓨터를 하나의 시스템처럼 작동하도록 구성한 집합체입니다.
-2. 데이터베이스 접근을 설정합니다.
-    - 토이 프로젝트이기 때문에, 모든 IP 주소에서 접근할 수 있도록 0.0.0.0으로 설정합니다.
-    - 익명 인증으로 접근이 쉽도록 설정합니다.
-3. App Services에서 새로운 앱을 생성하고 앱 ID를 확보합니다.
-
-### Xcode (클라우드 Realm에 접근하기 위한 과정)
-
-1. 토이 프로젝트이므로, 쉽게 접근할 수 있도록 익명 사용자로 로그인 시도합니다.
-    - 로그인에 성공하면 클라우드 Realm을 구성하는 `configureRealm()`을 호출합니다.
-2. 클라우드 Realm을 구성합니다.
-    - 현재 사용자가 있는지 확인합니다.
-    - 동기화할 객체 유형을 설정합니다.
-        - 특정 쿼리에 해당하는 데이터만 동기화하여 데이터 사용량을 줄일 수 있습니다.
-        - 필요한 데이터만 실시간으로 갱신할 수 있습니다.
-    - `asyncOpen` 메소드 자체가 비동기적으로 Realm을 오픈합니다.
-        - 성공하면 구독을 설정합니다.
-3. 구독이 업데이트된 클라우드 Realm을 변수에 저장합니다.
-    - 왜 구독을 하는가? 구독을 통해 필요한 데이터만 동기화할 수 있습니다. 이에 따라 성능 최적화와 네트워크 사용량을 줄일 수 있습니다. 또한, 중복 구독을 방지하는 이유도 있습니다.
-
-# 🤔고민과 해결
-
-클라우드 Realm을 사용하고 나서부터, 상품등록완료 후 로그인이 풀리는 버그 발생했습니다.
-
-→ userManager가 EnvironmentObject로 주입되는데, ObservableObject준수하지 않아서 발생한 버그로 생각됩니다.
-
-→ AppState에 하위로 @Published 속성래퍼로 userManager를 지정해서 해결하였습니다.
-
-# 💻결과
-
-![채팅결과](https://github.com/codesquad-members-2024/swift-secondhand/assets/104732020/16510e5e-1ae8-4bbd-9a02-9fceac97a182)
+**결과**: 사용자가 상품 등록을 완료한 후에도 로그인이 유지되며, 데이터 일관성과 사용자 경험이 향상되었습니다.
 
 
-</div>
-</details>
+
+
