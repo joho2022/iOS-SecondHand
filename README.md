@@ -1,5 +1,11 @@
 # 🥕세컨드 핸드
-동네를 기준으로 중고 물품 거래하는 당근마켓 클론 프로젝트입니다.
+동네를 기준으로 중고 물품 거래하는 당근마켓 클론 프로젝트입니다.  
+
+**진행기간** : 2024.06 ~ 2024.07 (1개월)  
+**Skills** : SwiftUI, UIKit, Realm, Combine  
+**Notion** : [Notion주소](https://few-recorder-a63.notion.site/b811b68c62de4cf8835dba1603f5e061)  
+**팀 구성** : iOS 1명
+
 
 # 📚 목차
 - 📌 핵심 키워드
