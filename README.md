@@ -90,7 +90,7 @@ guard var xmarkImage = UIImage(systemName: "xmark.circle.fill") else { return UI
 
 **결과**: 흰색과 검정색으로 이미지의 색상이 매끄럽게 적용되어 원하는 시각적 효과를 얻었습니다.
 
-## 3.상품 등록
+## 3.상품 등록 
 
 **문제 설명**: UIKit으로 만든 상품 등록 뷰와 SwiftUI에서 화면 이동 시 네비게이션 바가 두 개 생기는 문제가 발생했습니다.  
 **해결 방법**: fullScreenCover와 UIViewControllerRepresentable을 사용하여 
